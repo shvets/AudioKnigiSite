@@ -3,6 +3,8 @@ import TVSetKit
 open class AudioKnigiBaseTableViewController: InfiniteTableViewController {
   open var CellIdentifier: String { return "" }
 
+  let service = AudioKnigiService.shared
+
   let localizer = Localizer(AudioKnigiServiceAdapter.BundleId)
 
   // MARK: UITableViewDataSource
@@ -17,10 +19,6 @@ open class AudioKnigiBaseTableViewController: InfiniteTableViewController {
 
   override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as! MediaNameTableCell
-
-//    if adapter.nextPageAvailable(dataCount: items.count, index: indexPath.row) {
-//      loadMoreData(indexPath.row)
-//    }
 
     let item = items[indexPath.row]
 

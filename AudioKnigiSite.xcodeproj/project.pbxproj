@@ -8,7 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		2DBA12D1B3BBD310A424C900 /* BestBooksTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA1E8EA933657D5E11E1DA /* BestBooksTableController.swift */; };
+		2DBA16D05834C709777602A3 /* authors.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA1CF30838FE5C715E0340 /* authors.json */; };
+		2DBA19C5D6C8108B0FB5B75A /* AuthorsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA184FD63B8BE137E2556A /* AuthorsTableViewController.swift */; };
+		2DBA1AE0EB7868BDFB090E32 /* AuthorsLetterGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA1374368E20D862356E35 /* AuthorsLetterGroupTableViewController.swift */; };
+		2DBA1AE6E5E9A30EFD9CDE20 /* AuthorsLettersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA141518238B465A94DAE4 /* AuthorsLettersTableViewController.swift */; };
+		2DBA1AF013B55E068394EE51 /* performers.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA1CB1B5CBB83FB64F7CE9 /* performers.json */; };
 		2DBA1E4977E03A7870D453A7 /* NewBooksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA19AAC742C5C17A1B7020 /* NewBooksTableViewController.swift */; };
+		2DBA1EB2944B6BEFC5AFED1D /* BooksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA1F006E94086C87C19CB9 /* BooksTableViewController.swift */; };
 		FA6F8A121E7DD58F0022E16D /* AudioKnigiSite.h in Headers */ = {isa = PBXBuildFile; fileRef = FA6F8A101E7DD58F0022E16D /* AudioKnigiSite.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA6F8A211E7DD7BC0022E16D /* AudioKnigiDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6F8A181E7DD7BC0022E16D /* AudioKnigiDataSource.swift */; };
 		FA6F8A221E7DD7BC0022E16D /* AudioKnigiMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6F8A191E7DD7BC0022E16D /* AudioKnigiMediaItem.swift */; };
@@ -29,8 +35,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2DBA1374368E20D862356E35 /* AuthorsLetterGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthorsLetterGroupTableViewController.swift; path = ios/AuthorsLetterGroupTableViewController.swift; sourceTree = "<group>"; };
+		2DBA141518238B465A94DAE4 /* AuthorsLettersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthorsLettersTableViewController.swift; path = ios/AuthorsLettersTableViewController.swift; sourceTree = "<group>"; };
+		2DBA184FD63B8BE137E2556A /* AuthorsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthorsTableViewController.swift; path = ios/AuthorsTableViewController.swift; sourceTree = "<group>"; };
 		2DBA19AAC742C5C17A1B7020 /* NewBooksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewBooksTableViewController.swift; path = ios/NewBooksTableViewController.swift; sourceTree = "<group>"; };
+		2DBA1CB1B5CBB83FB64F7CE9 /* performers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = performers.json; sourceTree = "<group>"; };
+		2DBA1CF30838FE5C715E0340 /* authors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = authors.json; sourceTree = "<group>"; };
 		2DBA1E8EA933657D5E11E1DA /* BestBooksTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BestBooksTableController.swift; path = ios/BestBooksTableController.swift; sourceTree = "<group>"; };
+		2DBA1F006E94086C87C19CB9 /* BooksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BooksTableViewController.swift; path = ios/BooksTableViewController.swift; sourceTree = "<group>"; };
 		FA6F8A0D1E7DD58F0022E16D /* AudioKnigiSite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AudioKnigiSite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA6F8A101E7DD58F0022E16D /* AudioKnigiSite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioKnigiSite.h; sourceTree = "<group>"; };
 		FA6F8A111E7DD58F0022E16D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
@@ -105,6 +117,12 @@
 				FA6F8A481E7DE9150022E16D /* Localizable.strings */,
 				2DBA19AAC742C5C17A1B7020 /* NewBooksTableViewController.swift */,
 				2DBA1E8EA933657D5E11E1DA /* BestBooksTableController.swift */,
+				2DBA141518238B465A94DAE4 /* AuthorsLettersTableViewController.swift */,
+				2DBA1374368E20D862356E35 /* AuthorsLetterGroupTableViewController.swift */,
+				2DBA1F006E94086C87C19CB9 /* BooksTableViewController.swift */,
+				2DBA184FD63B8BE137E2556A /* AuthorsTableViewController.swift */,
+				2DBA1CF30838FE5C715E0340 /* authors.json */,
+				2DBA1CB1B5CBB83FB64F7CE9 /* performers.json */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -197,6 +215,8 @@
 			files = (
 				FA6F8A251E7DD7BC0022E16D /* ios in Resources */,
 				FA6F8A461E7DE9150022E16D /* Localizable.strings in Resources */,
+				2DBA16D05834C709777602A3 /* authors.json in Resources */,
+				2DBA1AF013B55E068394EE51 /* performers.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +237,10 @@
 				FA6F8A271E7DD7BC0022E16D /* AudioKnigiTableViewController.swift in Sources */,
 				2DBA1E4977E03A7870D453A7 /* NewBooksTableViewController.swift in Sources */,
 				2DBA12D1B3BBD310A424C900 /* BestBooksTableController.swift in Sources */,
+				2DBA1AE6E5E9A30EFD9CDE20 /* AuthorsLettersTableViewController.swift in Sources */,
+				2DBA1AE0EB7868BDFB090E32 /* AuthorsLetterGroupTableViewController.swift in Sources */,
+				2DBA1EB2944B6BEFC5AFED1D /* BooksTableViewController.swift in Sources */,
+				2DBA19C5D6C8108B0FB5B75A /* AuthorsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

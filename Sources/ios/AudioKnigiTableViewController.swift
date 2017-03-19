@@ -46,10 +46,10 @@ open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
         performSegue(withIdentifier: "BestBooks", sender: view)
 
       case "Authors":
-        performSegue(withIdentifier: "Authors", sender: view)
+        performSegue(withIdentifier: "AuthorsLetters", sender: view)
 
       case "Performers":
-        performSegue(withIdentifier: "Performers", sender: view)
+        performSegue(withIdentifier: "PerformersLetters", sender: view)
 
       case "Genres":
         performSegue(withIdentifier: "Genres", sender: view)
@@ -91,6 +91,34 @@ open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
             adapter.requestType = "BestBooks"
+            adapter.parentName = localizer.localize(mediaItem.name!)
+
+            destination.adapter = adapter
+          }
+
+        case "AuthorsLetters":
+          if let destination = segue.destination.getActionController() as? AuthorsLettersTableViewController,
+             let view = sender as? MediaNameTableCell {
+
+            let mediaItem = getItem(for: view)
+
+            let adapter = AudioKnigiServiceAdapter(mobile: true)
+
+            adapter.requestType = mediaItem.name!
+            adapter.parentName = localizer.localize(mediaItem.name!)
+
+            destination.adapter = adapter
+          }
+
+        case "PerformersLetters":
+          if let destination = segue.destination.getActionController() as? AuthorsLettersTableViewController,
+             let view = sender as? MediaNameTableCell {
+
+            let mediaItem = getItem(for: view)
+
+            let adapter = AudioKnigiServiceAdapter(mobile: true)
+
+            adapter.requestType = mediaItem.name!
             adapter.parentName = localizer.localize(mediaItem.name!)
 
             destination.adapter = adapter
