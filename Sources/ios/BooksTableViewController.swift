@@ -6,22 +6,19 @@ class BooksTableViewController: AudioKnigiBaseTableViewController {
 
   override open var CellIdentifier: String { return "BookTableCell" }
 
-//  let FiltersMenu = [
-//    "By Week",
-//    "By Month",
-//    "All Time"
-//  ]
-
   override func viewDidLoad() {
     super.viewDidLoad()
 
     self.clearsSelectionOnViewWillAppear = false
 
-//    for name in FiltersMenu {
-//      let item = MediaItem(name: name)
-//
-//      items.append(item)
-//    }
+    tableView?.backgroundView = activityIndicatorView
+    adapter.spinner = PlainSpinner(activityIndicatorView)
+
+    loadInitialData() { result in
+      for item in result {
+        item.name = self.localizer.localize(item.name!)
+      }
+    }
   }
 
   override open func navigate(from view: UITableViewCell) {

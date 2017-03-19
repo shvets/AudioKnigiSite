@@ -6,15 +6,12 @@ class AudioKnigiDataSource: DataSource {
   let service = AudioKnigiService.shared
 
   func load(_ requestType: String, params: RequestParams, pageSize: Int, currentPage: Int) throws -> [MediaItem] {
-    var result: [String: Any] = ["movies": []]
+    var result: [Any] = []
 
     let identifier = params.identifier
     let bookmarks = params.bookmarks!
     let history = params.history!
     let selectedItem = params.selectedItem
-    //as? AudioKnigiMediaItem
-
-//    var tracks = [JSON]()
 
     var request = requestType
 
@@ -39,14 +36,14 @@ class AudioKnigiDataSource: DataSource {
     switch request {
       case "BOOKMARKS":
         bookmarks.load()
-        result = ["movies": bookmarks.getBookmarks(pageSize: pageSize, page: currentPage)]
+        result = bookmarks.getBookmarks(pageSize: pageSize, page: currentPage)
 
       case "HISTORY":
         history.load()
-        result = ["movies": history.getHistoryItems(pageSize: pageSize, page: currentPage)]
+        result = history.getHistoryItems(pageSize: pageSize, page: currentPage)
 
       case "NewBooks":
-        result = try service.getNewBooks(page: currentPage)
+        result = try service.getNewBooks(page: currentPage)["movies"] as! [Any]
 
       case "BestBooks":
         var period = "all"
@@ -58,102 +55,67 @@ class AudioKnigiDataSource: DataSource {
           period = "7"
         }
 
-        result = try service.getBestBooks(period: period)
+        result = try service.getBestBooks(period: period)["movies"] as! [Any]
 
-//      case "MOVIES":
-//        let path = selectedItem!.id
-//
-//        result = try service.getMovies(path: path!, page: currentPage)
+      case "AuthorsLetters":
+        var letters = [Any]()
 
-//      case "SERIES":
-//        let path = selectedItem!.id
-//
-//        result = try service.getSeries(path: path!, page: currentPage)
-//
-//      case "POPULAR_MOVIES":
-//        result = try service.getPopularMovies(page: currentPage)
-//
-//      case "POPULAR_SERIES":
-//        result = try service.getPopularSeries(page: currentPage)
+        let response = try service.getAuthorsLetters()
 
-//      case "SEASONS":
-//        result = service.getSeasons(identifier!, parentName: selectedItem!.name!)
-//
-//        let seasons = result["movies"] as! [Any]
-//
-//        if seasons.count == 1 {
-//          let episodes = (seasons[0] as! [String: Any])["episodes"]
-//
-//          result = ["movies": episodes!]
+        for item in response {
+          let name = item as! String
+
+//        if !["Ё", "Й", "Щ", "Ъ", "Ы", "Ь"].contains(letter) {
+//          items.append(MediaItem(name: letter))
 //        }
-//
-//      case "EPISODES":
-//        let seasonNumber = selectedItem?.seasonNumber ?? ""
-//
-//        let parentName = "\(selectedItem!.parentName!) (\(selectedItem!.name!))"
-//
-//        result = service.getEpisodes(identifier!, parentName: parentName, seasonNumber: seasonNumber, pageSize: pageSize, page: currentPage)
-//
-//      case "SELECTIONS":
-//        result = try service.getSelections(page: currentPage)
 
-//      case "SELECTION":
-//        let selectionId = selectedItem!.id!
-//
-//        result = try service.getSelection(path: selectionId, page: currentPage)
-//
-////      case "SOUNDTRACKS":
-////        result = try service.getSoundtracks(page: currentPage)
-//
-//      case "ALBUMS":
-//        let soundtrackId = selectedItem!.id!
-//
-//        result = try service.getAlbums(soundtrackId)
-//
-//        let albums = result["movies"] as! [Any]
-//
-//        if albums.count == 1 {
-//          let tracks = (albums[0] as! [String: Any])["tracks"]
-//
-//          result = ["movies": tracks!]
-//        }
-//
-//      case "TRACKS":
-//        result = ["movies": tracks]
+          letters.append(["name": name])
+        }
 
-//      case "MOVIES_FILTER":
-//        let data = try service.getFilters(mode: "film")
-//
-//        result = ["movies": data]
-//
-//      case "MOVIES_SUB_FILTER":
-//        result = ["movies": selectedItem!.items]
-//
-//      case "SERIES_FILTER":
-//        let data = try service.getFilters(mode: "serial")
-//
-//        result = ["movies": data]
-//
-//      case "SERIES_SUB_FILTER":
-//        result = ["movies": selectedItem!.items]
-//
-//      case "SOUNDTRACKS":
-//        result = try service.getSoundtracks(page: currentPage)
+        result = letters
+
+      case "AuthorsLettersGroup":
+        let letter = identifier
+
+        if letter == "Все" {
+          let response = try service.getAuthors()["movies"]
+
+          result = (response as! [String: Any])["movies"] as! [Any]
+        }
+        else {
+          var letterGroups = [Any]()
+
+          for (groupName, group) in AudioKnigiService.Authors {
+            if groupName[groupName.startIndex] == letter![groupName.startIndex] {
+              //letterGroups.append([(key: groupName, value: group)])
+              letterGroups.append(["name": groupName])
+            }
+          }
+
+          result = letterGroups
+        }
+
+      case "Books":
+        let path = selectedItem!.id
+
+        result = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
 
       case "SEARCH":
         if !identifier!.isEmpty {
-          result = try service.search(identifier!, page: currentPage)
+          result = try service.search(identifier!, page: currentPage)["movies"] as! [Any]
         }
 
       default:
-        result = ["movies": []]
+        result = []
     }
 
+    return convertToMediaItems(result)
+  }
+
+  func convertToMediaItems(_ items: [Any]) -> [MediaItem] {
     var newItems = [MediaItem]()
 
-    let result2 = result["movies"] as! [Any]
-
-    for item in result2 {
+    for item in items {
       var jsonItem = item as? JSON
 
       if jsonItem == nil {

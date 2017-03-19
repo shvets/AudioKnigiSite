@@ -16,23 +16,16 @@ class AuthorsLettersTableViewController: AudioKnigiBaseTableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-    requestType = adapter.requestType
+    adapter = AudioKnigiServiceAdapter(mobile: true)
+    adapter.requestType = "AuthorsLetters"
 
-    do {
-      let data = try service.getAuthorsLetters()
+    tableView?.backgroundView = activityIndicatorView
+    adapter.spinner = PlainSpinner(activityIndicatorView)
 
-      for item in data {
-        let name = item as! String
-
-//        if !["Ё", "Й", "Щ", "Ъ", "Ы", "Ь"].contains(letter) {
-//          items.append(MediaItem(name: letter))
-//        }
-
-        items.append(MediaItem(name: name, id: name))
+    loadInitialData() { result in
+      for item in result {
+        item.name = self.localizer.localize(item.name!)
       }
-    }
-    catch {
-      print("Error getting items")
     }
   }
 
@@ -47,17 +40,11 @@ class AuthorsLettersTableViewController: AudioKnigiBaseTableViewController {
       switch identifier {
         case AuthorsLetterGroupTableViewController.SegueIdentifier:
           if let destination = segue.destination as? AuthorsLetterGroupTableViewController,
-             let selectedCell = sender as? MediaNameTableCell {
+             let view = sender as? MediaNameTableCell {
 
-            let mediaItem = getItem(for: selectedCell)
+            let mediaItem = getItem(for: view)
 
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
-
-            adapter.parentId = mediaItem.name
-            //adapter.parentName = localizer.localize(requestType!)
-
-            destination.adapter = adapter
-            destination.requestType = requestType
+            destination.letter = mediaItem.name
           }
 
         default: break
