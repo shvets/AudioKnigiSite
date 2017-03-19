@@ -82,6 +82,20 @@ open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
             destination.adapter = adapter
           }
 
+        case "BestBooks":
+          if let destination = segue.destination.getActionController() as? BestBooksTableViewController,
+             let view = sender as? MediaNameTableCell {
+
+            let mediaItem = getItem(for: view)
+
+            let adapter = AudioKnigiServiceAdapter(mobile: true)
+
+            adapter.requestType = "BestBooks"
+            adapter.parentName = localizer.localize(mediaItem.name!)
+
+            destination.adapter = adapter
+          }
+
         case MediaItemsController.SegueIdentifier:
           if let destination = segue.destination.getActionController() as? MediaItemsController,
              let view = sender as? MediaNameTableCell {

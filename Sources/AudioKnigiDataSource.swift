@@ -11,7 +11,8 @@ class AudioKnigiDataSource: DataSource {
     let identifier = params.identifier
     let bookmarks = params.bookmarks!
     let history = params.history!
-    let selectedItem = params.selectedItem as? AudioKnigiMediaItem
+    let selectedItem = params.selectedItem
+    //as? AudioKnigiMediaItem
 
 //    var tracks = [JSON]()
 
@@ -47,9 +48,18 @@ class AudioKnigiDataSource: DataSource {
       case "NewBooks":
         result = try service.getNewBooks(page: currentPage)
 
-//      case "ALL_SERIES":
-//        result = try service.getAllSeries(page: currentPage)
-//
+      case "BestBooks":
+        var period = "all"
+
+        if selectedItem!.name == "By Month" {
+          period = "30"
+        }
+        else if selectedItem!.name == "By Week" {
+          period = "7"
+        }
+
+        result = try service.getBestBooks(period: period)
+
 //      case "MOVIES":
 //        let path = selectedItem!.id
 //

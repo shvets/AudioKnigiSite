@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DBA12D1B3BBD310A424C900 /* BestBooksTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA1E8EA933657D5E11E1DA /* BestBooksTableController.swift */; };
 		2DBA1E4977E03A7870D453A7 /* NewBooksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA19AAC742C5C17A1B7020 /* NewBooksTableViewController.swift */; };
 		FA6F8A121E7DD58F0022E16D /* AudioKnigiSite.h in Headers */ = {isa = PBXBuildFile; fileRef = FA6F8A101E7DD58F0022E16D /* AudioKnigiSite.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA6F8A211E7DD7BC0022E16D /* AudioKnigiDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6F8A181E7DD7BC0022E16D /* AudioKnigiDataSource.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		2DBA19AAC742C5C17A1B7020 /* NewBooksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewBooksTableViewController.swift; path = ios/NewBooksTableViewController.swift; sourceTree = "<group>"; };
+		2DBA1E8EA933657D5E11E1DA /* BestBooksTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BestBooksTableController.swift; path = ios/BestBooksTableController.swift; sourceTree = "<group>"; };
 		FA6F8A0D1E7DD58F0022E16D /* AudioKnigiSite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AudioKnigiSite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA6F8A101E7DD58F0022E16D /* AudioKnigiSite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioKnigiSite.h; sourceTree = "<group>"; };
 		FA6F8A111E7DD58F0022E16D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				FA6F8A111E7DD58F0022E16D /* Info.plist */,
 				FA6F8A481E7DE9150022E16D /* Localizable.strings */,
 				2DBA19AAC742C5C17A1B7020 /* NewBooksTableViewController.swift */,
+				2DBA1E8EA933657D5E11E1DA /* BestBooksTableController.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				FA6F8A241E7DD7BC0022E16D /* AudioKnigiServiceAdapter.swift in Sources */,
 				FA6F8A271E7DD7BC0022E16D /* AudioKnigiTableViewController.swift in Sources */,
 				2DBA1E4977E03A7870D453A7 /* NewBooksTableViewController.swift in Sources */,
+				2DBA12D1B3BBD310A424C900 /* BestBooksTableController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
