@@ -1,0 +1,23 @@
+BOOKMARKS="Очередь";
+HISTORY="История Просмотров";
+SEARCH="Поиск";
+SEARCH_RESULTS="Результаты Поиска";
+SETTINGS="Настройки";
+RESET_HISTORY="Очистить Историю";
+RESET_BOOKMARKS="Очистить Очередь";
+HISTORY_WILL_BE_RESET="История Просмотров Будет Очищена";
+BOOKMARKS_WILL_BE_RESET="Очередь Будет Очищена";
+CONFIRM_YOUR_CHOICE="Пожалуйста Подтвердите Ваш Выбор";
+
+"New Books" = "Новые Книги";
+"Best Books" = "Лучшие Книги";
+"By Week" = "За Неделю";
+"By Month" = "За Месяц";
+"All Time" = "За Все Время";
+"Authors" = "Авторы";
+"Performers" = "Исполнители";
+"Genres" = "Жанры";
+
+"Use Runglish?" = "Использовать Runglish?";
+"Enter Query" = "Введите Запрос";
+"Search" = "Поиск";
