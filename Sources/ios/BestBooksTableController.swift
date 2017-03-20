@@ -37,7 +37,7 @@ class BestBooksTableViewController: AudioKnigiBaseTableViewController {
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-            adapter.requestType = "BestBooks"
+            adapter.requestType = "Best Books"
             adapter.selectedItem = getItem(for: view)
 
             destination.adapter = adapter

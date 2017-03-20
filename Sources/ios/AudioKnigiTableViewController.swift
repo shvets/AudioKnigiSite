@@ -25,6 +25,7 @@ open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
     title = localizer.localize("AudioKnigi")
 
     adapter = AudioKnigiServiceAdapter(mobile: true)
+    adapter.disablePagination()
 
     self.clearsSelectionOnViewWillAppear = false
 
@@ -39,9 +40,6 @@ open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
     let mediaItem = getItem(for: view)
 
     switch mediaItem.name! {
-      case "New Books":
-        performSegue(withIdentifier: "NewBooks", sender: view)
-
       case "Best Books":
         performSegue(withIdentifier: "BestBooks", sender: view)
 
@@ -68,62 +66,6 @@ open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
   override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let identifier = segue.identifier {
       switch identifier {
-        case "NewBooks":
-          if let destination = segue.destination.getActionController() as? NewBooksTableViewController,
-             let view = sender as? MediaNameTableCell {
-
-            let mediaItem = getItem(for: view)
-
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
-
-            adapter.requestType = "NewBooks"
-            adapter.parentName = localizer.localize(mediaItem.name!)
-
-            destination.adapter = adapter
-          }
-
-        case "BestBooks":
-          if let destination = segue.destination.getActionController() as? BestBooksTableViewController,
-             let view = sender as? MediaNameTableCell {
-
-            let mediaItem = getItem(for: view)
-
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
-
-            adapter.requestType = "BestBooks"
-            adapter.parentName = localizer.localize(mediaItem.name!)
-
-            destination.adapter = adapter
-          }
-
-        case "AuthorsLetters":
-          if let destination = segue.destination.getActionController() as? AuthorsLettersTableViewController,
-             let view = sender as? MediaNameTableCell {
-
-            let mediaItem = getItem(for: view)
-
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
-
-            adapter.requestType = mediaItem.name!
-            adapter.parentName = localizer.localize(mediaItem.name!)
-
-            destination.adapter = adapter
-          }
-
-        case "PerformersLetters":
-          if let destination = segue.destination.getActionController() as? AuthorsLettersTableViewController,
-             let view = sender as? MediaNameTableCell {
-
-            let mediaItem = getItem(for: view)
-
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
-
-            adapter.requestType = mediaItem.name!
-            adapter.parentName = localizer.localize(mediaItem.name!)
-
-            destination.adapter = adapter
-          }
-
         case MediaItemsController.SegueIdentifier:
           if let destination = segue.destination.getActionController() as? MediaItemsController,
              let view = sender as? MediaNameTableCell {

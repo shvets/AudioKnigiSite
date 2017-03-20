@@ -11,6 +11,11 @@ class NewBooksTableViewController: AudioKnigiBaseTableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
+    adapter = AudioKnigiServiceAdapter(mobile: true)
+
+    adapter.requestType = "New Books"
+    adapter.parentName = localizer.localize("New Books")
+
     tableView?.backgroundView = activityIndicatorView
     adapter.spinner = PlainSpinner(activityIndicatorView)
 
@@ -34,7 +39,7 @@ class NewBooksTableViewController: AudioKnigiBaseTableViewController {
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-            adapter.requestType = "NewBooks"
+            adapter.requestType = "New Books"
             adapter.selectedItem = getItem(for: view)
 
             destination.adapter = adapter

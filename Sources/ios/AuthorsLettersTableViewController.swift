@@ -18,6 +18,7 @@ class AuthorsLettersTableViewController: AudioKnigiBaseTableViewController {
 
     adapter = AudioKnigiServiceAdapter(mobile: true)
     adapter.requestType = "AuthorsLetters"
+    adapter.parentName = localizer.localize("Authors Letters")
 
     tableView?.backgroundView = activityIndicatorView
     adapter.spinner = PlainSpinner(activityIndicatorView)

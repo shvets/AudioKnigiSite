@@ -42,10 +42,10 @@ class AudioKnigiDataSource: DataSource {
         history.load()
         result = history.getHistoryItems(pageSize: pageSize, page: currentPage)
 
-      case "NewBooks":
+      case "New Books":
         result = try service.getNewBooks(page: currentPage)["movies"] as! [Any]
 
-      case "BestBooks":
+      case "Best Books":
         var period = "all"
 
         if selectedItem!.name == "By Month" {
@@ -78,9 +78,7 @@ class AudioKnigiDataSource: DataSource {
         let letter = identifier
 
         if letter == "Все" {
-          let response = try service.getAuthors()["movies"]
-
-          result = (response as! [String: Any])["movies"] as! [Any]
+          result = try service.getAuthors(page: currentPage)["movies"] as! [Any]
         }
         else {
           var letterGroups = [Any]()
@@ -88,7 +86,7 @@ class AudioKnigiDataSource: DataSource {
           for (groupName, group) in AudioKnigiService.Authors {
             if groupName[groupName.startIndex] == letter![groupName.startIndex] {
               //letterGroups.append([(key: groupName, value: group)])
-              letterGroups.append(["name": groupName])
+              letterGroups.append(["name": groupName, "items": group])
             }
           }
 
@@ -96,7 +94,7 @@ class AudioKnigiDataSource: DataSource {
         }
 
       case "Books":
-        let path = selectedItem!.id
+        let path = selectedItem!.name
 
         result = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
 
