@@ -22,14 +22,14 @@ class AudioKnigiMediaItem: MediaItem {
 //    for track in tracks {
 //      self.tracks.append(track)
 //    }
-//
-//    self.items = []
-//
-//    let items = data["items"].arrayValue
-//
-//    for item in items {
-//      self.items.append(item)
-//    }
+
+    self.items = []
+
+    let items = data["items"].arrayValue
+
+    for item in items {
+      self.items.append(item)
+    }
   }
   
 //  override func isContainer() -> Bool {

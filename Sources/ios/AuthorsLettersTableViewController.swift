@@ -17,17 +17,19 @@ class AuthorsLettersTableViewController: AudioKnigiBaseTableViewController {
     self.clearsSelectionOnViewWillAppear = false
 
     adapter = AudioKnigiServiceAdapter(mobile: true)
-    adapter.requestType = "AuthorsLetters"
+    adapter.requestType = "Authors Letters"
     adapter.parentName = localizer.localize("Authors Letters")
 
     tableView?.backgroundView = activityIndicatorView
     adapter.spinner = PlainSpinner(activityIndicatorView)
 
-    loadInitialData() { result in
-      for item in result {
-        item.name = self.localizer.localize(item.name!)
-      }
-    }
+    loadInitialData()
+
+//    loadInitialData() { result in
+//      for item in result {
+//        item.name = self.localizer.localize(item.name!)
+//      }
+//    }
   }
 
   override open func navigate(from view: UITableViewCell) {

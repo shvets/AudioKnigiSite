@@ -11,14 +11,18 @@ class BooksTableViewController: AudioKnigiBaseTableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-    tableView?.backgroundView = activityIndicatorView
-    adapter.spinner = PlainSpinner(activityIndicatorView)
-
-    loadInitialData() { result in
-      for item in result {
-        item.name = self.localizer.localize(item.name!)
-      }
-    }
+//    adapter = AudioKnigiServiceAdapter(mobile: true)
+//
+//    adapter.requestType = "Books"
+//
+//    tableView?.backgroundView = activityIndicatorView
+//    adapter.spinner = PlainSpinner(activityIndicatorView)
+//
+//    loadInitialData() { result in
+//      for item in result {
+//        item.name = self.localizer.localize(item.name!)
+//      }
+//    }
   }
 
   override open func navigate(from view: UITableViewCell) {

@@ -57,7 +57,7 @@ class AudioKnigiDataSource: DataSource {
 
         result = try service.getBestBooks(period: period)["movies"] as! [Any]
 
-      case "AuthorsLetters":
+      case "Authors Letters":
         var letters = [Any]()
 
         let response = try service.getAuthorsLetters()
@@ -74,7 +74,7 @@ class AudioKnigiDataSource: DataSource {
 
         result = letters
 
-      case "AuthorsLettersGroup":
+      case "Authors Letters Group":
         let letter = identifier
 
         if letter == "Все" {

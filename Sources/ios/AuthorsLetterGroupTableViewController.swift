@@ -17,17 +17,19 @@ class AuthorsLetterGroupTableViewController: AudioKnigiBaseTableViewController {
     self.clearsSelectionOnViewWillAppear = false
 
     adapter = AudioKnigiServiceAdapter(mobile: true)
-    adapter.requestType = "AuthorsLettersGroup"
+    adapter.requestType = "Authors Letters Group"
     adapter.parentId = letter
 
     tableView?.backgroundView = activityIndicatorView
     adapter.spinner = PlainSpinner(activityIndicatorView)
 
-    loadInitialData() { result in
-      for item in result {
-        item.name = self.localizer.localize(item.name!)
-      }
-    }
+    loadInitialData()
+
+//    loadInitialData() { result in
+//      for item in result {
+//        item.name = self.localizer.localize(item.name!)
+//      }
+//    }
   }
 
   override open func navigate(from view: UITableViewCell) {
@@ -43,6 +45,9 @@ class AuthorsLetterGroupTableViewController: AudioKnigiBaseTableViewController {
           if let destination = segue.destination.getActionController() as? BooksTableViewController,
              let view = sender as? MediaNameTableCell {
 
+            let mediaItem = getItem(for: view)
+
+            //destination.items = items
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
             adapter.requestType = "Books"
