@@ -43,8 +43,7 @@ class AudioKnigiDataSource: DataSource {
         result = history.getHistoryItems(pageSize: pageSize, page: currentPage)
 
       case "Books":
-        print(identifier)
-        let path = selectedItem!.name
+        let path = selectedItem!.id
 
         result = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
 
@@ -97,9 +96,15 @@ class AudioKnigiDataSource: DataSource {
 
         result = letterGroups
 
+      case "Genres":
+        result = try service.getGenres(page: currentPage)["movies"] as! [Any]
+
       case "Search":
         if !identifier!.isEmpty {
           result = try service.search(identifier!, page: currentPage)["movies"] as! [Any]
+        }
+        else {
+          result = []
         }
 
       default:

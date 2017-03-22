@@ -2,7 +2,7 @@ import UIKit
 import TVSetKit
 
 class GenresTableViewController: AudioKnigiBaseTableViewController {
-  static let SegueIdentifier = "BestBooks"
+  static let SegueIdentifier = "Genres"
 
   override open var CellIdentifier: String { return "GenreTableCell" }
 
@@ -15,6 +15,7 @@ class GenresTableViewController: AudioKnigiBaseTableViewController {
 
     adapter.requestType = "Genres"
     adapter.parentName = localizer.localize("Genres")
+    title = localizer.localize("Genres")
 
     tableView?.backgroundView = activityIndicatorView
     adapter.spinner = PlainSpinner(activityIndicatorView)
@@ -42,8 +43,8 @@ class GenresTableViewController: AudioKnigiBaseTableViewController {
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
             adapter.requestType = "Books"
-            adapter.parentId = mediaItem.name
-            //adapter.selectedItem = getItem(for: view)
+//            adapter.parentId = mediaItem.id
+            adapter.selectedItem = getItem(for: view)
 
             destination.adapter = adapter
           }

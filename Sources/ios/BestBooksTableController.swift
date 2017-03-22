@@ -17,6 +17,8 @@ class BestBooksTableViewController: AudioKnigiBaseTableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
+    title = localizer.localize("Best Books")
+
     for name in FiltersMenu {
       let item = MediaItem(name: name)
 

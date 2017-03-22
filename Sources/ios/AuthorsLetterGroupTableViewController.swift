@@ -5,7 +5,7 @@ import WebAPI
 import TVSetKit
 
 class AuthorsLetterGroupTableViewController: AudioKnigiBaseTableViewController {
-  static let SegueIdentifier = "AuthorsLetterGroup"
+  static let SegueIdentifier = "Authors Letters Group"
 
   override open var CellIdentifier: String { return "AuthorsLetterGroupTableCell" }
 

@@ -15,6 +15,7 @@ class NewBooksTableViewController: AudioKnigiBaseTableViewController {
 
     adapter.requestType = "New Books"
     adapter.parentName = localizer.localize("New Books")
+    title = localizer.localize("New Books")
 
     tableView?.backgroundView = activityIndicatorView
     adapter.spinner = PlainSpinner(activityIndicatorView)
