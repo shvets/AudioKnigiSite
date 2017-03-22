@@ -24,12 +24,6 @@ class AuthorsLetterGroupTableViewController: AudioKnigiBaseTableViewController {
     adapter.spinner = PlainSpinner(activityIndicatorView)
 
     loadInitialData()
-
-//    loadInitialData() { result in
-//      for item in result {
-//        item.name = self.localizer.localize(item.name!)
-//      }
-//    }
   }
 
   override open func navigate(from view: UITableViewCell) {
@@ -45,7 +39,7 @@ class AuthorsLetterGroupTableViewController: AudioKnigiBaseTableViewController {
           if let destination = segue.destination.getActionController() as? BooksTableViewController,
              let view = sender as? MediaNameTableCell {
 
-            let mediaItem = getItem(for: view)
+            //let mediaItem = getItem(for: view)
 
             //destination.items = items
             let adapter = AudioKnigiServiceAdapter(mobile: true)

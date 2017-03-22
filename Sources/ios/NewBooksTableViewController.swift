@@ -2,7 +2,7 @@ import UIKit
 import TVSetKit
 
 class NewBooksTableViewController: AudioKnigiBaseTableViewController {
-  static let SegueIdentifier = "NewBooks"
+  static let SegueIdentifier = "New Books"
 
   override open var CellIdentifier: String { return "NewBookTableCell" }
 
@@ -19,11 +19,7 @@ class NewBooksTableViewController: AudioKnigiBaseTableViewController {
     tableView?.backgroundView = activityIndicatorView
     adapter.spinner = PlainSpinner(activityIndicatorView)
 
-    loadInitialData() { result in
-      for item in result {
-        item.name = self.localizer.localize(item.name!)
-      }
-    }
+    loadInitialData()
   }
 
   override open func navigate(from view: UITableViewCell) {

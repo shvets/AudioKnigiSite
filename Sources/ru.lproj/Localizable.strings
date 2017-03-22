@@ -1,14 +1,13 @@
-BOOKMARKS="Очередь";
-HISTORY="История Просмотров";
-SEARCH="Поиск";
-SEARCH_RESULTS="Результаты Поиска";
-SETTINGS="Настройки";
-RESET_HISTORY="Очистить Историю";
-RESET_BOOKMARKS="Очистить Очередь";
-HISTORY_WILL_BE_RESET="История Просмотров Будет Очищена";
-BOOKMARKS_WILL_BE_RESET="Очередь Будет Очищена";
-CONFIRM_YOUR_CHOICE="Пожалуйста Подтвердите Ваш Выбор";
+"Reset History" = "Очистить Историю";
+"Reset Bookmarks" = "Очистить Очередь";
+"History Will Be Reset" = "История Просмотров Будет Очищена";
+"Bookmarks Will Be Reset" = "Очередь Будет Очищена";
+"Please Confirm Your Choice" = "Пожалуйста Подтвердите Ваш Выбор";
 
+"Bookmarks" = "Очередь";
+"History" = "История Просмотров";
+"Search" = "Поиск";
+"Settings" = "Настройки";
 "New Books" = "Новые Книги";
 "Best Books" = "Лучшие Книги";
 "By Week" = "За Неделю";
@@ -18,6 +17,6 @@ CONFIRM_YOUR_CHOICE="Пожалуйста Подтвердите Ваш Выбо
 "Performers" = "Исполнители";
 "Genres" = "Жанры";
 
+"Search Results" = "Результаты Поиска";
 "Use Runglish?" = "Использовать Runglish?";
 "Enter Query" = "Введите Запрос";
-"Search" = "Поиск";

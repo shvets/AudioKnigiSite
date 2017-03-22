@@ -14,15 +14,11 @@ class BooksTableViewController: AudioKnigiBaseTableViewController {
 //    adapter = AudioKnigiServiceAdapter(mobile: true)
 //
 //    adapter.requestType = "Books"
-//
-//    tableView?.backgroundView = activityIndicatorView
-//    adapter.spinner = PlainSpinner(activityIndicatorView)
-//
-//    loadInitialData() { result in
-//      for item in result {
-//        item.name = self.localizer.localize(item.name!)
-//      }
-//    }
+
+    tableView?.backgroundView = activityIndicatorView
+    adapter.spinner = PlainSpinner(activityIndicatorView)
+
+    loadInitialData()
   }
 
   override open func navigate(from view: UITableViewCell) {
@@ -38,7 +34,7 @@ class BooksTableViewController: AudioKnigiBaseTableViewController {
 
           let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-          adapter.requestType = "BestBooks"
+          adapter.requestType = "Best Books"
           adapter.selectedItem = getItem(for: view)
 
           destination.adapter = adapter

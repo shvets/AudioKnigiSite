@@ -34,13 +34,19 @@ class AudioKnigiDataSource: DataSource {
 //    }
 
     switch request {
-      case "BOOKMARKS":
+      case "Bookmarks":
         bookmarks.load()
         result = bookmarks.getBookmarks(pageSize: pageSize, page: currentPage)
 
-      case "HISTORY":
+      case "History":
         history.load()
         result = history.getHistoryItems(pageSize: pageSize, page: currentPage)
+
+      case "Books":
+        print(identifier)
+        let path = selectedItem!.name
+
+        result = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
 
       case "New Books":
         result = try service.getNewBooks(page: currentPage)["movies"] as! [Any]
@@ -66,7 +72,7 @@ class AudioKnigiDataSource: DataSource {
           let name = item as! String
 
 //        if !["Ё", "Й", "Щ", "Ъ", "Ы", "Ь"].contains(letter) {
-//          items.append(MediaItem(name: letter))
+//          letters.append(["name": name])
 //        }
 
           letters.append(["name": name])
@@ -74,31 +80,24 @@ class AudioKnigiDataSource: DataSource {
 
         result = letters
 
+      case "All Authors Letters Group":
+        result = try service.getAuthors(page: currentPage)["movies"] as! [Any]
+
       case "Authors Letters Group":
         let letter = identifier
 
-        if letter == "Все" {
-          result = try service.getAuthors(page: currentPage)["movies"] as! [Any]
-        }
-        else {
-          var letterGroups = [Any]()
+        var letterGroups = [Any]()
 
-          for (groupName, group) in AudioKnigiService.Authors {
-            if groupName[groupName.startIndex] == letter![groupName.startIndex] {
-              //letterGroups.append([(key: groupName, value: group)])
-              letterGroups.append(["name": groupName, "items": group])
-            }
+        for (groupName, group) in AudioKnigiService.Authors {
+          if groupName[groupName.startIndex] == letter![groupName.startIndex] {
+            //letterGroups.append([(key: groupName, value: group)])
+            letterGroups.append(["name": groupName, "items": group])
           }
-
-          result = letterGroups
         }
 
-      case "Books":
-        let path = selectedItem!.name
+        result = letterGroups
 
-        result = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
-
-      case "SEARCH":
+      case "Search":
         if !identifier!.isEmpty {
           result = try service.search(identifier!, page: currentPage)["movies"] as! [Any]
         }

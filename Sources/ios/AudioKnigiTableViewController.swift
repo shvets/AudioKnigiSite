@@ -6,15 +6,15 @@ open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
   override open var CellIdentifier: String { return "AudioKnigiTableCell" }
 
   let MainMenuItems = [
-    "BOOKMARKS",
-    "HISTORY",
+    "Bookmarks",
+    "History",
     "New Books",
     "Best Books",
     "Authors",
     "Performers",
     "Genres",
-    "SEARCH",
-    "SETTINGS"
+    "Search",
+    "Settings"
   ]
 
   override open func viewDidLoad() {
@@ -41,21 +41,21 @@ open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
 
     switch mediaItem.name! {
       case "Best Books":
-        performSegue(withIdentifier: "BestBooks", sender: view)
+        performSegue(withIdentifier: "Best Books", sender: view)
 
       case "Authors":
-        performSegue(withIdentifier: "AuthorsLetters", sender: view)
+        performSegue(withIdentifier: "Authors Letters", sender: view)
 
       case "Performers":
-        performSegue(withIdentifier: "PerformersLetters", sender: view)
+        performSegue(withIdentifier: "Performers Letters", sender: view)
 
       case "Genres":
         performSegue(withIdentifier: "Genres", sender: view)
 
-      case "SETTINGS":
+      case "Settings":
         performSegue(withIdentifier: "Settings", sender: view)
 
-      case "SEARCH":
+      case "Search":
         performSegue(withIdentifier: SearchTableController.SegueIdentifier, sender: view)
 
       default:
@@ -85,8 +85,8 @@ open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-            adapter.requestType = "SEARCH"
-            adapter.parentName = localizer.localize("SEARCH_RESULTS")
+            adapter.requestType = "Search"
+            adapter.parentName = localizer.localize("Search Results")
 
             destination.adapter = adapter
           }

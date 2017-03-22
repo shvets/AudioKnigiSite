@@ -5,7 +5,7 @@ import WebAPI
 import TVSetKit
 
 class AuthorsLettersTableViewController: AudioKnigiBaseTableViewController {
-  static let SegueIdentifier = "AuthorsLetters"
+  static let SegueIdentifier = "Authors Letters"
 
   override open var CellIdentifier: String { return "AuthorsLetterTableCell" }
 
@@ -24,16 +24,19 @@ class AuthorsLettersTableViewController: AudioKnigiBaseTableViewController {
     adapter.spinner = PlainSpinner(activityIndicatorView)
 
     loadInitialData()
-
-//    loadInitialData() { result in
-//      for item in result {
-//        item.name = self.localizer.localize(item.name!)
-//      }
-//    }
   }
 
   override open func navigate(from view: UITableViewCell) {
-    performSegue(withIdentifier: AuthorsLetterGroupTableViewController.SegueIdentifier, sender: view)
+    let mediaItem = getItem(for: view)
+
+    let letter = mediaItem.name
+
+    if letter == "Все" {
+      performSegue(withIdentifier: MediaItemsController.SegueIdentifier, sender: view)
+    }
+    else {
+      performSegue(withIdentifier: AuthorsLetterGroupTableViewController.SegueIdentifier, sender: view)
+    }
   }
 
   // MARK: - Navigation
@@ -41,6 +44,23 @@ class AuthorsLettersTableViewController: AudioKnigiBaseTableViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let identifier = segue.identifier {
       switch identifier {
+        case MediaItemsController.SegueIdentifier:
+          if let destination = segue.destination.getActionController() as? MediaItemsController,
+             let view = sender as? MediaNameTableCell {
+
+            //let mediaItem = getItem(for: view)
+
+            //destination.letter = mediaItem.name
+
+            let adapter = AudioKnigiServiceAdapter(mobile: true)
+
+            adapter.requestType = "All Authors Letters Group"
+            //adapter.parentId = mediaItem.name
+            adapter.selectedItem = getItem(for: view)
+
+            destination.adapter = adapter
+          }
+
         case AuthorsLetterGroupTableViewController.SegueIdentifier:
           if let destination = segue.destination as? AuthorsLetterGroupTableViewController,
              let view = sender as? MediaNameTableCell {

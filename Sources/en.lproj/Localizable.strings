@@ -1,14 +1,13 @@
-BOOKMARKS="Bookmarks";
-HISTORY="History";
-SEARCH="Search";
-SEARCH_RESULTS="Search Results";
-SETTINGS="Settings";
-RESET_HISTORY="Reset History";
-RESET_BOOKMARKS="Reset Bookmarks";
-HISTORY_WILL_BE_RESET="History will be Reset";
-BOOKMARKS_WILL_BE_RESET="Bookmarks will be Reset";
-CONFIRM_YOUR_CHOICE="Please Confirm Your Choice";
+"Reset History" = "Reset History";
+"Reset Bookmarks" = "Reset Bookmarks";
+"History Will Be Reset" = "History Will Be Reset";
+"Bookmarks Will Be Reset" = "Bookmarks Will Be Reset";
+"Please Confirm Your Choice" = "Please Confirm Your Choice";
 
+"Bookmarks" = "Bookmarks";
+"History" = "History";
+"Search" = "Search";
+"Settings" = "Settings";
 "New Books" = "New Books";
 "Best Books" = "Best Books";
 "By Week" = "By Week";
@@ -18,9 +17,9 @@ CONFIRM_YOUR_CHOICE="Please Confirm Your Choice";
 "Performers" = "Performers";
 "Genres" = "Genres";
 
+"Search Results" = "Search Results";
 "Use Runglish?" = "Use Runglish?";
 "Enter Query" = "Enter Query";
-"Search" = "Search";
 
 
 

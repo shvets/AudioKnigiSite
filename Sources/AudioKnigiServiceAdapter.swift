@@ -37,14 +37,14 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
 //    }
   }
 
-//  override open func clone() -> ServiceAdapter {
-//    let cloned = MyHitServiceAdapter(mobile: mobile!)
-//
-//    cloned.clear()
-//
-//    return cloned
-//  }
-//
+  override open func clone() -> ServiceAdapter {
+    let cloned = AudioKnigiServiceAdapter(mobile: mobile!)
+
+    cloned.clear()
+
+    return cloned
+  }
+
 //  open func instantiateController(controllerId: String) -> UIViewController {
 //    return UIViewController.instantiate(
 //      controllerId: controllerId,
@@ -57,12 +57,17 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
 
     var params = RequestParams()
 
-    params.identifier = requestType == "SEARCH" ? query : parentId
+    params.identifier = requestType == "Search" ? query : parentId
     params.bookmarks = bookmarks
     params.history = history
     params.selectedItem = selectedItem
 
-    return try dataSource.load(requestType!, params: params, pageSize: pageSize!, currentPage: currentPage)
+    if let requestType = requestType {
+      return try dataSource.load(requestType, params: params, pageSize: pageSize!, currentPage: currentPage)
+    }
+    else {
+      return []
+    }
   }
 
 //  override func buildLayout() -> UICollectionViewFlowLayout? {

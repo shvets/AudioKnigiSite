@@ -1,26 +1,28 @@
 import UIKit
 import TVSetKit
 
-class BestBooksTableViewController: AudioKnigiBaseTableViewController {
-  static let SegueIdentifier = "Best Books"
+class GenresTableViewController: AudioKnigiBaseTableViewController {
+  static let SegueIdentifier = "BestBooks"
 
-  override open var CellIdentifier: String { return "BestBookTableCell" }
-
-  let FiltersMenu = [
-    "By Week",
-    "By Month",
-    "All Time"
-  ]
+  override open var CellIdentifier: String { return "GenreTableCell" }
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     self.clearsSelectionOnViewWillAppear = false
 
-    for name in FiltersMenu {
-      let item = MediaItem(name: name)
+    adapter = AudioKnigiServiceAdapter(mobile: true)
 
-      items.append(item)
+    adapter.requestType = "Genres"
+    adapter.parentName = localizer.localize("Genres")
+
+    tableView?.backgroundView = activityIndicatorView
+    adapter.spinner = PlainSpinner(activityIndicatorView)
+
+    loadInitialData() { result in
+      for item in result {
+        item.name = self.localizer.localize(item.name!)
+      }
     }
   }
 
@@ -35,10 +37,13 @@ class BestBooksTableViewController: AudioKnigiBaseTableViewController {
           if let destination = segue.destination.getActionController() as? MediaItemsController,
              let view = sender as? MediaNameTableCell {
 
+            let mediaItem = getItem(for: view)
+
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-            adapter.requestType = "Best Books"
-            adapter.selectedItem = getItem(for: view)
+            adapter.requestType = "Books"
+            adapter.parentId = mediaItem.name
+            //adapter.selectedItem = getItem(for: view)
 
             destination.adapter = adapter
           }
