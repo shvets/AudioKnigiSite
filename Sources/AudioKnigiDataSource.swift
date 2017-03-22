@@ -96,6 +96,40 @@ class AudioKnigiDataSource: DataSource {
 
         result = letterGroups
 
+      case "Performers Letters":
+        var letters = [Any]()
+
+        let response = try service.getPerformersLetters()
+
+        for item in response {
+          let name = item as! String
+
+  //        if !["Ё", "Й", "Щ", "Ъ", "Ы", "Ь"].contains(letter) {
+  //          letters.append(["name": name])
+  //        }
+
+          letters.append(["name": name])
+        }
+
+        result = letters
+
+      case "All Performers Letters Group":
+        result = try service.getPerformers(page: currentPage)["movies"] as! [Any]
+        print(result)
+
+      case "Performers Letters Group":
+        let letter = identifier
+
+        var letterGroups = [Any]()
+
+        for (groupName, group) in AudioKnigiService.Performers {
+          if groupName[groupName.startIndex] == letter![groupName.startIndex] {
+            letterGroups.append(["name": groupName, "items": group])
+          }
+        }
+
+        result = letterGroups
+
       case "Genres":
         result = try service.getGenres(page: currentPage)["movies"] as! [Any]
 
