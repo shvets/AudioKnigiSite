@@ -81,6 +81,7 @@ class AudioKnigiDataSource: DataSource {
 
       case "All Authors Letters Group":
         result = try service.getAuthors(page: currentPage)["movies"] as! [Any]
+        print(result)
 
       case "Authors Letters Group":
         let letter = identifier
@@ -89,7 +90,6 @@ class AudioKnigiDataSource: DataSource {
 
         for (groupName, group) in AudioKnigiService.Authors {
           if groupName[groupName.startIndex] == letter![groupName.startIndex] {
-            //letterGroups.append([(key: groupName, value: group)])
             letterGroups.append(["name": groupName, "items": group])
           }
         }

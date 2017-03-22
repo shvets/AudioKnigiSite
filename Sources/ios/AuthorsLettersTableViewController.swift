@@ -46,19 +46,11 @@ class AuthorsLettersTableViewController: AudioKnigiBaseTableViewController {
     if let identifier = segue.identifier {
       switch identifier {
         case MediaItemsController.SegueIdentifier:
-          if let destination = segue.destination.getActionController() as? MediaItemsController,
-             let view = sender as? MediaNameTableCell {
-
-            //let mediaItem = getItem(for: view)
-
-            //destination.letter = mediaItem.name
+          if let destination = segue.destination.getActionController() as? MediaItemsController {
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
             adapter.requestType = "All Authors Letters Group"
-            //adapter.parentId = mediaItem.name
-            adapter.selectedItem = getItem(for: view)
-
             destination.adapter = adapter
           }
 
