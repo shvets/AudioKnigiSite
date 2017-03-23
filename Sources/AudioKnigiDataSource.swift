@@ -15,23 +15,9 @@ class AudioKnigiDataSource: DataSource {
 
     var request = requestType
 
-//    if selectedItem?.type == "serie" {
-//      request = "SEASONS"
-//    }
-//    else if selectedItem?.type == "season" {
-//      request = "EPISODES"
-//    }
-//    else if selectedItem?.type == "selection" {
-//      request = "SELECTION"
-//    }
-//    else if selectedItem?.type == "soundtrack" {
-//      request = "ALBUMS"
-//    }
-//    else if selectedItem?.type == "tracks" {
-//      request = "TRACKS"
-//
-//      tracks = selectedItem!.tracks
-//    }
+    if selectedItem?.type == "book" {
+      request = "Tracks"
+    }
 
     switch request {
       case "Bookmarks":
@@ -132,6 +118,11 @@ class AudioKnigiDataSource: DataSource {
 
       case "Genres":
         result = try service.getGenres(page: currentPage)["movies"] as! [Any]
+
+      case "Tracks":
+        let url = selectedItem!.id!
+
+        result = try service.getAudioTracks(url)
 
       case "Search":
         if !identifier!.isEmpty {
