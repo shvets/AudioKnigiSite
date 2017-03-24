@@ -3,6 +3,9 @@
 "History Will Be Reset" = "История Просмотров Будет Очищена";
 "Bookmarks Will Be Reset" = "Очередь Будет Очищена";
 "Please Confirm Your Choice" = "Пожалуйста Подтвердите Ваш Выбор";
+"Search Results" = "Результаты Поиска";
+"Use Runglish?" = "Использовать Runglish?";
+"Enter Query" = "Введите Запрос";
 
 "Bookmarks" = "Очередь";
 "History" = "История Просмотров";
@@ -17,7 +20,3 @@
 "Performers" = "Исполнители";
 "Genres" = "Жанры";
 "Letters" = "Буквы";
-
-"Search Results" = "Результаты Поиска";
-"Use Runglish?" = "Использовать Runglish?";
-"Enter Query" = "Введите Запрос";

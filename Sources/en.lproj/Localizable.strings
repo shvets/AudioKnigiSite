@@ -3,11 +3,15 @@
 "History Will Be Reset" = "History Will Be Reset";
 "Bookmarks Will Be Reset" = "Bookmarks Will Be Reset";
 "Please Confirm Your Choice" = "Please Confirm Your Choice";
+"Search Results" = "Search Results";
+"Use Runglish?" = "Use Runglish?";
+"Enter Query" = "Enter Query";
 
 "Bookmarks" = "Bookmarks";
 "History" = "History";
 "Search" = "Search";
 "Settings" = "Settings";
+
 "New Books" = "New Books";
 "Best Books" = "Best Books";
 "By Week" = "By Week";
@@ -17,10 +21,6 @@
 "Performers" = "Performers";
 "Genres" = "Genres";
 "Letters" = "Letters";
-
-"Search Results" = "Search Results";
-"Use Runglish?" = "Use Runglish?";
-"Enter Query" = "Enter Query";
 
 
 
