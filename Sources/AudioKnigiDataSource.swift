@@ -28,6 +28,11 @@ class AudioKnigiDataSource: DataSource {
         history.load()
         result = history.getHistoryItems(pageSize: pageSize, page: currentPage)
 
+      case "Authors In Range":
+        let audioItem = selectedItem as! AudioKnigiMediaItem
+
+        result = audioItem.items
+
       case "Books":
         let path = selectedItem!.id
 

@@ -9,14 +9,13 @@ class AuthorsLettersTableViewController: AudioKnigiBaseTableViewController {
 
   override open var CellIdentifier: String { return "AuthorsLetterTableCell" }
 
-  var requestType: String?
-
   override func viewDidLoad() {
     super.viewDidLoad()
 
     self.clearsSelectionOnViewWillAppear = false
 
     adapter = AudioKnigiServiceAdapter(mobile: true)
+    adapter.disablePagination()
     adapter.requestType = "Authors Letters"
     adapter.parentName = localizer.localize("Authors Letters")
     title = localizer.localize("Letters")

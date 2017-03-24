@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DBA1261295B276D583BD54C /* AuthorsInRangeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA11FE57EDBC792B883E6B /* AuthorsInRangeTableViewController.swift */; };
 		2DBA16D05834C709777602A3 /* authors.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA1CF30838FE5C715E0340 /* authors.json */; };
 		2DBA1AF013B55E068394EE51 /* performers.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA1CB1B5CBB83FB64F7CE9 /* performers.json */; };
 		FA0118A71E849AAC003A8D13 /* AudioKnigiBaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01189B1E849AAC003A8D13 /* AudioKnigiBaseTableViewController.swift */; };
@@ -16,7 +17,6 @@
 		FA0118AB1E849AAC003A8D13 /* BestBooksTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01189F1E849AAC003A8D13 /* BestBooksTableController.swift */; };
 		FA0118AC1E849AAC003A8D13 /* BooksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0118A01E849AAC003A8D13 /* BooksTableViewController.swift */; };
 		FA0118AD1E849AAC003A8D13 /* GenresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0118A11E849AAC003A8D13 /* GenresTableViewController.swift */; };
-		FA0118AE1E849AAC003A8D13 /* NewBooksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0118A21E849AAC003A8D13 /* NewBooksTableViewController.swift */; };
 		FA0118AF1E849AAC003A8D13 /* PerformersLetterGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0118A31E849AAC003A8D13 /* PerformersLetterGroupTableViewController.swift */; };
 		FA0118B01E849AAC003A8D13 /* PerformersLettersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0118A41E849AAC003A8D13 /* PerformersLettersTableViewController.swift */; };
 		FA0118B11E849AAC003A8D13 /* SearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0118A51E849AAC003A8D13 /* SearchTableController.swift */; };
@@ -36,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2DBA11FE57EDBC792B883E6B /* AuthorsInRangeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsInRangeTableViewController.swift; sourceTree = "<group>"; };
 		2DBA1CB1B5CBB83FB64F7CE9 /* performers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = performers.json; sourceTree = "<group>"; };
 		2DBA1CF30838FE5C715E0340 /* authors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = authors.json; sourceTree = "<group>"; };
 		FA01189B1E849AAC003A8D13 /* AudioKnigiBaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioKnigiBaseTableViewController.swift; sourceTree = "<group>"; };
@@ -45,7 +46,6 @@
 		FA01189F1E849AAC003A8D13 /* BestBooksTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestBooksTableController.swift; sourceTree = "<group>"; };
 		FA0118A01E849AAC003A8D13 /* BooksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksTableViewController.swift; sourceTree = "<group>"; };
 		FA0118A11E849AAC003A8D13 /* GenresTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenresTableViewController.swift; sourceTree = "<group>"; };
-		FA0118A21E849AAC003A8D13 /* NewBooksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBooksTableViewController.swift; sourceTree = "<group>"; };
 		FA0118A31E849AAC003A8D13 /* PerformersLetterGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformersLetterGroupTableViewController.swift; sourceTree = "<group>"; };
 		FA0118A41E849AAC003A8D13 /* PerformersLettersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformersLettersTableViewController.swift; sourceTree = "<group>"; };
 		FA0118A51E849AAC003A8D13 /* SearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableController.swift; sourceTree = "<group>"; };
@@ -95,11 +95,11 @@
 				FA01189F1E849AAC003A8D13 /* BestBooksTableController.swift */,
 				FA0118A01E849AAC003A8D13 /* BooksTableViewController.swift */,
 				FA0118A11E849AAC003A8D13 /* GenresTableViewController.swift */,
-				FA0118A21E849AAC003A8D13 /* NewBooksTableViewController.swift */,
 				FA0118A31E849AAC003A8D13 /* PerformersLetterGroupTableViewController.swift */,
 				FA0118A41E849AAC003A8D13 /* PerformersLettersTableViewController.swift */,
 				FA0118A51E849AAC003A8D13 /* SearchTableController.swift */,
 				FA0118A61E849AAC003A8D13 /* SettingsTableController.swift */,
+				2DBA11FE57EDBC792B883E6B /* AuthorsInRangeTableViewController.swift */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -245,7 +245,6 @@
 				FA0118B21E849AAC003A8D13 /* SettingsTableController.swift in Sources */,
 				FA0118AA1E849AAC003A8D13 /* AuthorsLettersTableViewController.swift in Sources */,
 				FA0118AD1E849AAC003A8D13 /* GenresTableViewController.swift in Sources */,
-				FA0118AE1E849AAC003A8D13 /* NewBooksTableViewController.swift in Sources */,
 				FA6F8A231E7DD7BC0022E16D /* AudioKnigiService.swift in Sources */,
 				FA0118A71E849AAC003A8D13 /* AudioKnigiBaseTableViewController.swift in Sources */,
 				FA0118AC1E849AAC003A8D13 /* BooksTableViewController.swift in Sources */,
@@ -253,6 +252,7 @@
 				FA0118B11E849AAC003A8D13 /* SearchTableController.swift in Sources */,
 				FA0118A91E849AAC003A8D13 /* AuthorsLetterGroupTableViewController.swift in Sources */,
 				FA0118A81E849AAC003A8D13 /* AudioKnigiTableViewController.swift in Sources */,
+				2DBA1261295B276D583BD54C /* AuthorsInRangeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

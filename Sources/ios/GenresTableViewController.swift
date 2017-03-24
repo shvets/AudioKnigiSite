@@ -43,7 +43,6 @@ class GenresTableViewController: AudioKnigiBaseTableViewController {
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
             adapter.requestType = "Books"
-//            adapter.parentId = mediaItem.id
             adapter.selectedItem = getItem(for: view)
 
             destination.adapter = adapter

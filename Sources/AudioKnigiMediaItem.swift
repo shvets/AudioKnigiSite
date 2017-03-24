@@ -23,8 +23,6 @@ class AudioKnigiMediaItem: MediaItem {
   
   override func isContainer() -> Bool {
     return type == "book"
-
-    return false
   }
 
   override func isAudioContainer() -> Bool {

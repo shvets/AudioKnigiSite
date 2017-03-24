@@ -1,10 +1,10 @@
 import UIKit
 import TVSetKit
 
-class BooksTableViewController: AudioKnigiBaseTableViewController {
-  static let SegueIdentifier = "Books"
+class AuthorsInRangeTableViewController: AudioKnigiBaseTableViewController {
+  static let SegueIdentifier = "Authors In Range"
 
-  override open var CellIdentifier: String { return "BookTableCell" }
+  override open var CellIdentifier: String { return "AuthorInRangeTableCell" }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -18,19 +18,19 @@ class BooksTableViewController: AudioKnigiBaseTableViewController {
   }
 
   override open func navigate(from view: UITableViewCell) {
-    performSegue(withIdentifier: MediaItemsController.SegueIdentifier, sender: view)
+    performSegue(withIdentifier: BooksTableViewController.SegueIdentifier, sender: view)
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let identifier = segue.identifier {
       switch identifier {
-      case MediaItemsController.SegueIdentifier:
-        if let destination = segue.destination.getActionController() as? MediaItemsController,
+      case BooksTableViewController.SegueIdentifier:
+        if let destination = segue.destination.getActionController() as? BooksTableViewController,
            let view = sender as? MediaNameTableCell {
 
           let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-          adapter.requestType = "Tracks"
+          adapter.requestType = "Books"
           adapter.selectedItem = getItem(for: view)
 
           destination.adapter = adapter

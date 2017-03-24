@@ -17,6 +17,7 @@ class AuthorsLetterGroupTableViewController: AudioKnigiBaseTableViewController {
     self.clearsSelectionOnViewWillAppear = false
 
     adapter = AudioKnigiServiceAdapter(mobile: true)
+    adapter.disablePagination()
     adapter.requestType = "Authors Letters Group"
     adapter.parentId = letter
 
@@ -27,7 +28,7 @@ class AuthorsLetterGroupTableViewController: AudioKnigiBaseTableViewController {
   }
 
   override open func navigate(from view: UITableViewCell) {
-    performSegue(withIdentifier: BooksTableViewController.SegueIdentifier, sender: view)
+    performSegue(withIdentifier: AuthorsInRangeTableViewController.SegueIdentifier, sender: view)
   }
 
   // MARK: - Navigation
@@ -35,16 +36,13 @@ class AuthorsLetterGroupTableViewController: AudioKnigiBaseTableViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let identifier = segue.identifier {
       switch identifier {
-        case BooksTableViewController.SegueIdentifier:
-          if let destination = segue.destination.getActionController() as? BooksTableViewController,
+        case AuthorsInRangeTableViewController.SegueIdentifier:
+          if let destination = segue.destination.getActionController() as? AuthorsInRangeTableViewController,
              let view = sender as? MediaNameTableCell {
 
-            //let mediaItem = getItem(for: view)
-
-            //destination.items = items
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-            adapter.requestType = "Books"
+            adapter.requestType = "Authors In Range"
             adapter.selectedItem = getItem(for: view)
 
             destination.adapter = adapter
