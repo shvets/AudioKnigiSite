@@ -36,19 +36,12 @@ class AudioKnigiDataSource: DataSource {
       case "Author":
         let path = selectedItem!.id
 
-        let books = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
+        result = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
 
-//        var newBooks: [Any] = []
-//
-//        for book in books {
-//          newBooks.append(["name": (book as! [String: String])["name"], "id": (book as! [String: String])["id"], "type": "book"])
-//        }
-//
-//        result = newBooks
+      case "Performer":
+        let path = selectedItem!.id
 
-        print(books)
-
-        result = books
+        result = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
 
       case "New Books":
         result = try service.getNewBooks(page: currentPage)["movies"] as! [Any]

@@ -1,10 +1,10 @@
 import UIKit
 import TVSetKit
 
-class AuthorsInRangeTableViewController: AudioKnigiBaseTableViewController {
-  static let SegueIdentifier = "Authors In Range"
+class PerformersInRangeTableViewController: AudioKnigiBaseTableViewController {
+  static let SegueIdentifier = "Performers In Range"
 
-  override open var CellIdentifier: String { return "AuthorInRangeTableCell" }
+  override open var CellIdentifier: String { return "PerformersInRangeTableCell" }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,7 +30,7 @@ class AuthorsInRangeTableViewController: AudioKnigiBaseTableViewController {
 
           let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-          adapter.requestType = "Author"
+          adapter.requestType = "Performer"
           adapter.selectedItem = getItem(for: view)
 
           destination.adapter = adapter
