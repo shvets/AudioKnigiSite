@@ -1,7 +1,7 @@
 import UIKit
 import TVSetKit
 
-class GenresTableViewController: InfiniteTableViewController {
+class GenresTableViewController: BaseTableViewController {
   static let SegueIdentifier = "Genres"
 
   override open var CellIdentifier: String { return "GenreTableCell" }
