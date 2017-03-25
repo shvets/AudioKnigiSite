@@ -1,15 +1,19 @@
 import UIKit
 import TVSetKit
 
-class GenresTableViewController: AudioKnigiBaseTableViewController {
+class GenresTableViewController: InfiniteTableViewController {
   static let SegueIdentifier = "Genres"
 
   override open var CellIdentifier: String { return "GenreTableCell" }
+
+  let service = AudioKnigiService.shared
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     self.clearsSelectionOnViewWillAppear = false
+
+    localizer = Localizer(AudioKnigiServiceAdapter.BundleId)
 
     adapter = AudioKnigiServiceAdapter(mobile: true)
 
@@ -37,8 +41,6 @@ class GenresTableViewController: AudioKnigiBaseTableViewController {
         case MediaItemsController.SegueIdentifier:
           if let destination = segue.destination.getActionController() as? MediaItemsController,
              let view = sender as? MediaNameTableCell {
-
-            let mediaItem = getItem(for: view)
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 

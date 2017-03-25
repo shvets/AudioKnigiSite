@@ -14,16 +14,7 @@ class AuthorsLettersTableViewController: AudioKnigiBaseTableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-    adapter = AudioKnigiServiceAdapter(mobile: true)
-    adapter.disablePagination()
-    adapter.requestType = "Authors Letters"
-    adapter.parentName = localizer.localize("Authors Letters")
-    title = localizer.localize("Letters")
-
-    tableView?.backgroundView = activityIndicatorView
-    adapter.spinner = PlainSpinner(activityIndicatorView)
-
-    loadInitialData()
+    items = AudioKnigiDataSource().getAuthorsLetters()
   }
 
   override open func navigate(from view: UITableViewCell) {

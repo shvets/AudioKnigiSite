@@ -28,11 +28,6 @@ class AudioKnigiDataSource: DataSource {
         history.load()
         result = history.getHistoryItems(pageSize: pageSize, page: currentPage)
 
-      case "Authors In Range":
-        let audioItem = selectedItem as! AudioKnigiMediaItem
-
-        result = audioItem.items
-
       case "Author":
         let path = selectedItem!.id
 
@@ -56,75 +51,13 @@ class AudioKnigiDataSource: DataSource {
           period = "7"
         }
 
-        result = try service.getBestBooks(period: period)["movies"] as! [Any]
-
-      case "Authors Letters":
-        var letters = [Any]()
-
-        let response = try service.getAuthorsLetters()
-
-        for item in response {
-          let name = item as! String
-
-//        if !["Ё", "Й", "Щ", "Ъ", "Ы", "Ь"].contains(letter) {
-//          letters.append(["name": name])
-//        }
-
-          letters.append(["name": name])
-        }
-
-        result = letters
+        result = try service.getBestBooks(period: period, page: currentPage)["movies"] as! [Any]
 
       case "All Authors Letters Group":
         result = try service.getAuthors(page: currentPage)["movies"] as! [Any]
-        print(result)
-
-      case "Authors Letters Group":
-        let letter = identifier
-
-        var letterGroups = [Any]()
-
-        for (groupName, group) in AudioKnigiService.Authors {
-          if groupName[groupName.startIndex] == letter![groupName.startIndex] {
-            letterGroups.append(["name": groupName, "items": group])
-          }
-        }
-
-        result = letterGroups
-
-      case "Performers Letters":
-        var letters = [Any]()
-
-        let response = try service.getPerformersLetters()
-
-        for item in response {
-          let name = item as! String
-
-  //        if !["Ё", "Й", "Щ", "Ъ", "Ы", "Ь"].contains(letter) {
-  //          letters.append(["name": name])
-  //        }
-
-          letters.append(["name": name])
-        }
-
-        result = letters
 
       case "All Performers Letters Group":
         result = try service.getPerformers(page: currentPage)["movies"] as! [Any]
-        print(result)
-
-      case "Performers Letters Group":
-        let letter = identifier
-
-        var letterGroups = [Any]()
-
-        for (groupName, group) in AudioKnigiService.Performers {
-          if groupName[groupName.startIndex] == letter![groupName.startIndex] {
-            letterGroups.append(["name": groupName, "items": group])
-          }
-        }
-
-        result = letterGroups
 
       case "Genres":
         result = try service.getGenres(page: currentPage)["movies"] as! [Any]
@@ -166,4 +99,81 @@ class AudioKnigiDataSource: DataSource {
 
     return newItems
   }
+
+//  func getAuthorLetterGroups(_ letter: String, page: Int=1, perPage: Int=36) -> [Any] {
+//    print(page)
+//    var letterGroups = [Any]()
+//
+//    var index = 0
+//
+//    for (groupName, group) in AudioKnigiService.Authors {
+//      if groupName[groupName.startIndex] == letter[groupName.startIndex] {
+//        if index >= (page - 1) * perPage && index < page * perPage {
+//          index = index + 1
+//          letterGroups.append(["name": groupName, "items": group])
+//        }
+//      }
+//    }
+//
+//    return letterGroups
+//  }
+
+  func getAuthorsLetters() -> [MediaItem] {
+    var list: [MediaItem] = []
+
+    do {
+      let letters = try service.getAuthorsLetters()
+
+      for letter in letters {
+        list.append(MediaItem(data: ["name": letter]))
+      }
+    }
+    catch {
+      print("Error getting authors letters")
+    }
+
+    return list
+  }
+
+  func getPerformersLetters() -> [MediaItem] {
+    var list: [MediaItem] = []
+
+    do {
+      let letters = try service.getPerformersLetters()
+
+      for letter in letters {
+        list.append(MediaItem(data: ["name": letter]))
+      }
+    }
+    catch {
+      print("Error getting performers letters")
+    }
+
+    return list
+  }
+
+  func getAuthorLetterGroups(_ letter: String) -> [MediaItem] {
+    var letterGroups = [MediaItem]()
+
+    for (groupName, group) in AudioKnigiService.Authors {
+      if groupName[groupName.startIndex] == letter[groupName.startIndex] {
+        letterGroups.append(AudioKnigiMediaItem(data: ["name": groupName, "items": group]))
+      }
+    }
+
+    return letterGroups
+  }
+
+  func getPerformerLetterGroups(_ letter: String) -> [MediaItem] {
+    var letterGroups = [MediaItem]()
+
+    for (groupName, group) in AudioKnigiService.Performers {
+      if groupName[groupName.startIndex] == letter[groupName.startIndex] {
+        letterGroups.append(AudioKnigiMediaItem(data: ["name": groupName, "items": group]))
+      }
+    }
+
+    return letterGroups
+  }
+
 }

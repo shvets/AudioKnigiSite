@@ -1,6 +1,6 @@
 import TVSetKit
 
-open class AudioKnigiBaseTableViewController: InfiniteTableViewController {
+open class AudioKnigiBaseTableViewController: BaseTableViewController {
   let service = AudioKnigiService.shared
 
   override open func viewDidLoad() {

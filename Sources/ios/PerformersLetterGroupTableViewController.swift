@@ -16,14 +16,13 @@ class PerformersLetterGroupTableViewController: AudioKnigiBaseTableViewControlle
 
     self.clearsSelectionOnViewWillAppear = false
 
-    adapter = AudioKnigiServiceAdapter(mobile: true)
-    adapter.requestType = "Performers Letters Group"
-    adapter.parentId = letter
+    DispatchQueue.global().async {
+      self.items = AudioKnigiDataSource().getPerformerLetterGroups(self.letter!)
 
-    tableView?.backgroundView = activityIndicatorView
-    adapter.spinner = PlainSpinner(activityIndicatorView)
-
-    loadInitialData()
+      DispatchQueue.main.async {
+        self.tableView?.reloadData()
+      }
+    }
   }
 
   override open func navigate(from view: UITableViewCell) {
@@ -35,19 +34,20 @@ class PerformersLetterGroupTableViewController: AudioKnigiBaseTableViewControlle
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let identifier = segue.identifier {
       switch identifier {
-      case PerformersInRangeTableViewController.SegueIdentifier:
-        if let destination = segue.destination.getActionController() as? PerformersInRangeTableViewController,
-           let view = sender as? MediaNameTableCell {
+        case PerformersInRangeTableViewController.SegueIdentifier:
+          if let destination = segue.destination.getActionController() as? PerformersInRangeTableViewController,
+             let view = sender as? MediaNameTableCell {
 
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
+            let selectedItem = getItem(for: view) as! AudioKnigiMediaItem
 
-            adapter.requestType = "Performers In Range"
-            adapter.selectedItem = getItem(for: view)
+            destination.performers = []
 
-          destination.adapter = adapter
-        }
+            for item in selectedItem.items {
+              destination.performers.append(MediaItem(data: JSON(item)))
+            }
+          }
 
-      default: break
+        default: break
       }
     }
   }

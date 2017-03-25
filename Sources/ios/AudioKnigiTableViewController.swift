@@ -25,7 +25,6 @@ open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
     title = localizer.localize("AudioKnigi")
 
     adapter = AudioKnigiServiceAdapter(mobile: true)
-    adapter.disablePagination()
 
     self.clearsSelectionOnViewWillAppear = false
 

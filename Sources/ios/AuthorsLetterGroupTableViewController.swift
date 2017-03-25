@@ -16,15 +16,13 @@ class AuthorsLetterGroupTableViewController: AudioKnigiBaseTableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-    adapter = AudioKnigiServiceAdapter(mobile: true)
-    adapter.disablePagination()
-    adapter.requestType = "Authors Letters Group"
-    adapter.parentId = letter
+    DispatchQueue.global().async {
+      self.items = AudioKnigiDataSource().getAuthorLetterGroups(self.letter!)
 
-    tableView?.backgroundView = activityIndicatorView
-    adapter.spinner = PlainSpinner(activityIndicatorView)
-
-    loadInitialData()
+      DispatchQueue.main.async {
+        self.tableView?.reloadData()
+      }
+    }
   }
 
   override open func navigate(from view: UITableViewCell) {
@@ -40,12 +38,13 @@ class AuthorsLetterGroupTableViewController: AudioKnigiBaseTableViewController {
           if let destination = segue.destination.getActionController() as? AuthorsInRangeTableViewController,
              let view = sender as? MediaNameTableCell {
 
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
+            let selectedItem = getItem(for: view) as! AudioKnigiMediaItem
 
-            adapter.requestType = "Authors In Range"
-            adapter.selectedItem = getItem(for: view)
+            destination.authors = []
 
-            destination.adapter = adapter
+            for item in selectedItem.items {
+              destination.authors.append(MediaItem(data: JSON(item)))
+            }
           }
 
         default: break
