@@ -38,6 +38,11 @@ class AudioKnigiDataSource: DataSource {
 
         result = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
 
+      case "Genre Books":
+        let path = selectedItem!.id
+
+        result = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
+
       case "New Books":
         result = try service.getNewBooks(page: currentPage)["movies"] as! [Any]
 

@@ -43,7 +43,7 @@ class AuthorsLetterGroupTableViewController: AudioKnigiBaseTableViewController {
             destination.authors = []
 
             for item in selectedItem.items {
-              destination.authors.append(MediaItem(data: JSON(item)))
+              destination.authors.append(MediaItem(data: item))
             }
           }
 

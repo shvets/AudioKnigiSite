@@ -4,7 +4,7 @@ import TVSetKit
 class PerformersInRangeTableViewController: AudioKnigiBaseTableViewController {
   static let SegueIdentifier = "Performers In Range"
 
-  override open var CellIdentifier: String { return "PerformersInRangeTableCell" }
+  override open var CellIdentifier: String { return "PerformerInRangeTableCell" }
 
   var performers: [MediaItem] = []
 

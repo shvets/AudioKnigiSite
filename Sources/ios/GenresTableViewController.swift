@@ -44,7 +44,7 @@ class GenresTableViewController: BaseTableViewController {
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-            adapter.requestType = "Books"
+            adapter.requestType = "Genre Books"
             adapter.selectedItem = getItem(for: view)
 
             destination.adapter = adapter
