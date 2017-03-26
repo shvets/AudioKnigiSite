@@ -4,10 +4,10 @@ import SwiftSoup
 import WebAPI
 import TVSetKit
 
-class AuthorsLetterGroupTableViewController: BaseTableViewController {
-  static let SegueIdentifier = "Authors Letters Group"
+class PerformersLetterGroupTableViewController: BaseTableViewController {
+  static let SegueIdentifier = "Performers Letter Groups"
 
-  override open var CellIdentifier: String { return "AuthorsLetterGroupTableCell" }
+  override open var CellIdentifier: String { return "PerformersLetterGroupTableCell" }
   override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
 
   var letter: String?
@@ -21,7 +21,7 @@ class AuthorsLetterGroupTableViewController: BaseTableViewController {
   }
 
   override open func navigate(from view: UITableViewCell) {
-    performSegue(withIdentifier: AuthorsTableViewController.SegueIdentifier, sender: view)
+    performSegue(withIdentifier: PerformersTableViewController.SegueIdentifier, sender: view)
   }
 
   // MARK: - Navigation
@@ -29,13 +29,13 @@ class AuthorsLetterGroupTableViewController: BaseTableViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let identifier = segue.identifier {
       switch identifier {
-        case AuthorsTableViewController.SegueIdentifier:
-          if let destination = segue.destination.getActionController() as? AuthorsTableViewController,
+        case PerformersTableViewController.SegueIdentifier:
+          if let destination = segue.destination.getActionController() as? PerformersTableViewController,
              let view = sender as? MediaNameTableCell {
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-            adapter.requestType = "Group Authors"
+            adapter.requestType = "Group Performers"
             adapter.selectedItem = getItem(for: view)
             destination.adapter = adapter
           }

@@ -12,11 +12,11 @@
 		2DBA16D05834C709777602A3 /* authors.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA1CF30838FE5C715E0340 /* authors.json */; };
 		2DBA1AF013B55E068394EE51 /* performers.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA1CB1B5CBB83FB64F7CE9 /* performers.json */; };
 		FA0118A81E849AAC003A8D13 /* AudioKnigiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01189C1E849AAC003A8D13 /* AudioKnigiTableViewController.swift */; };
-		FA0118A91E849AAC003A8D13 /* AuthorsLetterGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01189D1E849AAC003A8D13 /* AuthorsLetterGroupTableViewController.swift */; };
+		FA0118A91E849AAC003A8D13 /* AuthorsLetterGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01189D1E849AAC003A8D13 /* AuthorsLetterGroupsTableViewController.swift */; };
 		FA0118AA1E849AAC003A8D13 /* AuthorsLettersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01189E1E849AAC003A8D13 /* AuthorsLettersTableViewController.swift */; };
 		FA0118AB1E849AAC003A8D13 /* BestBooksTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01189F1E849AAC003A8D13 /* BestBooksTableController.swift */; };
 		FA0118AD1E849AAC003A8D13 /* GenresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0118A11E849AAC003A8D13 /* GenresTableViewController.swift */; };
-		FA0118AF1E849AAC003A8D13 /* PerformersLetterGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0118A31E849AAC003A8D13 /* PerformersLetterGroupTableViewController.swift */; };
+		FA0118AF1E849AAC003A8D13 /* PerformersLetterGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0118A31E849AAC003A8D13 /* PerformersLetterGroupsTableViewController.swift */; };
 		FA0118B01E849AAC003A8D13 /* PerformersLettersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0118A41E849AAC003A8D13 /* PerformersLettersTableViewController.swift */; };
 		FA0118B11E849AAC003A8D13 /* SearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0118A51E849AAC003A8D13 /* SearchTableController.swift */; };
 		FA0118B21E849AAC003A8D13 /* SettingsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0118A61E849AAC003A8D13 /* SettingsTableController.swift */; };
@@ -40,11 +40,11 @@
 		2DBA1CB1B5CBB83FB64F7CE9 /* performers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = performers.json; sourceTree = "<group>"; };
 		2DBA1CF30838FE5C715E0340 /* authors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = authors.json; sourceTree = "<group>"; };
 		FA01189C1E849AAC003A8D13 /* AudioKnigiTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioKnigiTableViewController.swift; sourceTree = "<group>"; };
-		FA01189D1E849AAC003A8D13 /* AuthorsLetterGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsLetterGroupTableViewController.swift; sourceTree = "<group>"; };
+		FA01189D1E849AAC003A8D13 /* AuthorsLetterGroupsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsLetterGroupsTableViewController.swift; sourceTree = "<group>"; };
 		FA01189E1E849AAC003A8D13 /* AuthorsLettersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsLettersTableViewController.swift; sourceTree = "<group>"; };
 		FA01189F1E849AAC003A8D13 /* BestBooksTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestBooksTableController.swift; sourceTree = "<group>"; };
 		FA0118A11E849AAC003A8D13 /* GenresTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenresTableViewController.swift; sourceTree = "<group>"; };
-		FA0118A31E849AAC003A8D13 /* PerformersLetterGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformersLetterGroupTableViewController.swift; sourceTree = "<group>"; };
+		FA0118A31E849AAC003A8D13 /* PerformersLetterGroupsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformersLetterGroupsTableViewController.swift; sourceTree = "<group>"; };
 		FA0118A41E849AAC003A8D13 /* PerformersLettersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformersLettersTableViewController.swift; sourceTree = "<group>"; };
 		FA0118A51E849AAC003A8D13 /* SearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableController.swift; sourceTree = "<group>"; };
 		FA0118A61E849AAC003A8D13 /* SettingsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableController.swift; sourceTree = "<group>"; };
@@ -87,11 +87,11 @@
 			isa = PBXGroup;
 			children = (
 				FA01189C1E849AAC003A8D13 /* AudioKnigiTableViewController.swift */,
-				FA01189D1E849AAC003A8D13 /* AuthorsLetterGroupTableViewController.swift */,
+				FA01189D1E849AAC003A8D13 /* AuthorsLetterGroupsTableViewController.swift */,
 				FA01189E1E849AAC003A8D13 /* AuthorsLettersTableViewController.swift */,
 				FA01189F1E849AAC003A8D13 /* BestBooksTableController.swift */,
 				FA0118A11E849AAC003A8D13 /* GenresTableViewController.swift */,
-				FA0118A31E849AAC003A8D13 /* PerformersLetterGroupTableViewController.swift */,
+				FA0118A31E849AAC003A8D13 /* PerformersLetterGroupsTableViewController.swift */,
 				FA0118A41E849AAC003A8D13 /* PerformersLettersTableViewController.swift */,
 				FA0118A51E849AAC003A8D13 /* SearchTableController.swift */,
 				FA0118A61E849AAC003A8D13 /* SettingsTableController.swift */,
@@ -235,7 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA6F8A211E7DD7BC0022E16D /* AudioKnigiDataSource.swift in Sources */,
-				FA0118AF1E849AAC003A8D13 /* PerformersLetterGroupTableViewController.swift in Sources */,
+				FA0118AF1E849AAC003A8D13 /* PerformersLetterGroupsTableViewController.swift in Sources */,
 				FA0118AB1E849AAC003A8D13 /* BestBooksTableController.swift in Sources */,
 				FA6F8A221E7DD7BC0022E16D /* AudioKnigiMediaItem.swift in Sources */,
 				FA0118B01E849AAC003A8D13 /* PerformersLettersTableViewController.swift in Sources */,
@@ -245,7 +245,7 @@
 				FA6F8A231E7DD7BC0022E16D /* AudioKnigiService.swift in Sources */,
 				FA6F8A241E7DD7BC0022E16D /* AudioKnigiServiceAdapter.swift in Sources */,
 				FA0118B11E849AAC003A8D13 /* SearchTableController.swift in Sources */,
-				FA0118A91E849AAC003A8D13 /* AuthorsLetterGroupTableViewController.swift in Sources */,
+				FA0118A91E849AAC003A8D13 /* AuthorsLetterGroupsTableViewController.swift in Sources */,
 				FA0118A81E849AAC003A8D13 /* AudioKnigiTableViewController.swift in Sources */,
 				2DBA1261295B276D583BD54C /* AuthorsTableViewController.swift in Sources */,
 				2DBA167CE22C572B499BB062 /* PerformersTableViewController.swift in Sources */,
