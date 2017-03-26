@@ -66,6 +66,22 @@ open class AudioKnigiTableViewController: BaseTableViewController {
   override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let identifier = segue.identifier {
       switch identifier {
+        case AuthorsLettersTableViewController.SegueIdentifier:
+          if let destination = segue.destination.getActionController() as? AuthorsLettersTableViewController {
+            let adapter = AudioKnigiServiceAdapter(mobile: true)
+
+            adapter.requestType = "Authors Letters"
+            destination.adapter = adapter
+          }
+
+        case PerformersLettersTableViewController.SegueIdentifier:
+          if let destination = segue.destination.getActionController() as? PerformersLettersTableViewController {
+            let adapter = AudioKnigiServiceAdapter(mobile: true)
+
+            adapter.requestType = "Performers Letters"
+            destination.adapter = adapter
+          }
+
         case MediaItemsController.SegueIdentifier:
           if let destination = segue.destination.getActionController() as? MediaItemsController,
              let view = sender as? MediaNameTableCell {

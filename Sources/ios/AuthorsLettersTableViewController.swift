@@ -15,7 +15,7 @@ class AuthorsLettersTableViewController: BaseTableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-    items = AudioKnigiDataSource().getAuthorsLetters()
+    loadInitialData()
   }
 
   override open func navigate(from view: UITableViewCell) {

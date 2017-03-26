@@ -61,6 +61,17 @@ class AudioKnigiDataSource: DataSource {
       case "All Authors":
         result = try service.getAuthors(page: currentPage)["movies"] as! [Any]
 
+      case "Authors Letters":
+        let letters = try service.getAuthorsLetters()
+
+        var list = [Any]()
+
+        for letter in letters {
+          list.append(["name": letter])
+        }
+
+        result = list
+
       case "Authors Letter Groups":
         let letter = identifier!
 
@@ -73,6 +84,17 @@ class AudioKnigiDataSource: DataSource {
         }
 
         result = letterGroups
+
+      case "Performers Letters":
+        let letters = try service.getPerformersLetters()
+
+        var list = [Any]()
+
+        for letter in letters {
+          list.append(["name": letter])
+        }
+
+        result = list
 
       case "Group Authors":
         result = (selectedItem as! AudioKnigiMediaItem).items
@@ -141,40 +163,6 @@ class AudioKnigiDataSource: DataSource {
 //
 //    return letterGroups
 //  }
-
-  func getAuthorsLetters() -> [MediaItem] {
-    var list: [MediaItem] = []
-
-    do {
-      let letters = try service.getAuthorsLetters()
-
-      for letter in letters {
-        list.append(MediaItem(data: ["name": letter]))
-      }
-    }
-    catch {
-      print("Error getting authors letters")
-    }
-
-    return list
-  }
-
-  func getPerformersLetters() -> [MediaItem] {
-    var list: [MediaItem] = []
-
-    do {
-      let letters = try service.getPerformersLetters()
-
-      for letter in letters {
-        list.append(MediaItem(data: ["name": letter]))
-      }
-    }
-    catch {
-      print("Error getting performers letters")
-    }
-
-    return list
-  }
 
   func getPerformerLetterGroups(_ letter: String) -> [MediaItem] {
     var letterGroups = [MediaItem]()
