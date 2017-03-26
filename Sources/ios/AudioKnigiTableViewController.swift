@@ -82,6 +82,14 @@ open class AudioKnigiTableViewController: BaseTableViewController {
             destination.adapter = adapter
           }
 
+        case GenresTableViewController.SegueIdentifier:
+          if let destination = segue.destination.getActionController() as? GenresTableViewController {
+            let adapter = AudioKnigiServiceAdapter(mobile: true)
+
+            adapter.requestType = "Genres"
+            destination.adapter = adapter
+          }
+
         case MediaItemsController.SegueIdentifier:
           if let destination = segue.destination.getActionController() as? MediaItemsController,
              let view = sender as? MediaNameTableCell {

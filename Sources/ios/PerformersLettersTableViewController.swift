@@ -10,8 +10,6 @@ class PerformersLettersTableViewController: BaseTableViewController {
   override open var CellIdentifier: String { return "PerformersLetterTableCell" }
   override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
 
-  var requestType: String?
-
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -53,7 +51,10 @@ class PerformersLettersTableViewController: BaseTableViewController {
 
             let mediaItem = getItem(for: view)
 
-            destination.letter = mediaItem.name
+            let adapter = AudioKnigiServiceAdapter(mobile: true)
+            adapter.requestType = "Performers Letter Groups"
+            adapter.parentId = mediaItem.name
+            destination.adapter = adapter
           }
 
         default: break

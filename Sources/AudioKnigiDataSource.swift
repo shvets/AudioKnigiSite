@@ -96,6 +96,19 @@ class AudioKnigiDataSource: DataSource {
 
         result = list
 
+      case "Performers Letter Groups":
+        let letter = identifier!
+
+        var letterGroups = [Any]()
+
+        for (groupName, group) in AudioKnigiService.Performers {
+          if groupName[groupName.startIndex] == letter[groupName.startIndex] {
+            letterGroups.append(["name": groupName, "items": group])
+          }
+        }
+
+        result = letterGroups
+
       case "Group Authors":
         result = (selectedItem as! AudioKnigiMediaItem).items
 
@@ -144,36 +157,6 @@ class AudioKnigiDataSource: DataSource {
     }
 
     return newItems
-  }
-
-//  func getAuthorLetterGroups(_ letter: String, page: Int=1, perPage: Int=36) -> [Any] {
-//    print(page)
-//    var letterGroups = [Any]()
-//
-//    var index = 0
-//
-//    for (groupName, group) in AudioKnigiService.Authors {
-//      if groupName[groupName.startIndex] == letter[groupName.startIndex] {
-//        if index >= (page - 1) * perPage && index < page * perPage {
-//          index = index + 1
-//          letterGroups.append(["name": groupName, "items": group])
-//        }
-//      }
-//    }
-//
-//    return letterGroups
-//  }
-
-  func getPerformerLetterGroups(_ letter: String) -> [MediaItem] {
-    var letterGroups = [MediaItem]()
-
-    for (groupName, group) in AudioKnigiService.Performers {
-      if groupName[groupName.startIndex] == letter[groupName.startIndex] {
-        letterGroups.append(AudioKnigiMediaItem(data: ["name": groupName, "items": group]))
-      }
-    }
-
-    return letterGroups
   }
 
 }

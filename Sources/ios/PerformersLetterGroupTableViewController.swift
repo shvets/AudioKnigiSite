@@ -17,13 +17,7 @@ class PerformersLetterGroupTableViewController: BaseTableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-    DispatchQueue.global().async {
-      self.items = AudioKnigiDataSource().getPerformerLetterGroups(self.letter!)
-
-      DispatchQueue.main.async {
-        self.tableView?.reloadData()
-      }
-    }
+    loadInitialData()
   }
 
   override open func navigate(from view: UITableViewCell) {

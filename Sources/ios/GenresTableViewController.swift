@@ -14,14 +14,10 @@ class GenresTableViewController: BaseTableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-    adapter = AudioKnigiServiceAdapter(mobile: true)
-
-    adapter.requestType = "Genres"
-    adapter.parentName = localizer.localize("Genres")
     title = localizer.localize("Genres")
 
-    tableView?.backgroundView = activityIndicatorView
-    adapter.spinner = PlainSpinner(activityIndicatorView)
+//    tableView?.backgroundView = activityIndicatorView
+//    adapter.spinner = PlainSpinner(activityIndicatorView)
 
     loadInitialData() { result in
       for item in result {
