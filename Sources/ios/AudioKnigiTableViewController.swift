@@ -3,7 +3,10 @@ import SwiftyJSON
 import TVSetKit
 
 open class AudioKnigiTableViewController: BaseTableViewController {
+  static let SegueIdentifier = "Audio Knigi"
+
   override open var CellIdentifier: String { return "AudioKnigiTableCell" }
+  override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
 
   let MainMenuItems = [
     "Bookmarks",
@@ -22,11 +25,7 @@ open class AudioKnigiTableViewController: BaseTableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-    localizer = Localizer(AudioKnigiServiceAdapter.BundleId)
-
     title = localizer.localize("AudioKnigi")
-
-    adapter = AudioKnigiServiceAdapter(mobile: true)
 
     self.clearsSelectionOnViewWillAppear = false
 

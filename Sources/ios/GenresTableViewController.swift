@@ -5,6 +5,7 @@ class GenresTableViewController: BaseTableViewController {
   static let SegueIdentifier = "Genres"
 
   override open var CellIdentifier: String { return "GenreTableCell" }
+  override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
 
   let service = AudioKnigiService.shared
 
@@ -12,8 +13,6 @@ class GenresTableViewController: BaseTableViewController {
     super.viewDidLoad()
 
     self.clearsSelectionOnViewWillAppear = false
-
-    localizer = Localizer(AudioKnigiServiceAdapter.BundleId)
 
     adapter = AudioKnigiServiceAdapter(mobile: true)
 

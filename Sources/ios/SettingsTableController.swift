@@ -2,14 +2,15 @@ import UIKit
 import TVSetKit
 
 class SettingsTableController: BaseTableViewController {
+  static let SegueIdentifier = "Settings"
+
   override open var CellIdentifier: String { return "SettingTableCell" }
+  override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     self.clearsSelectionOnViewWillAppear = false
-
-    localizer = Localizer(AudioKnigiServiceAdapter.BundleId)
 
     loadSettingsMenu()
   }

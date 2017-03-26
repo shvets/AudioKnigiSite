@@ -5,6 +5,7 @@ class AuthorsTableViewController: BaseTableViewController {
   static let SegueIdentifier = "Authors"
 
   override open var CellIdentifier: String { return "AuthorTableCell" }
+  override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
 
   override func viewDidLoad() {
     super.viewDidLoad()

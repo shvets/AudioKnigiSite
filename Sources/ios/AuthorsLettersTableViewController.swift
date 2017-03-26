@@ -8,6 +8,7 @@ class AuthorsLettersTableViewController: BaseTableViewController {
   static let SegueIdentifier = "Authors Letters"
 
   override open var CellIdentifier: String { return "AuthorsLetterTableCell" }
+  override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -52,7 +53,12 @@ class AuthorsLettersTableViewController: BaseTableViewController {
 
             let mediaItem = getItem(for: view)
 
-            destination.letter = mediaItem.name
+            let adapter = AudioKnigiServiceAdapter(mobile: true)
+            adapter.requestType = "Authors Letter Groups"
+            adapter.parentId = mediaItem.name
+            destination.adapter = adapter
+
+            //destination.letter = mediaItem.name
           }
 
         default: break

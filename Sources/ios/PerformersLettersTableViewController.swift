@@ -8,6 +8,7 @@ class PerformersLettersTableViewController: BaseTableViewController {
   static let SegueIdentifier = "Performers Letters"
 
   override open var CellIdentifier: String { return "PerformersLetterTableCell" }
+  override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
 
   var requestType: String?
 

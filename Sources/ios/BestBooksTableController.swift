@@ -5,6 +5,7 @@ class BestBooksTableViewController: BaseTableViewController {
   static let SegueIdentifier = "Best Books"
 
   override open var CellIdentifier: String { return "BestBookTableCell" }
+  override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
 
   let FiltersMenu = [
     "By Week",
@@ -16,8 +17,6 @@ class BestBooksTableViewController: BaseTableViewController {
     super.viewDidLoad()
 
     self.clearsSelectionOnViewWillAppear = false
-
-    localizer = Localizer(AudioKnigiServiceAdapter.BundleId)
 
     title = localizer.localize("Best Books")
 

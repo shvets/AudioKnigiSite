@@ -8,6 +8,7 @@ class PerformersLetterGroupTableViewController: BaseTableViewController {
   static let SegueIdentifier = "Performers Letters Group"
 
   override open var CellIdentifier: String { return "PerformersLetterGroupTableCell" }
+  override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
 
   var letter: String?
 

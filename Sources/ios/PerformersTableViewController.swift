@@ -5,6 +5,7 @@ class PerformersTableViewController: BaseTableViewController {
   static let SegueIdentifier = "Performers"
 
   override open var CellIdentifier: String { return "PerformerTableCell" }
+  override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
 
   override func viewDidLoad() {
     super.viewDidLoad()

@@ -8,6 +8,7 @@ class AuthorsLetterGroupTableViewController: BaseTableViewController {
   static let SegueIdentifier = "Authors Letters Group"
 
   override open var CellIdentifier: String { return "AuthorsLetterGroupTableCell" }
+  override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
 
   var letter: String?
 
@@ -16,13 +17,7 @@ class AuthorsLetterGroupTableViewController: BaseTableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-    DispatchQueue.global().async {
-      self.items = AudioKnigiDataSource().getAuthorLetterGroups(self.letter!)
-
-      DispatchQueue.main.async {
-        self.tableView?.reloadData()
-      }
-    }
+    loadInitialData()
   }
 
   override open func navigate(from view: UITableViewCell) {

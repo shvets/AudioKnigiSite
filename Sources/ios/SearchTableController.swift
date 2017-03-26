@@ -3,17 +3,19 @@ import Runglish
 import TVSetKit
 
 open class SearchTableController: UIViewController, UITextFieldDelegate {
+  static let SegueIdentifier = "Search"
+
+  var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
+
   @IBOutlet weak var query: UITextField!
   @IBOutlet weak var transcodedQuery: UILabel!
   @IBOutlet weak var useRunglish: UIButton!
   @IBOutlet weak var useRunglishLabel: UILabel!
   @IBOutlet weak var searchButton: UIButton!
 
-  public class var SegueIdentifier: String { return "Search" }
-
   public var adapter: ServiceAdapter!
 
-  var localizer = Localizer(AudioKnigiServiceAdapter.BundleId)
+  var localizer: Localizer!
 
   var params = [String: Any]()
 
@@ -33,6 +35,8 @@ open class SearchTableController: UIViewController, UITextFieldDelegate {
 
   override open func viewDidLoad() {
     super.viewDidLoad()
+
+    localizer = Localizer(BundleId)
 
     isChecked = true
 
