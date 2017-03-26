@@ -25,7 +25,7 @@ class PerformersLettersTableViewController: AudioKnigiBaseTableViewController {
     let letter = mediaItem.name
 
     if letter == "Все" {
-      performSegue(withIdentifier: MediaItemsController.SegueIdentifier, sender: view)
+      performSegue(withIdentifier: PerformersTableViewController.SegueIdentifier, sender: view)
     }
     else {
       performSegue(withIdentifier: PerformersLetterGroupTableViewController.SegueIdentifier, sender: view)
@@ -37,12 +37,12 @@ class PerformersLettersTableViewController: AudioKnigiBaseTableViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let identifier = segue.identifier {
       switch identifier {
-      case MediaItemsController.SegueIdentifier:
-        if let destination = segue.destination.getActionController() as? MediaItemsController {
+      case PerformersTableViewController.SegueIdentifier:
+        if let destination = segue.destination.getActionController() as? PerformersTableViewController {
 
           let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-          adapter.requestType = "All Performers Letters Group"
+          adapter.requestType = "All Performers"
           destination.adapter = adapter
         }
 

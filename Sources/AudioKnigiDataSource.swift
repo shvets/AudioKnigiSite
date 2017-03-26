@@ -58,11 +58,17 @@ class AudioKnigiDataSource: DataSource {
 
         result = try service.getBestBooks(period: period, page: currentPage)["movies"] as! [Any]
 
-      case "All Authors Letters Group":
+      case "All Authors":
         result = try service.getAuthors(page: currentPage)["movies"] as! [Any]
 
-      case "All Performers Letters Group":
+      case "Group Authors":
+        result = (selectedItem as! AudioKnigiMediaItem).items
+
+      case "All Performers":
         result = try service.getPerformers(page: currentPage)["movies"] as! [Any]
+
+      case "Group Performers":
+        result = (selectedItem as! AudioKnigiMediaItem).items
 
       case "Genres":
         result = try service.getGenres(page: currentPage)["movies"] as! [Any]

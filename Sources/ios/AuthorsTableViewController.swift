@@ -1,19 +1,17 @@
 import UIKit
 import TVSetKit
 
-class PerformersInRangeTableViewController: AudioKnigiBaseTableViewController {
-  static let SegueIdentifier = "Performers In Range"
+class AuthorsTableViewController: AudioKnigiBaseTableViewController {
+  static let SegueIdentifier = "Authors"
 
-  override open var CellIdentifier: String { return "PerformerInRangeTableCell" }
-
-  var performers: [MediaItem] = []
+  override open var CellIdentifier: String { return "AuthorTableCell" }
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     self.clearsSelectionOnViewWillAppear = false
 
-    self.items = performers
+    loadInitialData()
   }
 
   override open func navigate(from view: UITableViewCell) {
@@ -29,7 +27,7 @@ class PerformersInRangeTableViewController: AudioKnigiBaseTableViewController {
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-            adapter.requestType = "Performer"
+            adapter.requestType = "Author"
             adapter.selectedItem = getItem(for: view)
 
             destination.adapter = adapter

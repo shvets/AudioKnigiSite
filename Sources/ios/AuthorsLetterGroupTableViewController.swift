@@ -26,7 +26,7 @@ class AuthorsLetterGroupTableViewController: AudioKnigiBaseTableViewController {
   }
 
   override open func navigate(from view: UITableViewCell) {
-    performSegue(withIdentifier: AuthorsInRangeTableViewController.SegueIdentifier, sender: view)
+    performSegue(withIdentifier: AuthorsTableViewController.SegueIdentifier, sender: view)
   }
 
   // MARK: - Navigation
@@ -34,17 +34,15 @@ class AuthorsLetterGroupTableViewController: AudioKnigiBaseTableViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let identifier = segue.identifier {
       switch identifier {
-        case AuthorsInRangeTableViewController.SegueIdentifier:
-          if let destination = segue.destination.getActionController() as? AuthorsInRangeTableViewController,
+        case AuthorsTableViewController.SegueIdentifier:
+          if let destination = segue.destination.getActionController() as? AuthorsTableViewController,
              let view = sender as? MediaNameTableCell {
 
-            let selectedItem = getItem(for: view) as! AudioKnigiMediaItem
+            let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-            destination.authors = []
-
-            for item in selectedItem.items {
-              destination.authors.append(MediaItem(data: item))
-            }
+            adapter.requestType = "Group Authors"
+            adapter.selectedItem = getItem(for: view)
+            destination.adapter = adapter
           }
 
         default: break
