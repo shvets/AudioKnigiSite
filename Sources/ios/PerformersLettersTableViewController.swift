@@ -38,8 +38,10 @@ class PerformersLettersTableViewController: BaseTableViewController {
       switch identifier {
         case PerformersTableViewController.SegueIdentifier:
           if let destination = segue.destination.getActionController() as? PerformersTableViewController {
-
             let adapter = AudioKnigiServiceAdapter(mobile: true)
+            adapter.enablePagination()
+            adapter.pageSize = 30
+            adapter.rowSize = 1
 
             adapter.requestType = "All Performers"
             destination.adapter = adapter
