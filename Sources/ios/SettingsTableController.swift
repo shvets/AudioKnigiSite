@@ -1,7 +1,7 @@
 import UIKit
 import TVSetKit
 
-class SettingsTableController: AudioKnigiBaseTableViewController {
+class SettingsTableController: BaseTableViewController {
   override open var CellIdentifier: String { return "SettingTableCell" }
 
   override func viewDidLoad() {
@@ -9,7 +9,7 @@ class SettingsTableController: AudioKnigiBaseTableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-//    adapter = AudioKnigiServiceAdapter(mobile: true)
+    localizer = Localizer(AudioKnigiServiceAdapter.BundleId)
 
     loadSettingsMenu()
   }

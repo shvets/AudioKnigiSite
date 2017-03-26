@@ -2,7 +2,7 @@ import UIKit
 import SwiftyJSON
 import TVSetKit
 
-open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
+open class AudioKnigiTableViewController: BaseTableViewController {
   override open var CellIdentifier: String { return "AudioKnigiTableCell" }
 
   let MainMenuItems = [
@@ -21,6 +21,8 @@ open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
     super.viewDidLoad()
 
     self.clearsSelectionOnViewWillAppear = false
+
+    localizer = Localizer(AudioKnigiServiceAdapter.BundleId)
 
     title = localizer.localize("AudioKnigi")
 

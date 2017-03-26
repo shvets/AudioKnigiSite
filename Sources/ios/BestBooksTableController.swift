@@ -1,7 +1,7 @@
 import UIKit
 import TVSetKit
 
-class BestBooksTableViewController: AudioKnigiBaseTableViewController {
+class BestBooksTableViewController: BaseTableViewController {
   static let SegueIdentifier = "Best Books"
 
   override open var CellIdentifier: String { return "BestBookTableCell" }
@@ -16,6 +16,8 @@ class BestBooksTableViewController: AudioKnigiBaseTableViewController {
     super.viewDidLoad()
 
     self.clearsSelectionOnViewWillAppear = false
+
+    localizer = Localizer(AudioKnigiServiceAdapter.BundleId)
 
     title = localizer.localize("Best Books")
 

@@ -4,7 +4,7 @@ import SwiftSoup
 import WebAPI
 import TVSetKit
 
-class PerformersLettersTableViewController: AudioKnigiBaseTableViewController {
+class PerformersLettersTableViewController: BaseTableViewController {
   static let SegueIdentifier = "Performers Letters"
 
   override open var CellIdentifier: String { return "PerformersLetterTableCell" }
@@ -37,25 +37,25 @@ class PerformersLettersTableViewController: AudioKnigiBaseTableViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let identifier = segue.identifier {
       switch identifier {
-      case PerformersTableViewController.SegueIdentifier:
-        if let destination = segue.destination.getActionController() as? PerformersTableViewController {
+        case PerformersTableViewController.SegueIdentifier:
+          if let destination = segue.destination.getActionController() as? PerformersTableViewController {
 
-          let adapter = AudioKnigiServiceAdapter(mobile: true)
+            let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-          adapter.requestType = "All Performers"
-          destination.adapter = adapter
-        }
+            adapter.requestType = "All Performers"
+            destination.adapter = adapter
+          }
 
-      case PerformersLetterGroupTableViewController.SegueIdentifier:
-        if let destination = segue.destination as? PerformersLetterGroupTableViewController,
-           let view = sender as? MediaNameTableCell {
+        case PerformersLetterGroupTableViewController.SegueIdentifier:
+          if let destination = segue.destination as? PerformersLetterGroupTableViewController,
+             let view = sender as? MediaNameTableCell {
 
-          let mediaItem = getItem(for: view)
+            let mediaItem = getItem(for: view)
 
-          destination.letter = mediaItem.name
-        }
+            destination.letter = mediaItem.name
+          }
 
-      default: break
+        default: break
       }
     }
   }

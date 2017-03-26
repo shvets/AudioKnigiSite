@@ -4,7 +4,7 @@ import SwiftSoup
 import WebAPI
 import TVSetKit
 
-class AuthorsLettersTableViewController: AudioKnigiBaseTableViewController {
+class AuthorsLettersTableViewController: BaseTableViewController {
   static let SegueIdentifier = "Authors Letters"
 
   override open var CellIdentifier: String { return "AuthorsLetterTableCell" }

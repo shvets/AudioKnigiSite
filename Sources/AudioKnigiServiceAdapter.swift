@@ -51,23 +51,6 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
     }
   }
 
-//  override func getUrl(_ params: [String: Any]) throws -> String {
-//    let urls: [String]?
-//
-//    let id = params["id"] as! String
-//
-//    let item = params["item"] as! MediaItem
-//
-//    if item.type == "episode" {
-//      urls = try service.getUrls(url: id)
-//    }
-//    else {
-//      urls = try service.getUrls(path: id)
-//    }
-//
-//    return urls![0]
-//  }
-
   override func addBookmark(item: MediaItem) -> Bool {
     return bookmarks.addBookmark(item: item)
   }
