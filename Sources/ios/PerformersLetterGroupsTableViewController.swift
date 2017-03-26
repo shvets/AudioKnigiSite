@@ -4,7 +4,7 @@ import SwiftSoup
 import WebAPI
 import TVSetKit
 
-class PerformersLetterGroupTableViewController: BaseTableViewController {
+class PerformersLetterGroupsTableViewController: BaseTableViewController {
   static let SegueIdentifier = "Performers Letter Groups"
 
   override open var CellIdentifier: String { return "PerformersLetterGroupTableCell" }

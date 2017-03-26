@@ -27,7 +27,7 @@ class PerformersLettersTableViewController: BaseTableViewController {
       performSegue(withIdentifier: PerformersTableViewController.SegueIdentifier, sender: view)
     }
     else {
-      performSegue(withIdentifier: PerformersLetterGroupTableViewController.SegueIdentifier, sender: view)
+      performSegue(withIdentifier: PerformersLetterGroupsTableViewController.SegueIdentifier, sender: view)
     }
   }
 
@@ -47,8 +47,8 @@ class PerformersLettersTableViewController: BaseTableViewController {
             destination.adapter = adapter
           }
 
-        case PerformersLetterGroupTableViewController.SegueIdentifier:
-          if let destination = segue.destination as? PerformersLetterGroupTableViewController,
+        case PerformersLetterGroupsTableViewController.SegueIdentifier:
+          if let destination = segue.destination as? PerformersLetterGroupsTableViewController,
              let view = sender as? MediaNameTableCell {
 
             let mediaItem = getItem(for: view)
