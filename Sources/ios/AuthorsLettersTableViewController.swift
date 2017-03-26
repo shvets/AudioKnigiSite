@@ -37,9 +37,8 @@ class AuthorsLettersTableViewController: BaseTableViewController {
       switch identifier {
         case AuthorsTableViewController.SegueIdentifier:
           if let destination = segue.destination.getActionController() as? AuthorsTableViewController {
-            destination.enablePagination()
-
             let adapter = AudioKnigiServiceAdapter(mobile: true)
+            adapter.enablePagination()
             adapter.pageSize = 30
             adapter.rowSize = 1
 
