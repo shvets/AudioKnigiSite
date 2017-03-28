@@ -77,7 +77,10 @@ class AudioKnigiDataSource: DataSource {
 
         var letterGroups = [Any]()
 
-        for (groupName, group) in AudioKnigiService.Authors {
+        for author in AudioKnigiService.Authors {
+          let groupName = author.key
+          let group = author.value
+          
           if groupName[groupName.startIndex] == letter[groupName.startIndex] {
             letterGroups.append(["name": groupName, "items": group])
           }
@@ -101,7 +104,10 @@ class AudioKnigiDataSource: DataSource {
 
         var letterGroups = [Any]()
 
-        for (groupName, group) in AudioKnigiService.Performers {
+        for performer in AudioKnigiService.Performers {
+          let groupName = performer.key
+          let group = performer.value
+          
           if groupName[groupName.startIndex] == letter[groupName.startIndex] {
             letterGroups.append(["name": groupName, "items": group])
           }
