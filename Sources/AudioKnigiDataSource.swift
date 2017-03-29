@@ -1,6 +1,7 @@
 import SwiftyJSON
 import WebAPI
 import TVSetKit
+import Wrap
 
 class AudioKnigiDataSource: DataSource {
   let service = AudioKnigiService.shared
@@ -82,7 +83,13 @@ class AudioKnigiDataSource: DataSource {
           let group = author.value
           
           if groupName[groupName.startIndex] == letter[groupName.startIndex] {
-            letterGroups.append(["name": groupName, "items": group])
+            var newGroup: [Any] = []
+            
+            for el in group {
+              newGroup.append(["id": el.id, "name": el.name])
+            }
+            
+            letterGroups.append(["name": groupName, "items": newGroup])
           }
         }
 
@@ -109,7 +116,13 @@ class AudioKnigiDataSource: DataSource {
           let group = performer.value
           
           if groupName[groupName.startIndex] == letter[groupName.startIndex] {
-            letterGroups.append(["name": groupName, "items": group])
+            var newGroup: [Any] = []
+            
+            for el in group {
+              newGroup.append(["id": el.id, "name": el.name])
+            }
+            
+            letterGroups.append(["name": groupName, "items": newGroup])
           }
         }
 
