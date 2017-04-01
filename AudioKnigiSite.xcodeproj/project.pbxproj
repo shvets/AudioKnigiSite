@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		2DBA1261295B276D583BD54C /* AuthorsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA11FE57EDBC792B883E6B /* AuthorsTableViewController.swift */; };
 		2DBA167CE22C572B499BB062 /* PerformersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA13B16D18BF2FA232A51A /* PerformersTableViewController.swift */; };
-		2DBA16D05834C709777602A3 /* authors.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA1CF30838FE5C715E0340 /* authors.json */; };
-		2DBA1AF013B55E068394EE51 /* performers.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA1CB1B5CBB83FB64F7CE9 /* performers.json */; };
 		FA0118A81E849AAC003A8D13 /* AudioKnigiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01189C1E849AAC003A8D13 /* AudioKnigiTableViewController.swift */; };
 		FA0118A91E849AAC003A8D13 /* AuthorsLetterGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01189D1E849AAC003A8D13 /* AuthorsLetterGroupsTableViewController.swift */; };
 		FA0118AA1E849AAC003A8D13 /* AuthorsLettersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01189E1E849AAC003A8D13 /* AuthorsLettersTableViewController.swift */; };
@@ -39,8 +37,6 @@
 /* Begin PBXFileReference section */
 		2DBA11FE57EDBC792B883E6B /* AuthorsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsTableViewController.swift; sourceTree = "<group>"; };
 		2DBA13B16D18BF2FA232A51A /* PerformersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformersTableViewController.swift; sourceTree = "<group>"; };
-		2DBA1CB1B5CBB83FB64F7CE9 /* performers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = performers.json; sourceTree = "<group>"; };
-		2DBA1CF30838FE5C715E0340 /* authors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = authors.json; sourceTree = "<group>"; };
 		FA01189C1E849AAC003A8D13 /* AudioKnigiTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioKnigiTableViewController.swift; sourceTree = "<group>"; };
 		FA01189D1E849AAC003A8D13 /* AuthorsLetterGroupsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsLetterGroupsTableViewController.swift; sourceTree = "<group>"; };
 		FA01189E1E849AAC003A8D13 /* AuthorsLettersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsLettersTableViewController.swift; sourceTree = "<group>"; };
@@ -135,8 +131,6 @@
 				FA6F8A101E7DD58F0022E16D /* AudioKnigiSite.h */,
 				FA6F8A111E7DD58F0022E16D /* Info.plist */,
 				FA6F8A481E7DE9150022E16D /* Localizable.strings */,
-				2DBA1CF30838FE5C715E0340 /* authors.json */,
-				2DBA1CB1B5CBB83FB64F7CE9 /* performers.json */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -230,8 +224,6 @@
 				FA6F8A461E7DE9150022E16D /* Localizable.strings in Resources */,
 				FA18D8151E8B5411000CEAD4 /* authors-in-groups.json in Resources */,
 				FA18D8161E8B5411000CEAD4 /* performers-in-groups.json in Resources */,
-				2DBA16D05834C709777602A3 /* authors.json in Resources */,
-				2DBA1AF013B55E068394EE51 /* performers.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

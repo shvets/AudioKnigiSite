@@ -16,8 +16,8 @@ open class AudioKnigiTableViewController: BaseTableViewController {
     "Authors",
     "Performers",
     "Genres",
-    "Search",
-    "Settings"
+    "Settings",
+    "Search"
   ]
 
   override open func viewDidLoad() {
