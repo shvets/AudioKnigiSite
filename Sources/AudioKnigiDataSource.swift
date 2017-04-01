@@ -63,7 +63,7 @@ class AudioKnigiDataSource: DataSource {
         result = try service.getAuthors(page: currentPage)["movies"] as! [Any]
 
       case "Authors Letters":
-        let letters = try service.getAuthorsLetters()
+        let letters = getLetters(AudioKnigiService.Authors)
 
         var list = [Any]()
 
@@ -96,7 +96,7 @@ class AudioKnigiDataSource: DataSource {
         result = letterGroups
 
       case "Performers Letters":
-        let letters = try service.getPerformersLetters()
+        let letters = getLetters(AudioKnigiService.Performers)
 
         var list = [Any]()
 
@@ -176,6 +176,32 @@ class AudioKnigiDataSource: DataSource {
     }
 
     return newItems
+  }
+
+  func getLetters(_ items: [NameClassifier.ItemsGroup]) -> [String] {
+    var rletters = [String]()
+    var eletters = [String]()
+
+    for item in items {
+      let groupName = item.key
+
+      let index = groupName.index(groupName.startIndex, offsetBy: 0)
+
+      let letter = String(groupName[index])
+
+      if (letter >= "a" && letter <= "z") || (letter >= "A" && letter <= "Z") {
+        if !eletters.contains(letter) {
+          eletters.append(letter)
+        }
+      }
+      else if (letter >= "а" && letter <= "я") || (letter >= "А" && letter <= "Я") {
+        if !rletters.contains(letter) {
+          rletters.append(letter)
+        }
+      }
+    }
+
+    return rletters + eletters
   }
 
 }
