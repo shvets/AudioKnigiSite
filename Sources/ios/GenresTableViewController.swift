@@ -17,6 +17,10 @@ class GenresTableViewController: BaseTableViewController {
     title = localizer.localize("Genres")
 
     tableView?.backgroundView = activityIndicatorView
+
+//    activityIndicatorView.hidesWhenStopped = true;
+    activityIndicatorView.center = (tableView?.center)!;
+
     adapter.spinner = PlainSpinner(activityIndicatorView)
 
     loadInitialData() { result in
