@@ -8,18 +8,6 @@ open class AudioKnigiTableViewController: BaseTableViewController {
   override open var CellIdentifier: String { return "AudioKnigiTableCell" }
   override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
 
-  let MainMenuItems = [
-    "Bookmarks",
-    "History",
-    "New Books",
-    "Best Books",
-    "Authors",
-    "Performers",
-    "Genres",
-    "Settings",
-    "Search"
-  ]
-
   override open func viewDidLoad() {
     super.viewDidLoad()
 
@@ -29,11 +17,19 @@ open class AudioKnigiTableViewController: BaseTableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-    for name in MainMenuItems {
-      let item = MediaItem(name: name)
+    loadData()
+  }
 
-      items.append(item)
-    }
+  func loadData() {
+    items.append(MediaItem(name: "Bookmarks", imageName: "Star"))
+    items.append(MediaItem(name: "History", imageName: "Bookmark"))
+    items.append(MediaItem(name: "New Books", imageName: "Book"))
+    items.append(MediaItem(name: "Best Books", imageName: "Ok Hand"))
+    items.append(MediaItem(name: "Authors", imageName: "Mark Twain"))
+    items.append(MediaItem(name: "Performers", imageName: "Microphone"))
+    items.append(MediaItem(name: "Genres", imageName: "Comedy"))
+    items.append(MediaItem(name: "Settings", imageName: "Engineering"))
+    items.append(MediaItem(name: "Search", imageName: "Search"))
   }
 
   override open func navigate(from view: UITableViewCell) {
@@ -123,58 +119,5 @@ open class AudioKnigiTableViewController: BaseTableViewController {
     }
   }
 
-  override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as! MediaNameTableCell
-
-    if adapter != nil && adapter.nextPageAvailable(dataCount: items.count, index: indexPath.row) {
-      loadMoreData()
-    }
-
-    let item = items[indexPath.row]
-
-    cell.configureCell(item: item, localizedName: getLocalizedName(item.name))
-
-    assignImage(cell: cell, name: item.name!)
-
-#if os(tvOS)
-    CellHelper.shared.addTapGestureRecognizer(view: cell, target: self, action: #selector(self.tapped(_:)))
-#endif
-
-    return cell
-  }
-
-  func assignImage(cell: UITableViewCell, name: String) {
-    switch name {
-      case "Bookmarks":
-        cell.imageView?.image = UIImage(named: "Star")
-
-      case "History":
-        cell.imageView?.image = UIImage(named: "Bookmark")
-
-      case "New Books":
-        cell.imageView?.image = UIImage(named: "Book")
-
-      case "Best Books":
-        cell.imageView?.image = UIImage(named: "Ok Hand")
-
-      case "Authors":
-        cell.imageView?.image = UIImage(named: "Mark Twain")
-
-      case "Performers":
-        cell.imageView?.image = UIImage(named: "Microphone")
-
-      case "Genres":
-        cell.imageView?.image = UIImage(named: "Comedy")
-
-      case "Settings":
-        cell.imageView?.image = UIImage(named: "Engineering")
-
-      case "Search":
-        cell.imageView?.image = UIImage(named: "Search")
-
-      default:
-        cell.imageView?.image = nil
-    }
-  }
 }
 
