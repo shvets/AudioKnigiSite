@@ -18,9 +18,6 @@ class GenresTableViewController: BaseTableViewController {
 
     tableView?.backgroundView = activityIndicatorView
 
-//    activityIndicatorView.hidesWhenStopped = true;
-    activityIndicatorView.center = (tableView?.center)!;
-
     adapter.spinner = PlainSpinner(activityIndicatorView)
 
     loadInitialData() { result in
