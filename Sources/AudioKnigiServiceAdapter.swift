@@ -18,6 +18,9 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
   public override init(mobile: Bool=false) {
     super.init(mobile: mobile)
 
+//    history.clear()
+//    history.save()
+
     bookmarks.load()
     history.load()
 
