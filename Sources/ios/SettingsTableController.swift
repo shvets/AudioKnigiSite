@@ -12,6 +12,8 @@ class SettingsTableController: BaseTableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
+    adapter = AudioKnigiServiceAdapter(mobile: true)
+
     loadSettingsMenu()
   }
 
