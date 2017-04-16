@@ -67,6 +67,8 @@ class AudioKnigiDataSource: DataSource {
 
         var list = [Any]()
 
+        list.append(["name": "Все"])
+
         for letter in letters {
           list.append(["name": letter])
         }
@@ -99,6 +101,8 @@ class AudioKnigiDataSource: DataSource {
         let letters = getLetters(AudioKnigiService.Performers)
 
         var list = [Any]()
+
+        list.append(["name": "Все"])
 
         for letter in letters {
           list.append(["name": letter])
