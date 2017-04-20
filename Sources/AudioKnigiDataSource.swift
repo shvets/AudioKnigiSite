@@ -168,15 +168,20 @@ class AudioKnigiDataSource: DataSource {
     var newItems = [MediaItem]()
 
     for item in items {
-      var jsonItem = item as? JSON
+//      if let track = item as? Track {
+//        newItems += [MediaItem(name: track.name, id: track.id)]
+//      }
+//      else {
+        var jsonItem = item as? JSON
 
-      if jsonItem == nil {
-        jsonItem = JSON(item)
-      }
+        if jsonItem == nil {
+          jsonItem = JSON(item)
+        }
 
-      let movie = AudioKnigiMediaItem(data: jsonItem!)
+        let movie = AudioKnigiMediaItem(data: jsonItem!)
 
-      newItems += [movie]
+        newItems += [movie]
+      //}
     }
 
     return newItems
