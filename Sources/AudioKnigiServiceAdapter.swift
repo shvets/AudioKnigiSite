@@ -21,8 +21,12 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
     bookmarks.load()
     history.load()
 
-    pageSize = 12
-    rowSize = 6
+    pageLoader.pageSize = 12
+    pageLoader.rowSize = 6
+
+    pageLoader.load = {
+      return try self.load()
+    }
   }
 
   override open func clone() -> ServiceAdapter {
@@ -44,7 +48,7 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
     params.selectedItem = selectedItem
 
     if let requestType = requestType {
-      return try dataSource.load(requestType, params: params, pageSize: pageSize!, currentPage: currentPage)
+      return try dataSource.load(requestType, params: params, pageSize: pageLoader.pageSize!, currentPage: pageLoader.currentPage)
     }
     else {
       return []
