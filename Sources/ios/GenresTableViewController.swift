@@ -18,7 +18,7 @@ class GenresTableViewController: BaseTableViewController {
 
     tableView?.backgroundView = activityIndicatorView
 
-    adapter.spinner = PlainSpinner(activityIndicatorView)
+    adapter.pageLoader.spinner = PlainSpinner(activityIndicatorView)
 
     loadInitialData() { result in
       for item in result {

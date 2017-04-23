@@ -81,7 +81,7 @@ open class AudioKnigiTableViewController: BaseTableViewController {
         case GenresTableViewController.SegueIdentifier:
           if let destination = segue.destination.getActionController() as? GenresTableViewController {
             let adapter = AudioKnigiServiceAdapter(mobile: true)
-            adapter.enablePagination()
+            adapter.pageLoader.enablePagination()
             adapter.pageLoader.pageSize = 20
             adapter.pageLoader.rowSize = 1
 
