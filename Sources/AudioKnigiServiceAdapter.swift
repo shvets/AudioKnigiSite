@@ -27,6 +27,8 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
     pageLoader.load = {
       return try self.load()
     }
+
+    dataSource = AudioKnigiDataSource()
   }
 
   override open func clone() -> ServiceAdapter {
@@ -37,9 +39,7 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
     return cloned
   }
 
-  override func load() throws -> [MediaItem] {
-    let dataSource = AudioKnigiDataSource()
-
+  override func load() throws -> [Any] {
     var params = RequestParams()
 
     params.identifier = requestType == "Search" ? query : parentId
@@ -47,8 +47,9 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
     params.history = history
     params.selectedItem = selectedItem
 
-    if let requestType = requestType {
-      return try dataSource.load(requestType, params: params, pageSize: pageLoader.pageSize!, currentPage: pageLoader.currentPage)
+    if let requestType = requestType, let dataSource = dataSource {
+      return try dataSource.load(requestType, params: params, pageSize: pageLoader.pageSize!,
+        currentPage: pageLoader.currentPage, convert: true)
     }
     else {
       return []

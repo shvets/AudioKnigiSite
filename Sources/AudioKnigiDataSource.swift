@@ -6,12 +6,9 @@ import Wrap
 class AudioKnigiDataSource: DataSource {
   let service = AudioKnigiService.shared
 
-  func load(_ requestType: String, params: RequestParams, pageSize: Int, currentPage: Int) throws -> [MediaItem] {
+  func load(_ requestType: String, params: RequestParams, pageSize: Int, currentPage: Int, convert: Bool=true) throws -> [Any] {
     var result: [Any] = []
 
-    let identifier = params.identifier
-    let bookmarks = params.bookmarks!
-    let history = params.history!
     let selectedItem = params.selectedItem
 
     var request = requestType
@@ -22,12 +19,16 @@ class AudioKnigiDataSource: DataSource {
 
     switch request {
       case "Bookmarks":
-        bookmarks.load()
-        result = bookmarks.getBookmarks(pageSize: pageSize, page: currentPage)
+        if let bookmarks = params.bookmarks {
+          bookmarks.load()
+          result = bookmarks.getBookmarks(pageSize: pageSize, page: currentPage)
+        }
 
       case "History":
-        history.load()
-        result = history.getHistoryItems(pageSize: pageSize, page: currentPage)
+        if let history = params.history {
+          history.load()
+          result = history.getHistoryItems(pageSize: pageSize, page: currentPage)
+        }
 
       case "Author":
         let path = selectedItem!.id
@@ -76,26 +77,26 @@ class AudioKnigiDataSource: DataSource {
         result = list
 
       case "Authors Letter Groups":
-        let letter = identifier!
+        if let letter = params.identifier {
+          var letterGroups = [Any]()
 
-        var letterGroups = [Any]()
+          for author in AudioKnigiService.Authors {
+            let groupName = author.key
+            let group = author.value
 
-        for author in AudioKnigiService.Authors {
-          let groupName = author.key
-          let group = author.value
-          
-          if groupName[groupName.startIndex] == letter[groupName.startIndex] {
-            var newGroup: [Any] = []
-            
-            for el in group {
-              newGroup.append(["id": el.id, "name": el.name])
+            if groupName[groupName.startIndex] == letter[groupName.startIndex] {
+              var newGroup: [Any] = []
+
+              for el in group {
+                newGroup.append(["id": el.id, "name": el.name])
+              }
+
+              letterGroups.append(["name": groupName, "items": newGroup])
             }
-            
-            letterGroups.append(["name": groupName, "items": newGroup])
           }
-        }
 
-        result = letterGroups
+          result = letterGroups
+        }
 
       case "Performers Letters":
         let letters = getLetters(AudioKnigiService.Performers)
@@ -111,26 +112,26 @@ class AudioKnigiDataSource: DataSource {
         result = list
 
       case "Performers Letter Groups":
-        let letter = identifier!
+        if let letter = params.identifier {
+          var letterGroups = [Any]()
 
-        var letterGroups = [Any]()
+          for performer in AudioKnigiService.Performers {
+            let groupName = performer.key
+            let group = performer.value
 
-        for performer in AudioKnigiService.Performers {
-          let groupName = performer.key
-          let group = performer.value
-          
-          if groupName[groupName.startIndex] == letter[groupName.startIndex] {
-            var newGroup: [Any] = []
-            
-            for el in group {
-              newGroup.append(["id": el.id, "name": el.name])
+            if groupName[groupName.startIndex] == letter[groupName.startIndex] {
+              var newGroup: [Any] = []
+
+              for el in group {
+                newGroup.append(["id": el.id, "name": el.name])
+              }
+
+              letterGroups.append(["name": groupName, "items": newGroup])
             }
-            
-            letterGroups.append(["name": groupName, "items": newGroup])
           }
-        }
 
-        result = letterGroups
+          result = letterGroups
+        }
 
       case "Group Authors":
         result = (selectedItem as! AudioKnigiMediaItem).items
@@ -150,38 +151,40 @@ class AudioKnigiDataSource: DataSource {
         result = try service.getAudioTracks(url)
 
       case "Search":
-        if !identifier!.isEmpty {
-          result = try service.search(identifier!, page: currentPage)["movies"] as! [Any]
-        }
-        else {
-          result = []
+        if let identifier = params.identifier {
+          if !identifier.isEmpty {
+            result = try service.search(identifier, page: currentPage)["movies"] as! [Any]
+          }
+          else {
+            result = []
+          }
         }
 
       default:
         result = []
     }
 
-    return convertToMediaItems(result)
+    if convert {
+      return convertToMediaItems(result)
+    }
+    else {
+      return result
+    }
   }
 
   func convertToMediaItems(_ items: [Any]) -> [MediaItem] {
     var newItems = [MediaItem]()
 
     for item in items {
-//      if let track = item as? Track {
-//        newItems += [MediaItem(name: track.name, id: track.id)]
-//      }
-//      else {
-        var jsonItem = item as? JSON
+      var jsonItem = item as? JSON
 
-        if jsonItem == nil {
-          jsonItem = JSON(item)
-        }
+      if jsonItem == nil {
+        jsonItem = JSON(item)
+      }
 
-        let movie = AudioKnigiMediaItem(data: jsonItem!)
+      let movie = AudioKnigiMediaItem(data: jsonItem!)
 
-        newItems += [movie]
-      //}
+      newItems += [movie]
     }
 
     return newItems
