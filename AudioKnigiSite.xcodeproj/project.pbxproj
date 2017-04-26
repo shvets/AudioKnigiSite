@@ -20,13 +20,13 @@
 		FA0118B21E849AAC003A8D13 /* SettingsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0118A61E849AAC003A8D13 /* SettingsTableController.swift */; };
 		FA18D8151E8B5411000CEAD4 /* authors-in-groups.json in Resources */ = {isa = PBXBuildFile; fileRef = FA18D8131E8B5411000CEAD4 /* authors-in-groups.json */; };
 		FA18D8161E8B5411000CEAD4 /* performers-in-groups.json in Resources */ = {isa = PBXBuildFile; fileRef = FA18D8141E8B5411000CEAD4 /* performers-in-groups.json */; };
+		FA6C12891EB04BA500DA4A90 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6C12881EB04BA500DA4A90 /* Alamofire.framework */; };
 		FA6F8A121E7DD58F0022E16D /* AudioKnigiSite.h in Headers */ = {isa = PBXBuildFile; fileRef = FA6F8A101E7DD58F0022E16D /* AudioKnigiSite.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA6F8A211E7DD7BC0022E16D /* AudioKnigiDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6F8A181E7DD7BC0022E16D /* AudioKnigiDataSource.swift */; };
 		FA6F8A221E7DD7BC0022E16D /* AudioKnigiMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6F8A191E7DD7BC0022E16D /* AudioKnigiMediaItem.swift */; };
 		FA6F8A231E7DD7BC0022E16D /* AudioKnigiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6F8A1A1E7DD7BC0022E16D /* AudioKnigiService.swift */; };
 		FA6F8A241E7DD7BC0022E16D /* AudioKnigiServiceAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6F8A1B1E7DD7BC0022E16D /* AudioKnigiServiceAdapter.swift */; };
 		FA6F8A2C1E7DDA6E0022E16D /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F8A2B1E7DDA6E0022E16D /* SwiftyJSON.framework */; };
-		FA6F8A321E7DDA800022E16D /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F8A2F1E7DDA800022E16D /* Just.framework */; };
 		FA6F8A331E7DDA800022E16D /* SwiftSoup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F8A301E7DDA800022E16D /* SwiftSoup.framework */; };
 		FA6F8A341E7DDA800022E16D /* WebAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F8A311E7DDA800022E16D /* WebAPI.framework */; };
 		FA6F8A361E7DDA8F0022E16D /* TVSetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F8A351E7DDA8F0022E16D /* TVSetKit.framework */; };
@@ -48,6 +48,7 @@
 		FA0118A61E849AAC003A8D13 /* SettingsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableController.swift; sourceTree = "<group>"; };
 		FA18D8131E8B5411000CEAD4 /* authors-in-groups.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "authors-in-groups.json"; path = "Sources/authors-in-groups.json"; sourceTree = SOURCE_ROOT; };
 		FA18D8141E8B5411000CEAD4 /* performers-in-groups.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "performers-in-groups.json"; path = "Sources/performers-in-groups.json"; sourceTree = SOURCE_ROOT; };
+		FA6C12881EB04BA500DA4A90 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../../../../Library/Developer/Xcode/DerivedData/EtvnetApp-auvgeykttffxrlaelzqpbfeqnwis/Build/Products/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
 		FA6F8A0D1E7DD58F0022E16D /* AudioKnigiSite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AudioKnigiSite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA6F8A101E7DD58F0022E16D /* AudioKnigiSite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioKnigiSite.h; sourceTree = "<group>"; };
 		FA6F8A111E7DD58F0022E16D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
@@ -71,9 +72,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA6C12891EB04BA500DA4A90 /* Alamofire.framework in Frameworks */,
 				FA6F8A381E7DDB340022E16D /* Runglish.framework in Frameworks */,
 				FA6F8A2C1E7DDA6E0022E16D /* SwiftyJSON.framework in Frameworks */,
-				FA6F8A321E7DDA800022E16D /* Just.framework in Frameworks */,
 				FA6F8A331E7DDA800022E16D /* SwiftSoup.framework in Frameworks */,
 				FA6F8A341E7DDA800022E16D /* WebAPI.framework in Frameworks */,
 				FA6F8A361E7DDA8F0022E16D /* TVSetKit.framework in Frameworks */,
@@ -138,6 +139,7 @@
 		FA6F8A2A1E7DDA6E0022E16D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA6C12881EB04BA500DA4A90 /* Alamofire.framework */,
 				FA6F8A371E7DDB340022E16D /* Runglish.framework */,
 				FA6F8A351E7DDA8F0022E16D /* TVSetKit.framework */,
 				FA6F8A2F1E7DDA800022E16D /* Just.framework */,
