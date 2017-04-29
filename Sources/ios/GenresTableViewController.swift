@@ -7,8 +7,6 @@ class GenresTableViewController: BaseTableViewController {
   override open var CellIdentifier: String { return "GenreTableCell" }
   override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
 
-  let service = AudioKnigiService.shared
-
   override func viewDidLoad() {
     super.viewDidLoad()
 

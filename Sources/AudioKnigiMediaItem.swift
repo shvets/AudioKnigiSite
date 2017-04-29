@@ -4,8 +4,6 @@ import WebAPI
 import TVSetKit
 
 class AudioKnigiMediaItem: MediaItem {
-  let service = AudioKnigiService.shared
-
   var items = [JSON]()
 
   override init(data: JSON) {

@@ -4,8 +4,6 @@ import WebAPI
 import TVSetKit
 
 class AudioKnigiServiceAdapter: ServiceAdapter {
-  let service = AudioKnigiService.shared
-
   static let bookmarksFileName = NSHomeDirectory() + "/Library/Caches/audioknigi-bookmarks.json"
   static let historyFileName = NSHomeDirectory() + "/Library/Caches/audioknigi-history.json"
 
