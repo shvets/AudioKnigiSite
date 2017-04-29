@@ -30,16 +30,6 @@ class AudioKnigiDataSource: DataSource {
           result = history.getHistoryItems(pageSize: pageSize, page: currentPage)
         }
 
-      case "Author":
-        let path = selectedItem!.id
-
-        result = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
-
-      case "Performer":
-        let path = selectedItem!.id
-
-        result = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
-
       case "Genre Books":
         let path = selectedItem!.id
 
@@ -98,7 +88,13 @@ class AudioKnigiDataSource: DataSource {
           result = letterGroups
         }
 
-      case "Performers Letters":
+      case "Author":
+        let path = selectedItem!.id
+
+        result = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
+
+
+    case "Performers Letters":
         let letters = getLetters(AudioKnigiService.Performers)
 
         var list = [Any]()
@@ -132,6 +128,11 @@ class AudioKnigiDataSource: DataSource {
 
           result = letterGroups
         }
+
+      case "Performer":
+        let path = selectedItem!.id
+
+        result = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
 
       case "Group Authors":
         result = (selectedItem as! AudioKnigiMediaItem).items
