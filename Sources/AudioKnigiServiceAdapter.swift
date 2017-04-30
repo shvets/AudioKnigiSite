@@ -36,15 +36,15 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
   }
 
   override func load() throws -> [Any] {
-    var params = RequestParams()
+    var newPrams = RequestParams()
 
-    params.identifier = requestType == "Search" ? query : parentId
-    params.bookmarks = bookmarks
-    params.history = history
-    params.selectedItem = selectedItem
+    newPrams.identifier = params.requestType == "Search" ? params.query : params.parentId
+    newPrams.bookmarks = bookmarks
+    newPrams.history = history
+    newPrams.selectedItem = params.selectedItem
 
-    if let requestType = requestType, let dataSource = dataSource {
-      return try dataSource.load(requestType, params: params, pageSize: pageLoader.pageSize,
+    if let requestType = params.requestType, let dataSource = dataSource {
+      return try dataSource.load(requestType, params: newPrams, pageSize: pageLoader.pageSize,
         currentPage: pageLoader.currentPage, convert: true)
     }
     else {

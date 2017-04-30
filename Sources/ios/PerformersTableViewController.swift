@@ -28,8 +28,8 @@ class PerformersTableViewController: BaseTableViewController {
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-            adapter.requestType = "Performer"
-            adapter.selectedItem = getItem(for: view)
+            adapter.params.requestType = "Performer"
+            adapter.params.selectedItem = getItem(for: view)
 
             destination.adapter = adapter
           }

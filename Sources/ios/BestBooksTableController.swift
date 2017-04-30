@@ -40,8 +40,8 @@ class BestBooksTableViewController: BaseTableViewController {
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-            adapter.requestType = "Best Books"
-            adapter.selectedItem = getItem(for: view)
+            adapter.params.requestType = "Best Books"
+            adapter.params.selectedItem = getItem(for: view)
 
             destination.adapter = adapter
           }
