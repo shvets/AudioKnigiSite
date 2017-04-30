@@ -15,8 +15,6 @@ open class AudioKnigiTableViewController: BaseTableViewController {
 
     title = localizer.localize("AudioKnigi")
 
-    self.clearsSelectionOnViewWillAppear = false
-
     loadData()
   }
 
