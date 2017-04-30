@@ -9,7 +9,7 @@ class AudioKnigiDataSource: DataSource {
   func load(_ requestType: String, params: RequestParams, pageSize: Int, currentPage: Int, convert: Bool=true) throws -> [Any] {
     var result: [Any] = []
 
-    let selectedItem = params.selectedItem
+    let selectedItem = params["selectedItem"] as? MediaItem
 
     var request = requestType
 
@@ -19,13 +19,13 @@ class AudioKnigiDataSource: DataSource {
 
     switch request {
       case "Bookmarks":
-        if let bookmarks = params.bookmarks {
+        if let bookmarks = params["bookmarks"]  as? Bookmarks{
           bookmarks.load()
           result = bookmarks.getBookmarks(pageSize: 60, page: currentPage)
         }
 
       case "History":
-        if let history = params.history {
+        if let history = params["history"] as? History {
           history.load()
           result = history.getHistoryItems(pageSize: 60, page: currentPage)
         }
@@ -67,7 +67,7 @@ class AudioKnigiDataSource: DataSource {
         result = list
 
       case "Authors Letter Groups":
-        if let letter = params.identifier {
+        if let letter = params["identifier"] as? String {
           var letterGroups = [Any]()
 
           for author in AudioKnigiService.Authors {
@@ -110,7 +110,7 @@ class AudioKnigiDataSource: DataSource {
         result = list
 
       case "Performers Letter Groups":
-        if let letter = params.identifier {
+        if let letter = params["identifier"] as? String {
           var letterGroups = [Any]()
 
           for performer in AudioKnigiService.Performers {
@@ -151,7 +151,7 @@ class AudioKnigiDataSource: DataSource {
         result = try service.getAudioTracks(url)
 
       case "Search":
-        if let identifier = params.identifier {
+        if let identifier = params["identifier"] as? String {
           if !identifier.isEmpty {
             result = try service.search(identifier, page: currentPage)["movies"] as! [Any]
           }

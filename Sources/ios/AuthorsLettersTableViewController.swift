@@ -43,7 +43,7 @@ class AuthorsLettersTableViewController: BaseTableViewController {
             adapter.pageLoader.pageSize = 30
             adapter.pageLoader.rowSize = 1
 
-            adapter.params.requestType = "All Authors"
+            adapter.params["requestType"] = "All Authors"
             destination.adapter = adapter
           }
 
@@ -54,8 +54,8 @@ class AuthorsLettersTableViewController: BaseTableViewController {
             let mediaItem = getItem(for: view)
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
-            adapter.params.requestType = "Authors Letter Groups"
-            adapter.params.parentId = mediaItem.name
+            adapter.params["requestType"] = "Authors Letter Groups"
+            adapter.params["parentId"] = mediaItem.name
             destination.adapter = adapter
 
             //destination.letter = mediaItem.name

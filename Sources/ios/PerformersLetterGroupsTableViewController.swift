@@ -35,8 +35,8 @@ class PerformersLetterGroupsTableViewController: BaseTableViewController {
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-            adapter.params.requestType = "Performers"
-            adapter.params.selectedItem = getItem(for: view)
+            adapter.params["requestType"] = "Performers"
+            adapter.params["selectedItem"] = getItem(for: view)
             destination.adapter = adapter
           }
 
