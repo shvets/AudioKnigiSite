@@ -13,8 +13,8 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
   lazy var bookmarks = Bookmarks(bookmarksFileName)
   lazy var history = History(historyFileName)
 
-  public override init(mobile: Bool=false) {
-    super.init(mobile: mobile)
+  public init(mobile: Bool=false) {
+    super.init(dataSource: AudioKnigiDataSource(), mobile: mobile)
 
     bookmarks.load()
     history.load()
@@ -25,8 +25,6 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
     pageLoader.load = {
       return try self.load()
     }
-
-    dataSource = AudioKnigiDataSource()
   }
 
   override open func clone() -> ServiceAdapter {
