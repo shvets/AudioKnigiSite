@@ -69,7 +69,7 @@ class AudioKnigiDataSource: DataSource {
         result = list
 
       case "Authors Letter Groups":
-        if let letter = params["identifier"] as? String {
+        if let letter = params["parentId"] as? String {
           var letterGroups = [Any]()
 
           for author in AudioKnigiService.Authors {
@@ -112,7 +112,7 @@ class AudioKnigiDataSource: DataSource {
         result = list
 
       case "Performers Letter Groups":
-        if let letter = params["identifier"] as? String {
+        if let letter = params["parentId"] as? String {
           var letterGroups = [Any]()
 
           for performer in AudioKnigiService.Performers {
@@ -153,9 +153,9 @@ class AudioKnigiDataSource: DataSource {
         result = try service.getAudioTracks(url)
 
       case "Search":
-        if let identifier = params["identifier"] as? String {
-          if !identifier.isEmpty {
-            result = try service.search(identifier, page: currentPage)["movies"] as! [Any]
+        if let query = params["query"] as? String {
+          if !query.isEmpty {
+            result = try service.search(query, page: currentPage)["movies"] as! [Any]
           }
           else {
             result = []
