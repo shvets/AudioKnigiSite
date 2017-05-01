@@ -6,12 +6,12 @@ import Wrap
 class AudioKnigiDataSource: DataSource {
   let service = AudioKnigiService.shared
 
-  override open func load(_ requestType: String, params: RequestParams, pageSize: Int, currentPage: Int, convert: Bool=true) throws -> [Any] {
+  override open func load(pageSize: Int, currentPage: Int, convert: Bool=true) throws -> [Any] {
     var result: [Any] = []
 
     let selectedItem = params["selectedItem"] as? MediaItem
 
-    var request = requestType
+    var request = params["requestType"] as! String
 
     if selectedItem?.type == "book" {
       request = "Tracks"
