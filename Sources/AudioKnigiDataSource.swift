@@ -6,7 +6,7 @@ import Wrap
 class AudioKnigiDataSource: DataSource {
   let service = AudioKnigiService.shared
 
-  override open func load(convert: Bool=true) throws -> [Any] {
+  override open func load(params: RequestParams) throws -> [Any] {
     var result: [Any] = []
 
     let selectedItem = params["selectedItem"] as? MediaItem
@@ -165,6 +165,8 @@ class AudioKnigiDataSource: DataSource {
       default:
         result = []
     }
+
+    let convert = params["convert"] as? Bool ?? true
 
     if convert {
       return convertToMediaItems(result)

@@ -48,9 +48,7 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
       newParams["pageSize"] = pageLoader.pageSize
       newParams["currentPage"] = pageLoader.currentPage
 
-      dataSource.params = newParams
-
-      return try dataSource.load(convert: true)
+      return try dataSource.load(params: newParams)
     }
     else {
       return []
