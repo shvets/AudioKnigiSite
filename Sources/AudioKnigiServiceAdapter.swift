@@ -35,7 +35,7 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
     return cloned
   }
 
-  override func load() throws -> [Any] {
+  func load() throws -> [Any] {
     if let requestType = params["requestType"] as? String,
        let dataSource = dataSource {
       var newParams = RequestParams()
