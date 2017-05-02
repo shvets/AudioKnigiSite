@@ -13,7 +13,7 @@ class AudioKnigiDataSource: DataSource {
 
     var request = params["requestType"] as! String
     //var pageSize = params["pageSize"] as? Int
-    var currentPage = params["currentPage"] as! Int
+    let currentPage = params["currentPage"] as! Int
 
     if selectedItem?.type == "book" {
       request = "Tracks"
