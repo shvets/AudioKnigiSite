@@ -16,7 +16,6 @@
 		FA0118AD1E849AAC003A8D13 /* GenresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0118A11E849AAC003A8D13 /* GenresTableViewController.swift */; };
 		FA0118AF1E849AAC003A8D13 /* PerformersLetterGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0118A31E849AAC003A8D13 /* PerformersLetterGroupsTableViewController.swift */; };
 		FA0118B01E849AAC003A8D13 /* PerformersLettersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0118A41E849AAC003A8D13 /* PerformersLettersTableViewController.swift */; };
-		FA0118B11E849AAC003A8D13 /* SearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0118A51E849AAC003A8D13 /* SearchTableController.swift */; };
 		FA0118B21E849AAC003A8D13 /* SettingsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0118A61E849AAC003A8D13 /* SettingsTableController.swift */; };
 		FA18D8151E8B5411000CEAD4 /* authors-in-groups.json in Resources */ = {isa = PBXBuildFile; fileRef = FA18D8131E8B5411000CEAD4 /* authors-in-groups.json */; };
 		FA18D8161E8B5411000CEAD4 /* performers-in-groups.json in Resources */ = {isa = PBXBuildFile; fileRef = FA18D8141E8B5411000CEAD4 /* performers-in-groups.json */; };
@@ -44,7 +43,6 @@
 		FA0118A11E849AAC003A8D13 /* GenresTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenresTableViewController.swift; sourceTree = "<group>"; };
 		FA0118A31E849AAC003A8D13 /* PerformersLetterGroupsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformersLetterGroupsTableViewController.swift; sourceTree = "<group>"; };
 		FA0118A41E849AAC003A8D13 /* PerformersLettersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformersLettersTableViewController.swift; sourceTree = "<group>"; };
-		FA0118A51E849AAC003A8D13 /* SearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableController.swift; sourceTree = "<group>"; };
 		FA0118A61E849AAC003A8D13 /* SettingsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableController.swift; sourceTree = "<group>"; };
 		FA18D8131E8B5411000CEAD4 /* authors-in-groups.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "authors-in-groups.json"; path = "Sources/authors-in-groups.json"; sourceTree = SOURCE_ROOT; };
 		FA18D8141E8B5411000CEAD4 /* performers-in-groups.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "performers-in-groups.json"; path = "Sources/performers-in-groups.json"; sourceTree = SOURCE_ROOT; };
@@ -96,7 +94,6 @@
 				FA0118A11E849AAC003A8D13 /* GenresTableViewController.swift */,
 				FA0118A31E849AAC003A8D13 /* PerformersLetterGroupsTableViewController.swift */,
 				FA0118A41E849AAC003A8D13 /* PerformersLettersTableViewController.swift */,
-				FA0118A51E849AAC003A8D13 /* SearchTableController.swift */,
 				FA0118A61E849AAC003A8D13 /* SettingsTableController.swift */,
 				2DBA11FE57EDBC792B883E6B /* AuthorsTableViewController.swift */,
 				2DBA13B16D18BF2FA232A51A /* PerformersTableViewController.swift */,
@@ -246,7 +243,6 @@
 				FA0118AD1E849AAC003A8D13 /* GenresTableViewController.swift in Sources */,
 				FA6F8A231E7DD7BC0022E16D /* AudioKnigiService.swift in Sources */,
 				FA6F8A241E7DD7BC0022E16D /* AudioKnigiServiceAdapter.swift in Sources */,
-				FA0118B11E849AAC003A8D13 /* SearchTableController.swift in Sources */,
 				FA0118A91E849AAC003A8D13 /* AuthorsLetterGroupsTableViewController.swift in Sources */,
 				FA0118A81E849AAC003A8D13 /* AudioKnigiTableViewController.swift in Sources */,
 				2DBA1261295B276D583BD54C /* AuthorsTableViewController.swift in Sources */,
