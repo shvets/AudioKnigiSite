@@ -32,10 +32,10 @@ class SettingsTableController: BaseTableViewController {
     let settingsMode = mediaItem.name
 
     if settingsMode == "Reset History" {
-      self.present(buildResetHistoryController(), animated: false, completion: nil)
+      present(buildResetHistoryController(), animated: false, completion: nil)
     }
     else if settingsMode == "Reset Bookmarks" {
-      self.present(buildResetQueueController(), animated: false, completion: nil)
+      present(buildResetQueueController(), animated: false, completion: nil)
     }
   }
 
