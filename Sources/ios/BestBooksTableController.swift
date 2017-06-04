@@ -1,7 +1,7 @@
 import UIKit
 import TVSetKit
 
-class BestBooksTableViewController: BaseTableViewController {
+class BestBooksTableViewController: AudioKnigiBaseTableViewController {
   static let SegueIdentifier = "Best Books"
 
   override open var CellIdentifier: String { return "BestBookTableCell" }

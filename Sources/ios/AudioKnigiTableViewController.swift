@@ -2,7 +2,7 @@ import UIKit
 import SwiftyJSON
 import TVSetKit
 
-open class AudioKnigiTableViewController: BaseTableViewController {
+open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
   static let SegueIdentifier = "Audio Knigi"
 
   override open var CellIdentifier: String { return "AudioKnigiTableCell" }

@@ -10,6 +10,7 @@
 		2DBA1261295B276D583BD54C /* AuthorsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA11FE57EDBC792B883E6B /* AuthorsTableViewController.swift */; };
 		2DBA161F4F037268037A4405 /* AudioKnigiSite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA13F658C5092CD37F9E15 /* AudioKnigiSite.swift */; };
 		2DBA167CE22C572B499BB062 /* PerformersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA13B16D18BF2FA232A51A /* PerformersTableViewController.swift */; };
+		2DBA1C69B9773548DF46CE2F /* AudioKnigiBaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA1B9C1D24D8210266A906 /* AudioKnigiBaseTableViewController.swift */; };
 		FA0118A81E849AAC003A8D13 /* AudioKnigiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01189C1E849AAC003A8D13 /* AudioKnigiTableViewController.swift */; };
 		FA0118A91E849AAC003A8D13 /* AuthorsLetterGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01189D1E849AAC003A8D13 /* AuthorsLetterGroupsTableViewController.swift */; };
 		FA0118AA1E849AAC003A8D13 /* AuthorsLettersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01189E1E849AAC003A8D13 /* AuthorsLettersTableViewController.swift */; };
@@ -38,6 +39,7 @@
 		2DBA11FE57EDBC792B883E6B /* AuthorsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsTableViewController.swift; sourceTree = "<group>"; };
 		2DBA13B16D18BF2FA232A51A /* PerformersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformersTableViewController.swift; sourceTree = "<group>"; };
 		2DBA13F658C5092CD37F9E15 /* AudioKnigiSite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioKnigiSite.swift; sourceTree = "<group>"; };
+		2DBA1B9C1D24D8210266A906 /* AudioKnigiBaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioKnigiBaseTableViewController.swift; sourceTree = "<group>"; };
 		FA01189C1E849AAC003A8D13 /* AudioKnigiTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioKnigiTableViewController.swift; sourceTree = "<group>"; };
 		FA01189D1E849AAC003A8D13 /* AuthorsLetterGroupsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsLetterGroupsTableViewController.swift; sourceTree = "<group>"; };
 		FA01189E1E849AAC003A8D13 /* AuthorsLettersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsLettersTableViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				FA0118A61E849AAC003A8D13 /* SettingsTableController.swift */,
 				2DBA11FE57EDBC792B883E6B /* AuthorsTableViewController.swift */,
 				2DBA13B16D18BF2FA232A51A /* PerformersTableViewController.swift */,
+				2DBA1B9C1D24D8210266A906 /* AudioKnigiBaseTableViewController.swift */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				2DBA1261295B276D583BD54C /* AuthorsTableViewController.swift in Sources */,
 				2DBA167CE22C572B499BB062 /* PerformersTableViewController.swift in Sources */,
 				2DBA161F4F037268037A4405 /* AudioKnigiSite.swift in Sources */,
+				2DBA1C69B9773548DF46CE2F /* AudioKnigiBaseTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

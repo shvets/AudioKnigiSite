@@ -1,7 +1,7 @@
 import UIKit
 import TVSetKit
 
-class GenresTableViewController: BaseTableViewController {
+class GenresTableViewController: AudioKnigiBaseTableViewController {
   static let SegueIdentifier = "Genres"
 
   override open var CellIdentifier: String { return "GenreTableCell" }
