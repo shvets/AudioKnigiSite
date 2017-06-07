@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AudioKnigiSite"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "Framework for playing media from AudioKnigi.Com"
   s.description  = "Framework for playing media from AudioKnigi.Com."
 
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.source_files = "Sources/**/*.swift"
 
   s.resource_bundles = {
-    'com.rubikon.AudioKnigiSite' => ['Sources/**/*.{storyboard,strings,lproj}', ]
+    'com.rubikon.AudioKnigiSite' => ['Sources/**/*.{storyboard,strings,lproj,json}', ]
   }
 
   s.dependency 'SwiftyJSON', '~> 3.1.4'
