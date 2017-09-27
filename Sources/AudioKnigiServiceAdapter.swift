@@ -10,8 +10,8 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
   override open class var StoryboardId: String { return "AudioKnigi" }
   override open class var BundleId: String { return "com.rubikon.AudioKnigiSite" }
 
-  lazy var bookmarks = Bookmarks(bookmarksFileName)
-  lazy var history = History(historyFileName)
+    lazy var bookmarks = Bookmarks(AudioKnigiServiceAdapter.bookmarksFileName)
+    lazy var history = History(AudioKnigiServiceAdapter.historyFileName)
 
   public init(mobile: Bool=false) {
     super.init(dataSource: AudioKnigiDataSource(), mobile: mobile)
