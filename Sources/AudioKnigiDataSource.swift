@@ -165,7 +165,7 @@ class AudioKnigiDataSource: DataSource {
       }
 
     default:
-      result = nil
+      result = []
     }
 
     let convert = params["convert"] as? Bool ?? true
