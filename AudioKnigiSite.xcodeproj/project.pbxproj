@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DBA12217540FB2182BF7748 /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA118665ECB4C6D022870C /* test.json */; };
 		2DBA1261295B276D583BD54C /* AuthorsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA11FE57EDBC792B883E6B /* AuthorsTableViewController.swift */; };
 		2DBA161F4F037268037A4405 /* AudioKnigiSite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA13F658C5092CD37F9E15 /* AudioKnigiSite.swift */; };
 		2DBA167CE22C572B499BB062 /* PerformersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA13B16D18BF2FA232A51A /* PerformersTableViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2DBA118665ECB4C6D022870C /* test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
 		2DBA11FE57EDBC792B883E6B /* AuthorsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsTableViewController.swift; sourceTree = "<group>"; };
 		2DBA13B16D18BF2FA232A51A /* PerformersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformersTableViewController.swift; sourceTree = "<group>"; };
 		2DBA13F658C5092CD37F9E15 /* AudioKnigiSite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioKnigiSite.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				FA6F8A0F1E7DD58F0022E16D /* Sources */,
 				FA6F8A0E1E7DD58F0022E16D /* Products */,
 				FA6F8A2A1E7DDA6E0022E16D /* Frameworks */,
+				2DBA118665ECB4C6D022870C /* test.json */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,6 +232,7 @@
 				FA6F8A461E7DE9150022E16D /* Localizable.strings in Resources */,
 				FA18D8151E8B5411000CEAD4 /* authors-in-groups.json in Resources */,
 				FA18D8161E8B5411000CEAD4 /* performers-in-groups.json in Resources */,
+				2DBA12217540FB2182BF7748 /* test.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,6 @@ Pod::Spec.new do |s|
     'com.rubikon.AudioKnigiSite' => ['Sources/**/*.{storyboard,strings,lproj,json}', ]
   }
 
-  s.dependency 'SwiftyJSON', '~> 3.1.4'
   s.dependency 'WebAPI', '~> 1.0.3'
   s.dependency 'Runglish', '~> 1.0.0'
   s.dependency 'AudioPlayer', '~> 1.0.7'

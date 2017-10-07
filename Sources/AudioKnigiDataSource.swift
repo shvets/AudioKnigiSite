@@ -1,7 +1,14 @@
-import SwiftyJSON
 import WebAPI
 import TVSetKit
 import AudioPlayer
+
+public struct AudioItem {
+  public let name: String
+  public let id: String
+  public let description: String
+  public let thumb: String
+  public let type: String
+}
 
 class AudioKnigiDataSource: DataSource {
   let service = AudioKnigiService.shared
@@ -92,7 +99,9 @@ class AudioKnigiDataSource: DataSource {
       }
 
     case "Authors":
-      result = (selectedItem as! AudioKnigiMediaItem).items
+      if let selectedItem = selectedItem as? AudioKnigiMediaItem {
+        result = selectedItem.items
+      }
 
     case "Author":
       let path = selectedItem!.id
@@ -135,7 +144,9 @@ class AudioKnigiDataSource: DataSource {
       }
 
     case "Performers":
-      result = (selectedItem as! AudioKnigiMediaItem).items
+      if let selectedItem = selectedItem as? AudioKnigiMediaItem {
+        result = selectedItem.items
+      }
 
     case "Performer":
       let path = selectedItem!.id
@@ -188,15 +199,24 @@ class AudioKnigiDataSource: DataSource {
         newItems += [item]
       }
     }
-    else if let items = items as? [Any] {
+    else if let items = items as? [[String: Any]] {
       for item in items {
-        var jsonItem = item as? JSON
+        let movie = AudioKnigiMediaItem(data: ["name": ""])
 
-        if jsonItem == nil {
-          jsonItem = JSON(item)
+        if let dict = item as? [String: String] {
+          movie.name = dict["name"]
+          movie.id = dict["id"]
+          movie.description = dict["description"]
+          movie.thumb = dict["thumb"]
+          movie.type = dict["type"]
         }
+        else {
+          movie.name = item["name"] as? String
 
-        let movie = AudioKnigiMediaItem(data: jsonItem!)
+          if let dict = item["items"] as? [[String: String]] {
+            movie.items = dict
+          }
+        }
 
         newItems += [movie]
       }
