@@ -3,7 +3,7 @@ import WebAPI
 import TVSetKit
 
 class AudioKnigiMediaItem: MediaItem {
-  var items = [[String: String]]()
+  var items = [AudioKnigiAPI.PersonName]()
 
   required convenience init(from decoder: Decoder) throws {
     fatalError("init(from:) has not been implemented")

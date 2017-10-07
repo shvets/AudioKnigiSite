@@ -214,7 +214,7 @@ class AudioKnigiDataSource: DataSource {
               newArray.append(newElem)
             }
 
-            movie.items = array
+            movie.items = newArray
           }
         }
 
