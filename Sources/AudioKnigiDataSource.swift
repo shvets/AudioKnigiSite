@@ -206,10 +206,10 @@ class AudioKnigiDataSource: DataSource {
           movie.name = item["name"] as? String
 
           if let array = item["items"] as? [[String: String]] {
-            var newArray = [AudioKnigiAPI.AuthorName]()
+            var newArray = [AudioKnigiAPI.PersonName]()
 
             for elem in array {
-              let newElem = AudioKnigiAPI.AuthorName(name: elem["name"]!, id: elem["id"]!)
+              let newElem = AudioKnigiAPI.PersonName(name: elem["name"]!, id: elem["id"]!)
 
               newArray.append(newElem)
             }
@@ -221,7 +221,7 @@ class AudioKnigiDataSource: DataSource {
         newItems += [movie]
       }
     }
-    else if let items = items as? [AudioKnigiAPI.AuthorName] {
+    else if let items = items as? [AudioKnigiAPI.PersonName] {
       for item in items {
         let movie = AudioKnigiMediaItem(data: ["name": ""])
         
