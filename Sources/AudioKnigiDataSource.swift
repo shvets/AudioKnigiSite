@@ -2,14 +2,6 @@ import WebAPI
 import TVSetKit
 import AudioPlayer
 
-public struct AudioItem {
-  public let name: String
-  public let id: String
-  public let description: String
-  public let thumb: String
-  public let type: String
-}
-
 class AudioKnigiDataSource: DataSource {
   let service = AudioKnigiService.shared
 
@@ -213,10 +205,28 @@ class AudioKnigiDataSource: DataSource {
         else {
           movie.name = item["name"] as? String
 
-          if let dict = item["items"] as? [[String: String]] {
-            movie.items = dict
+          if let array = item["items"] as? [[String: String]] {
+            var newArray = [AudioKnigiAPI.AuthorName]()
+
+            for elem in array {
+              let newElem = AudioKnigiAPI.AuthorName(name: elem["name"]!, id: elem["id"]!)
+
+              newArray.append(newElem)
+            }
+
+            movie.items = array
           }
         }
+
+        newItems += [movie]
+      }
+    }
+    else if let items = items as? [AudioKnigiAPI.AuthorName] {
+      for item in items {
+        let movie = AudioKnigiMediaItem(data: ["name": ""])
+        
+        movie.name = item.name
+        movie.id = item.id
 
         newItems += [movie]
       }
