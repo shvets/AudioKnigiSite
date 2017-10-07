@@ -171,7 +171,7 @@ class AudioKnigiDataSource: DataSource {
     let convert = params["convert"] as? Bool ?? true
 
     if convert || tracks {
-      return convertToMediaItems(result)
+      return convertToMediaItems(result as Any)
     }
     else {
       return result as! [Any]
@@ -181,9 +181,9 @@ class AudioKnigiDataSource: DataSource {
   func convertToMediaItems(_ items: Any) -> [Any] {
     var newItems = [Any]()
 
-    if let tracks = items as? [Track] {
+    if let tracks = items as? [AudioKnigiAPI.Track] {
       for track in tracks {
-        var item = AudioItem(name: track.title + ".mp3", id: track.url)
+        let item = AudioItem(name: track.title + ".mp3", id: track.url)
 
         newItems += [item]
       }
