@@ -9,13 +9,13 @@ class AudioKnigiDataSource: DataSource {
     var result: Any?
     var tracks = false
 
-    let selectedItem = params["selectedItem"] as? MediaItem
+    let selectedItem = params["selectedItem"] as? Item
 
     var request = params["requestType"] as! String
     //var pageSize = params["pageSize"] as? Int
     let currentPage = params["currentPage"] as! Int
 
-    if selectedItem?.type == "book" {
+    if let selectedItem = selectedItem as? MediaItem, selectedItem.type == "book" {
       request = "Tracks"
     }
 
@@ -33,9 +33,9 @@ class AudioKnigiDataSource: DataSource {
       }
 
     case "Genre Books":
-      let path = selectedItem!.id
-
-      result = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
+      if let selectedItem = selectedItem, let path = selectedItem.id {
+        result = try service.getBooks(path: path, page: currentPage)["movies"] as! [Any]
+      }
 
     case "New Books":
       result = try service.getNewBooks(page: currentPage)["movies"] as! [Any]
@@ -43,14 +43,16 @@ class AudioKnigiDataSource: DataSource {
     case "Best Books":
       var period = "all"
 
-      if selectedItem!.name == "By Month" {
-        period = "30"
+      if let selectedItem = selectedItem {
+        if selectedItem.name == "By Month" {
+          period = "30"
+        }
+        else if selectedItem.name == "By Week" {
+          period = "7"
+        }
+        
+        result = try service.getBestBooks(period: period, page: currentPage)["movies"] as! [Any]
       }
-      else if selectedItem!.name == "By Week" {
-        period = "7"
-      }
-
-      result = try service.getBestBooks(period: period, page: currentPage)["movies"] as! [Any]
 
     case "All Authors":
       result = try service.getAuthors(page: currentPage)["movies"] as! [Any]
@@ -96,9 +98,11 @@ class AudioKnigiDataSource: DataSource {
       }
 
     case "Author":
-      let path = selectedItem!.id
-
-      result = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
+      if let selectedItem = selectedItem {
+        let path = selectedItem.id
+        
+        result = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
+      }
 
     case "Performers Letters":
       let letters = getLetters(AudioKnigiService.Performers)
@@ -141,9 +145,11 @@ class AudioKnigiDataSource: DataSource {
       }
 
     case "Performer":
-      let path = selectedItem!.id
-
-      result = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
+      if let selectedItem = selectedItem {
+        let path = selectedItem.id
+        
+        result = try service.getBooks(path: path!, page: currentPage)["movies"] as! [Any]
+      }
 
     case "All Performers":
       result = try service.getPerformers(page: currentPage)["movies"] as! [Any]
