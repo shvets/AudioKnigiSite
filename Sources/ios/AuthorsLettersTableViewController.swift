@@ -18,7 +18,7 @@ class AuthorsLettersTableViewController: AudioKnigiBaseTableViewController {
   }
 
   override open func navigate(from view: UITableViewCell) {
-    let mediaItem = getItem(for: view) as! MediaItem
+    let mediaItem = getItem(for: view)
 
     let letter = mediaItem.name
 
@@ -50,7 +50,7 @@ class AuthorsLettersTableViewController: AudioKnigiBaseTableViewController {
           if let destination = segue.destination as? AuthorsLetterGroupsTableViewController,
              let view = sender as? MediaNameTableCell {
 
-            let mediaItem = getItem(for: view) as! MediaItem
+            let mediaItem = getItem(for: view)
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
             adapter.params["requestType"] = "Authors Letter Groups"
