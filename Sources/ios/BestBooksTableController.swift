@@ -21,7 +21,7 @@ class BestBooksTableViewController: AudioKnigiBaseTableViewController {
     title = localizer.localize("Best Books")
 
     for name in FiltersMenu {
-      let item = MediaItem(name: name)
+      let item = Item(name: name)
 
       items.append(item)
     }

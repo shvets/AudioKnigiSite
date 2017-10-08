@@ -18,15 +18,15 @@ open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
   }
 
   func loadData() {
-    items.append(MediaItem(name: "Bookmarks", imageName: "Star"))
-    items.append(MediaItem(name: "History", imageName: "Bookmark"))
-    items.append(MediaItem(name: "New Books", imageName: "Book"))
-    items.append(MediaItem(name: "Best Books", imageName: "Ok Hand"))
-    items.append(MediaItem(name: "Authors", imageName: "Mark Twain"))
-    items.append(MediaItem(name: "Performers", imageName: "Microphone"))
-    items.append(MediaItem(name: "Genres", imageName: "Comedy"))
-    items.append(MediaItem(name: "Settings", imageName: "Engineering"))
-    items.append(MediaItem(name: "Search", imageName: "Search"))
+    items.append(MediaName(name: "Bookmarks", imageName: "Star"))
+    items.append(MediaName(name: "History", imageName: "Bookmark"))
+    items.append(MediaName(name: "New Books", imageName: "Book"))
+    items.append(MediaName(name: "Best Books", imageName: "Ok Hand"))
+    items.append(MediaName(name: "Authors", imageName: "Mark Twain"))
+    items.append(MediaName(name: "Performers", imageName: "Microphone"))
+    items.append(MediaName(name: "Genres", imageName: "Comedy"))
+    items.append(MediaName(name: "Settings", imageName: "Engineering"))
+    items.append(MediaName(name: "Search", imageName: "Search"))
   }
 
   override open func navigate(from view: UITableViewCell) {
