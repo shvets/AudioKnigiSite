@@ -30,7 +30,7 @@ open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
   }
 
   override open func navigate(from view: UITableViewCell) {
-    let mediaItem = getItem(for: view)
+    let mediaItem = getItem(for: view) as! MediaItem
 
     switch mediaItem.name! {
       case "Best Books":
@@ -90,7 +90,7 @@ open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
           if let destination = segue.destination.getActionController() as? MediaItemsController,
              let view = sender as? MediaNameTableCell {
 
-            let mediaItem = getItem(for: view)
+            let mediaItem = getItem(for: view) as! MediaItem
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
