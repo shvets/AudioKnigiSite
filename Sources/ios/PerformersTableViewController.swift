@@ -3,12 +3,12 @@ import TVSetKit
 
 class PerformersTableViewController: UITableViewController {
   static let SegueIdentifier = "Performers"
-
   let CellIdentifier = "PerformerTableCell"
 
-  var adapter = AudioKnigiServiceAdapter(mobile: true)
-
   let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
+
+  var requestType: String?
+  var selectedItem: Item?
 
   private var items: Items!
 
@@ -18,7 +18,17 @@ class PerformersTableViewController: UITableViewController {
     self.clearsSelectionOnViewWillAppear = false
 
     items = Items() {
-      return try self.adapter.load()
+      let adapter = AudioKnigiServiceAdapter(mobile: true)
+
+      if self.requestType == "All Performers" {
+        adapter.pageLoader.enablePagination()
+        adapter.pageLoader.pageSize = 30
+        adapter.pageLoader.rowSize = 1
+      }
+
+      adapter.params["requestType"] = self.requestType
+
+      return try adapter.load()
     }
 
     items.loadInitialData(tableView)

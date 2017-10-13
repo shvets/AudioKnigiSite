@@ -5,10 +5,7 @@ import TVSetKit
 
 class AuthorsLettersTableViewController: UITableViewController {
   static let SegueIdentifier = "Authors Letters"
-
   let CellIdentifier = "AuthorsLetterTableCell"
-
-  var adapter = AudioKnigiServiceAdapter(mobile: true)
 
   let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
 
@@ -20,7 +17,11 @@ class AuthorsLettersTableViewController: UITableViewController {
     self.clearsSelectionOnViewWillAppear = false
 
     items = Items() {
-      return try self.adapter.load()
+      let adapter = AudioKnigiServiceAdapter(mobile: true)
+
+      adapter.params["requestType"] = "Authors Letters"
+
+      return try adapter.load()
     }
 
     items.loadInitialData(tableView)
@@ -71,13 +72,7 @@ class AuthorsLettersTableViewController: UITableViewController {
       switch identifier {
         case AuthorsTableViewController.SegueIdentifier:
           if let destination = segue.destination.getActionController() as? AuthorsTableViewController {
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
-            adapter.pageLoader.enablePagination()
-            adapter.pageLoader.pageSize = 30
-            adapter.pageLoader.rowSize = 1
-
-            adapter.params["requestType"] = "All Authors"
-            destination.adapter = adapter
+            destination.requestType = "All Authors"
           }
 
         case AuthorsLetterGroupsTableViewController.SegueIdentifier:
@@ -87,12 +82,7 @@ class AuthorsLettersTableViewController: UITableViewController {
 
             let mediaItem = items.getItem(for: indexPath)
 
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
-            adapter.params["requestType"] = "Authors Letter Groups"
-            adapter.params["parentId"] = mediaItem.name
-            destination.adapter = adapter
-
-            //destination.letter = mediaItem.name
+            destination.parentId = mediaItem.name
           }
 
         default: break

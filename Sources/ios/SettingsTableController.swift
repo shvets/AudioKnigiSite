@@ -3,13 +3,10 @@ import TVSetKit
 
 class SettingsTableController: UITableViewController {
   static let SegueIdentifier = "Settings"
-
   let CellIdentifier = "SettingTableCell"
 
   let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
 
-  var adapter = AudioKnigiServiceAdapter(mobile: true)
-  
   private var items: Items!
 
   override func viewDidLoad() {
@@ -17,9 +14,9 @@ class SettingsTableController: UITableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-    adapter = AudioKnigiServiceAdapter(mobile: true)
-
     items = Items() {
+      let adapter = AudioKnigiServiceAdapter(mobile: true)
+
       return self.loadSettingsMenu()
     }
 
@@ -77,8 +74,10 @@ class SettingsTableController: UITableViewController {
 
     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
+    let adapter = AudioKnigiServiceAdapter(mobile: true)
+
     let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-      let history = (self.adapter as! AudioKnigiServiceAdapter).history
+      let history = adapter.history
 
       history.clear()
       history.save()
@@ -98,8 +97,10 @@ class SettingsTableController: UITableViewController {
 
     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
+    let adapter = AudioKnigiServiceAdapter(mobile: true)
+
     let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-      let bookmarks = (self.adapter as! AudioKnigiServiceAdapter).bookmarks
+      let bookmarks = adapter.bookmarks
 
       bookmarks.clear()
       bookmarks.save()

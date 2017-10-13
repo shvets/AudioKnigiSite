@@ -3,16 +3,13 @@ import TVSetKit
 
 class GenresTableViewController: UITableViewController {
   static let SegueIdentifier = "Genres"
+ let CellIdentifier = "GenreTableCell"
 
   let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
-  
- let CellIdentifier = "GenreTableCell"
 
 #if os(iOS)
   public let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 #endif
-
-  var adapter = AudioKnigiServiceAdapter(mobile: true)
 
   private var items: Items!
 
@@ -28,7 +25,14 @@ class GenresTableViewController: UITableViewController {
     items.pageLoader.spinner = PlainSpinner(activityIndicatorView)
 
     items = Items() {
-      return try self.adapter.load()
+      let adapter = AudioKnigiServiceAdapter(mobile: true)
+      adapter.pageLoader.enablePagination()
+      adapter.pageLoader.pageSize = 20
+      adapter.pageLoader.rowSize = 1
+
+      adapter.params["requestType"] = "Genres"
+
+      return try adapter.load()
     }
 
     items.loadInitialData(tableView) { result in

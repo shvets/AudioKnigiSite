@@ -5,10 +5,7 @@ import TVSetKit
 
 class PerformersLettersTableViewController: UITableViewController {
   static let SegueIdentifier = "Performers Letters"
-
   let CellIdentifier = "PerformersLetterTableCell"
-
-  var adapter = AudioKnigiServiceAdapter(mobile: true)
 
   let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
 
@@ -20,7 +17,10 @@ class PerformersLettersTableViewController: UITableViewController {
     self.clearsSelectionOnViewWillAppear = false
 
     items = Items() {
-      return try self.adapter.load()
+      let adapter = AudioKnigiServiceAdapter(mobile: true)
+      adapter.params["requestType"] = "Performers Letters"
+
+      return try adapter.load()
     }
 
     items.loadInitialData(tableView)
@@ -69,17 +69,6 @@ class PerformersLettersTableViewController: UITableViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let identifier = segue.identifier {
       switch identifier {
-        case PerformersTableViewController.SegueIdentifier:
-          if let destination = segue.destination.getActionController() as? PerformersTableViewController {
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
-            adapter.pageLoader.enablePagination()
-            adapter.pageLoader.pageSize = 30
-            adapter.pageLoader.rowSize = 1
-
-            adapter.params["requestType"] = "All Performers"
-            destination.adapter = adapter
-          }
-
         case PerformersLetterGroupsTableViewController.SegueIdentifier:
           if let destination = segue.destination as? PerformersLetterGroupsTableViewController,
              let view = sender as? MediaNameTableCell,
@@ -87,11 +76,8 @@ class PerformersLettersTableViewController: UITableViewController {
 
             let mediaItem = items.getItem(for: indexPath)
 
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
-            adapter.params["requestType"] = "Performers Letter Groups"
-            adapter.params["parentId"] = mediaItem.name
-            destination.adapter = adapter
-          }
+            destination.parentId = mediaItem.name
+        }
 
         default: break
       }

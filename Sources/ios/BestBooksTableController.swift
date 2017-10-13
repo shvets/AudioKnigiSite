@@ -3,7 +3,6 @@ import TVSetKit
 
 class BestBooksTableViewController: UITableViewController {
   static let SegueIdentifier = "Best Books"
-
   let CellIdentifier = "BestBookTableCell"
 
   let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)

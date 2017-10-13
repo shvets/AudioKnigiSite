@@ -5,12 +5,11 @@ import TVSetKit
 
 class PerformersLetterGroupsTableViewController: UITableViewController {
   static let SegueIdentifier = "Performers Letter Groups"
-
   let CellIdentifier = "PerformersLetterGroupTableCell"
 
   let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
 
-  var adapter = AudioKnigiServiceAdapter(mobile: true)
+  var parentId: String?
 
   var letter: String?
 
@@ -20,6 +19,14 @@ class PerformersLetterGroupsTableViewController: UITableViewController {
     super.viewDidLoad()
 
     self.clearsSelectionOnViewWillAppear = false
+
+    items = Items() {
+      let adapter = AudioKnigiServiceAdapter(mobile: true)
+      adapter.params["requestType"] = "Performers Letter Groups"
+      adapter.params["parentId"] = self.parentId
+
+      return try adapter.load()
+    }
 
     items.loadInitialData(tableView)
   }
@@ -63,11 +70,7 @@ class PerformersLetterGroupsTableViewController: UITableViewController {
              let view = sender as? MediaNameTableCell,
              let indexPath = tableView.indexPath(for: view) {
 
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
-
-            adapter.params["requestType"] = "Performers"
-            adapter.params["selectedItem"] = items.getItem(for: indexPath)
-            destination.adapter = adapter
+            destination.selectedItem = items.getItem(for: indexPath)
           }
 
         default: break

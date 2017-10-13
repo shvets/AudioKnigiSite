@@ -3,13 +3,13 @@ import TVSetKit
 
 class AuthorsTableViewController: UITableViewController {
   static let SegueIdentifier = "Authors"
-
   let CellIdentifier = "AuthorTableCell"
 
   let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
 
-  var adapter = AudioKnigiServiceAdapter(mobile: true)
-  
+  var requestType: String?
+  var selectedItem: Item?
+
   private var items: Items!
 
   override open func viewDidLoad() {
@@ -18,7 +18,18 @@ class AuthorsTableViewController: UITableViewController {
     self.clearsSelectionOnViewWillAppear = false
 
     items = Items() {
-      return try self.adapter.load()
+      let adapter = AudioKnigiServiceAdapter(mobile: true)
+
+      if self.requestType == "All Authors" {
+        adapter.pageLoader.enablePagination()
+        adapter.pageLoader.pageSize = 30
+        adapter.pageLoader.rowSize = 1
+      }
+
+      adapter.params["requestType"] = self.requestType
+      adapter.params["selectedItem"] = self.selectedItem
+
+      return try adapter.load()
     }
 
     items.loadInitialData(tableView)

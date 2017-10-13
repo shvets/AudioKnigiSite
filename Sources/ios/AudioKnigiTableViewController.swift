@@ -3,7 +3,6 @@ import TVSetKit
 
 open class AudioKnigiTableViewController: UITableViewController {
   static let SegueIdentifier = "Audio Knigi"
-
   let CellIdentifier = "AudioKnigiTableCell"
 
   let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
@@ -94,33 +93,6 @@ open class AudioKnigiTableViewController: UITableViewController {
   override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let identifier = segue.identifier {
       switch identifier {
-        case AuthorsLettersTableViewController.SegueIdentifier:
-          if let destination = segue.destination.getActionController() as? AuthorsLettersTableViewController {
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
-
-            adapter.params["requestType"] = "Authors Letters"
-            destination.adapter = adapter
-          }
-
-        case PerformersLettersTableViewController.SegueIdentifier:
-          if let destination = segue.destination.getActionController() as? PerformersLettersTableViewController {
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
-
-            adapter.params["requestType"] = "Performers Letters"
-            destination.adapter = adapter
-          }
-
-        case GenresTableViewController.SegueIdentifier:
-          if let destination = segue.destination.getActionController() as? GenresTableViewController {
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
-            adapter.pageLoader.enablePagination()
-            adapter.pageLoader.pageSize = 20
-            adapter.pageLoader.rowSize = 1
-
-            adapter.params["requestType"] = "Genres"
-            destination.adapter = adapter
-          }
-
         case MediaItemsController.SegueIdentifier:
           if let destination = segue.destination.getActionController() as? MediaItemsController,
              let view = sender as? MediaNameTableCell,
