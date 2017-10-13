@@ -1,11 +1,20 @@
 import UIKit
 import TVSetKit
 
-class GenresTableViewController: AudioKnigiBaseTableViewController {
+class GenresTableViewController: UITableViewController {
   static let SegueIdentifier = "Genres"
 
-  override open var CellIdentifier: String { return "GenreTableCell" }
-  override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
+  let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
+  
+ let CellIdentifier = "GenreTableCell"
+
+#if os(iOS)
+  public let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+#endif
+
+  var adapter = AudioKnigiServiceAdapter(mobile: true)
+
+  private var items: Items!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -16,17 +25,46 @@ class GenresTableViewController: AudioKnigiBaseTableViewController {
 
     tableView?.backgroundView = activityIndicatorView
 
-    adapter.pageLoader.spinner = PlainSpinner(activityIndicatorView)
+    items.pageLoader.spinner = PlainSpinner(activityIndicatorView)
 
-    loadInitialData { result in
+    items = Items() {
+      return try self.adapter.load()
+    }
+
+    items.loadInitialData(tableView) { result in
       for item in result {
         item.name = self.localizer.localize(item.name!)
       }
     }
   }
 
-  override open func navigate(from view: UITableViewCell) {
-    performSegue(withIdentifier: MediaItemsController.SegueIdentifier, sender: view)
+ // MARK: UITableViewDataSource
+
+  override open func numberOfSections(in tableView: UITableView) -> Int {
+    return 1
+  }
+
+  override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return items.count
+  }
+
+  override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as? MediaNameTableCell {
+      let item = items[indexPath.row]
+
+      cell.configureCell(item: item, localizedName: localizer.getLocalizedName(item.name))
+
+      return cell
+    }
+    else {
+      return UITableViewCell()
+    }
+  }
+
+  override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if let view = tableView.cellForRow(at: indexPath) {
+      performSegue(withIdentifier: MediaItemsController.SegueIdentifier, sender: view)
+    }
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -34,12 +72,13 @@ class GenresTableViewController: AudioKnigiBaseTableViewController {
       switch identifier {
         case MediaItemsController.SegueIdentifier:
           if let destination = segue.destination.getActionController() as? MediaItemsController,
-             let view = sender as? MediaNameTableCell {
+             let view = sender as? MediaNameTableCell,
+             let indexPath = tableView.indexPath(for: view) {
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
             adapter.params["requestType"] = "Genre Books"
-            adapter.params["selectedItem"] = getItem(for: view)
+            adapter.params["selectedItem"] = items.getItem(for: indexPath)
 
             destination.adapter = adapter
           }

@@ -3,30 +3,64 @@ import SwiftSoup
 import WebAPI
 import TVSetKit
 
-class AuthorsLettersTableViewController: AudioKnigiBaseTableViewController {
+class AuthorsLettersTableViewController: UITableViewController {
   static let SegueIdentifier = "Authors Letters"
 
-  override open var CellIdentifier: String { return "AuthorsLetterTableCell" }
-  override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
+  let CellIdentifier = "AuthorsLetterTableCell"
 
-  override func viewDidLoad() {
+  var adapter = AudioKnigiServiceAdapter(mobile: true)
+
+  let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
+
+  private var items: Items!
+
+  override open func viewDidLoad() {
     super.viewDidLoad()
 
     self.clearsSelectionOnViewWillAppear = false
 
-    loadInitialData()
+    items = Items() {
+      return try self.adapter.load()
+    }
+
+    items.loadInitialData(tableView)
   }
 
-  override open func navigate(from view: UITableViewCell) {
-    let mediaItem = getItem(for: view)
+ // MARK: UITableViewDataSource
 
-    let letter = mediaItem.name
+  override open func numberOfSections(in tableView: UITableView) -> Int {
+    return 1
+  }
 
-    if letter == "Все" {
-      performSegue(withIdentifier: AuthorsTableViewController.SegueIdentifier, sender: view)
+  override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return items.count
+  }
+
+  override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as? MediaNameTableCell {
+      let item = items[indexPath.row]
+
+      cell.configureCell(item: item, localizedName: localizer.getLocalizedName(item.name))
+
+      return cell
     }
     else {
-      performSegue(withIdentifier: AuthorsLetterGroupsTableViewController.SegueIdentifier, sender: view)
+      return UITableViewCell()
+    }
+  }
+
+  override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if let view = tableView.cellForRow(at: indexPath),
+       let indexPath = tableView.indexPath(for: view) {
+      let mediaItem = items.getItem(for: indexPath)
+
+      let letter = mediaItem.name
+
+      if letter == "Все" {
+        performSegue(withIdentifier: AuthorsTableViewController.SegueIdentifier, sender: view)
+      } else {
+        performSegue(withIdentifier: AuthorsLetterGroupsTableViewController.SegueIdentifier, sender: view)
+      }
     }
   }
 
@@ -48,9 +82,10 @@ class AuthorsLettersTableViewController: AudioKnigiBaseTableViewController {
 
         case AuthorsLetterGroupsTableViewController.SegueIdentifier:
           if let destination = segue.destination as? AuthorsLetterGroupsTableViewController,
-             let view = sender as? MediaNameTableCell {
+             let view = sender as? MediaNameTableCell,
+             let indexPath = tableView.indexPath(for: view) {
 
-            let mediaItem = getItem(for: view)
+            let mediaItem = items.getItem(for: indexPath)
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
             adapter.params["requestType"] = "Authors Letter Groups"

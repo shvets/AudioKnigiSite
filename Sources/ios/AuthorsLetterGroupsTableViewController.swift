@@ -3,11 +3,16 @@ import SwiftSoup
 import WebAPI
 import TVSetKit
 
-class AuthorsLetterGroupsTableViewController: AudioKnigiBaseTableViewController {
+class AuthorsLetterGroupsTableViewController: UITableViewController {
   static let SegueIdentifier = "Authors Letter Groups"
 
-  override open var CellIdentifier: String { return "AuthorsLetterGroupTableCell" }
-  override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
+  let CellIdentifier = "AuthorsLetterGroupTableCell"
+
+  var adapter = AudioKnigiServiceAdapter(mobile: true)
+
+  let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
+
+  private var items: Items!
 
   var letter: String?
 
@@ -16,11 +21,40 @@ class AuthorsLetterGroupsTableViewController: AudioKnigiBaseTableViewController 
 
     self.clearsSelectionOnViewWillAppear = false
 
-    loadInitialData()
+    items = Items() {
+      return try self.adapter.load()
+    }
+
+    items.loadInitialData(tableView)
   }
 
-  override open func navigate(from view: UITableViewCell) {
-    performSegue(withIdentifier: AuthorsTableViewController.SegueIdentifier, sender: view)
+ // MARK: UITableViewDataSource
+
+  override open func numberOfSections(in tableView: UITableView) -> Int {
+    return 1
+  }
+
+  override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return items.count
+  }
+
+  override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as? MediaNameTableCell {
+      let item = items[indexPath.row]
+
+      cell.configureCell(item: item, localizedName: localizer.getLocalizedName(item.name))
+
+      return cell
+    }
+    else {
+      return UITableViewCell()
+    }
+  }
+
+  override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if let view = tableView.cellForRow(at: indexPath) {
+      performSegue(withIdentifier: AuthorsTableViewController.SegueIdentifier, sender: view)
+    }
   }
 
   // MARK: - Navigation
@@ -30,12 +64,13 @@ class AuthorsLetterGroupsTableViewController: AudioKnigiBaseTableViewController 
       switch identifier {
         case AuthorsTableViewController.SegueIdentifier:
           if let destination = segue.destination.getActionController() as? AuthorsTableViewController,
-             let view = sender as? MediaNameTableCell {
+             let view = sender as? MediaNameTableCell,
+             let indexPath = tableView.indexPath(for: view) {
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
             adapter.params["requestType"] = "Authors"
-            adapter.params["selectedItem"] = getItem(for: view)
+            adapter.params["selectedItem"] = items.getItem(for: indexPath)
             destination.adapter = adapter
           }
 

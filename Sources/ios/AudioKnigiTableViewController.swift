@@ -1,11 +1,14 @@
 import UIKit
 import TVSetKit
 
-open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
+open class AudioKnigiTableViewController: UITableViewController {
   static let SegueIdentifier = "Audio Knigi"
 
-  override open var CellIdentifier: String { return "AudioKnigiTableCell" }
-  override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
+  let CellIdentifier = "AudioKnigiTableCell"
+
+  let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
+
+  private var items: Items!
 
   override open func viewDidLoad() {
     super.viewDidLoad()
@@ -14,25 +17,56 @@ open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
 
     title = localizer.localize("AudioKnigi")
 
-    loadData()
+    items = Items() {
+      return self.loadData()
+    }
+
+    items.loadInitialData(tableView)
   }
 
-  func loadData() {
-    items.append(MediaName(name: "Bookmarks", imageName: "Star"))
-    items.append(MediaName(name: "History", imageName: "Bookmark"))
-    items.append(MediaName(name: "New Books", imageName: "Book"))
-    items.append(MediaName(name: "Best Books", imageName: "Ok Hand"))
-    items.append(MediaName(name: "Authors", imageName: "Mark Twain"))
-    items.append(MediaName(name: "Performers", imageName: "Microphone"))
-    items.append(MediaName(name: "Genres", imageName: "Comedy"))
-    items.append(MediaName(name: "Settings", imageName: "Engineering"))
-    items.append(MediaName(name: "Search", imageName: "Search"))
+  func loadData() -> [Item] {
+    return [
+      MediaName(name: "Bookmarks", imageName: "Star"),
+      MediaName(name: "History", imageName: "Bookmark"),
+      MediaName(name: "New Books", imageName: "Book"),
+      MediaName(name: "Best Books", imageName: "Ok Hand"),
+      MediaName(name: "Authors", imageName: "Mark Twain"),
+      MediaName(name: "Performers", imageName: "Microphone"),
+      MediaName(name: "Genres", imageName: "Comedy"),
+      MediaName(name: "Settings", imageName: "Engineering"),
+      MediaName(name: "Search", imageName: "Search")
+    ]
   }
 
-  override open func navigate(from view: UITableViewCell) {
-    let mediaItem = getItem(for: view)
+ // MARK: UITableViewDataSource
 
-    switch mediaItem.name! {
+  override open func numberOfSections(in tableView: UITableView) -> Int {
+    return 1
+  }
+
+  override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return items.count
+  }
+
+  override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as? MediaNameTableCell {
+      let item = items[indexPath.row]
+
+      cell.configureCell(item: item, localizedName: localizer.getLocalizedName(item.name))
+
+      return cell
+    }
+    else {
+      return UITableViewCell()
+    }
+  }
+
+  override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if let view = tableView.cellForRow(at: indexPath),
+       let indexPath = tableView.indexPath(for: view) {
+      let mediaItem = items.getItem(for: indexPath)
+
+      switch mediaItem.name! {
       case "Best Books":
         performSegue(withIdentifier: "Best Books", sender: view)
 
@@ -53,6 +87,7 @@ open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
 
       default:
         performSegue(withIdentifier: MediaItemsController.SegueIdentifier, sender: view)
+      }
     }
   }
 
@@ -88,9 +123,10 @@ open class AudioKnigiTableViewController: AudioKnigiBaseTableViewController {
 
         case MediaItemsController.SegueIdentifier:
           if let destination = segue.destination.getActionController() as? MediaItemsController,
-             let view = sender as? MediaNameTableCell {
+             let view = sender as? MediaNameTableCell,
+             let indexPath = tableView.indexPath(for: view) {
 
-            let mediaItem = getItem(for: view)
+            let mediaItem = items.getItem(for: indexPath)
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 

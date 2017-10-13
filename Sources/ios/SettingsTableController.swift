@@ -1,11 +1,16 @@
 import UIKit
 import TVSetKit
 
-class SettingsTableController: AudioKnigiBaseTableViewController {
+class SettingsTableController: UITableViewController {
   static let SegueIdentifier = "Settings"
 
-  override open var CellIdentifier: String { return "SettingTableCell" }
-  override open var BundleId: String { return AudioKnigiServiceAdapter.BundleId }
+  let CellIdentifier = "SettingTableCell"
+
+  let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
+
+  var adapter = AudioKnigiServiceAdapter(mobile: true)
+  
+  private var items: Items!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -14,28 +19,55 @@ class SettingsTableController: AudioKnigiBaseTableViewController {
 
     adapter = AudioKnigiServiceAdapter(mobile: true)
 
-    loadSettingsMenu()
+    items = Items() {
+      return self.loadSettingsMenu()
+    }
+
+    items.loadInitialData(tableView)
   }
 
-  func loadSettingsMenu() {
-    let resetHistory = Item(name: "Reset History")
-    let resetQueue = Item(name: "Reset Bookmarks")
-
-    items = [
-      resetHistory, resetQueue
+  func loadSettingsMenu() -> [Item] {
+    return [
+       Item(name: "Reset History"),
+       Item(name: "Reset Bookmarks")
     ]
   }
 
-  override open func navigate(from view: UITableViewCell) {
-    let mediaItem = getItem(for: view)
+ // MARK: UITableViewDataSource
 
-    let settingsMode = mediaItem.name
+  override open func numberOfSections(in tableView: UITableView) -> Int {
+    return 1
+  }
 
-    if settingsMode == "Reset History" {
-      present(buildResetHistoryController(), animated: false, completion: nil)
+  override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return items.count
+  }
+
+  override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as? MediaNameTableCell {
+      let item = items[indexPath.row]
+
+      cell.configureCell(item: item, localizedName: localizer.getLocalizedName(item.name))
+
+      return cell
     }
-    else if settingsMode == "Reset Bookmarks" {
-      present(buildResetQueueController(), animated: false, completion: nil)
+    else {
+      return UITableViewCell()
+    }
+  }
+
+  override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if let view = tableView.cellForRow(at: indexPath),
+       let indexPath = tableView.indexPath(for: view) {
+      let mediaItem = items.getItem(for: indexPath)
+
+      let settingsMode = mediaItem.name
+
+      if settingsMode == "Reset History" {
+        present(buildResetHistoryController(), animated: false, completion: nil)
+      } else if settingsMode == "Reset Bookmarks" {
+        present(buildResetQueueController(), animated: false, completion: nil)
+      }
     }
   }
 
