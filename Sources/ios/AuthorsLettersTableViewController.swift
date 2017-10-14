@@ -1,6 +1,4 @@
 import UIKit
-import SwiftSoup
-import WebAPI
 import TVSetKit
 
 class AuthorsLettersTableViewController: UITableViewController {

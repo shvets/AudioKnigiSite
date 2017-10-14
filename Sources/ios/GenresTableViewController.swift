@@ -20,8 +20,6 @@ class GenresTableViewController: UITableViewController {
 
     title = localizer.localize("Genres")
 
-    tableView?.backgroundView = activityIndicatorView
-
     items = Items() {
       let adapter = AudioKnigiServiceAdapter(mobile: true)
       adapter.pageLoader.enablePagination()
@@ -33,6 +31,7 @@ class GenresTableViewController: UITableViewController {
       return try adapter.load()
     }
 
+    tableView?.backgroundView = activityIndicatorView
     items.pageLoader.spinner = PlainSpinner(activityIndicatorView)
 
     items.loadInitialData(tableView) { result in
