@@ -67,6 +67,11 @@ class PerformersLettersTableViewController: UITableViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let identifier = segue.identifier {
       switch identifier {
+        case PerformersTableViewController.SegueIdentifier:
+          if let destination = segue.destination.getActionController() as? PerformersTableViewController {
+            destination.requestType = "All Performers"
+          }
+
         case PerformersLetterGroupsTableViewController.SegueIdentifier:
           if let destination = segue.destination as? PerformersLetterGroupsTableViewController,
              let view = sender as? MediaNameTableCell,

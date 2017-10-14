@@ -69,6 +69,7 @@ class PerformersLetterGroupsTableViewController: UITableViewController {
              let indexPath = tableView.indexPath(for: view) {
 
             destination.selectedItem = items.getItem(for: indexPath)
+            destination.requestType = "Performers"
           }
 
         default: break

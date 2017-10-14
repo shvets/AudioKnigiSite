@@ -7,6 +7,10 @@ class AuthorsTableViewController: UITableViewController {
 
   let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
 
+#if os(iOS)
+  public let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+#endif
+
   var requestType: String?
   var selectedItem: Item?
 
@@ -25,12 +29,17 @@ class AuthorsTableViewController: UITableViewController {
         adapter.pageLoader.pageSize = 30
         adapter.pageLoader.rowSize = 1
       }
+      else {
+        adapter.params["selectedItem"] = self.selectedItem
+      }
 
       adapter.params["requestType"] = self.requestType
-      adapter.params["selectedItem"] = self.selectedItem
 
       return try adapter.load()
     }
+
+    tableView?.backgroundView = activityIndicatorView
+    items.pageLoader.spinner = PlainSpinner(activityIndicatorView)
 
     items.loadInitialData(tableView)
   }
