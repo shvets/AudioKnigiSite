@@ -106,6 +106,7 @@ open class AudioKnigiTableViewController: UITableViewController {
             adapter.params["parentName"] = localizer.localize(mediaItem.name!)
 
             destination.adapter = adapter
+            destination.configuration = adapter.getConfiguration()
           }
 
         case SearchTableController.SegueIdentifier:

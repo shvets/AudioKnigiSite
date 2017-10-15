@@ -86,6 +86,7 @@ class GenresTableViewController: UITableViewController {
             adapter.params["selectedItem"] = items.getItem(for: indexPath)
 
             destination.adapter = adapter
+            destination.configuration = adapter.getConfiguration()
           }
 
         default: break
