@@ -12,11 +12,17 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
   lazy var bookmarks = Bookmarks(AudioKnigiServiceAdapter.bookmarksFileName)
   lazy var history = History(AudioKnigiServiceAdapter.historyFileName)
 
+  var bookmarksManager: BookmarksManager?
+  var historyManager: HistoryManager?
+
   public init(mobile: Bool=false) {
     super.init(dataSource: AudioKnigiDataSource(), mobile: mobile)
 
     bookmarks.load()
     history.load()
+
+    bookmarksManager = BookmarksManager(bookmarks)
+    historyManager = HistoryManager(history)
 
     pageLoader.pageSize = 12
     pageLoader.rowSize = 6
@@ -44,7 +50,8 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
   func getConfiguration() -> [String: Any] {
     return [
       "pageSize": 12,
-      "rowSize": 1
-    ]
+      "rowSize": 1,
+      "bookmarksManager": bookmarksManager as Any,
+      "historyManager": historyManager as Any    ]
   }
 }
