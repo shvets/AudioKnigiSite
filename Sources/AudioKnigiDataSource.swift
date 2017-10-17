@@ -22,7 +22,6 @@ class AudioKnigiDataSource: DataSource {
     switch request {
     case "Bookmarks":
       if let bookmarks = params["bookmarks"]  as? Bookmarks {
-        bookmarks.load()
         result = bookmarks.getBookmarks(pageSize: 60, page: currentPage)
       }
 

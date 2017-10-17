@@ -18,9 +18,6 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
   public init(mobile: Bool=false) {
     super.init(dataSource: AudioKnigiDataSource(), mobile: mobile)
 
-    bookmarks.load()
-    history.load()
-
     bookmarksManager = BookmarksManager(bookmarks)
     historyManager = HistoryManager(history)
 
