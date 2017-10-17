@@ -9,7 +9,7 @@ class AuthorsLetterGroupsTableViewController: UITableViewController {
 
   var parentId: String?
 
-  private var items: Items!
+  private var items = Items()
 
   var letter: String?
 
@@ -18,7 +18,7 @@ class AuthorsLetterGroupsTableViewController: UITableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-    items = Items() {
+    items.pageLoader.load = {
       let adapter = AudioKnigiServiceAdapter(mobile: true)
       adapter.params["requestType"] = "Authors Letter Groups"
       adapter.params["parentId"] = self.parentId

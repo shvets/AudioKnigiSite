@@ -7,7 +7,7 @@ class BestBooksTableViewController: UITableViewController {
 
   let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
 
-  private var items: Items!
+  private var items = Items()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -16,7 +16,7 @@ class BestBooksTableViewController: UITableViewController {
 
     title = localizer.localize("Best Books")
 
-    items = Items() {
+    items.pageLoader.load = {
       return self.loadData()
     }
 

@@ -11,7 +11,7 @@ class GenresTableViewController: UITableViewController {
   public let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 #endif
 
-  private var items: Items!
+  private var items = Items()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -20,7 +20,7 @@ class GenresTableViewController: UITableViewController {
 
     title = localizer.localize("Genres")
 
-    items = Items() {
+    items.pageLoader.load = {
       let adapter = AudioKnigiServiceAdapter(mobile: true)
       adapter.pageLoader.enablePagination()
       adapter.pageLoader.pageSize = 20

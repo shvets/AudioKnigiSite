@@ -14,14 +14,14 @@ class AuthorsTableViewController: UITableViewController {
   var requestType: String?
   var selectedItem: Item?
 
-  private var items: Items!
+  private var items = Items()
 
   override open func viewDidLoad() {
     super.viewDidLoad()
 
     self.clearsSelectionOnViewWillAppear = false
 
-    items = Items() {
+    items.pageLoader.load = {
       let adapter = AudioKnigiServiceAdapter(mobile: true)
 
       if self.requestType == "All Authors" {

@@ -7,14 +7,14 @@ class PerformersLettersTableViewController: UITableViewController {
 
   let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
 
-  private var items: Items!
+  private var items = Items()
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     self.clearsSelectionOnViewWillAppear = false
 
-    items = Items() {
+    items.pageLoader.load = {
       let adapter = AudioKnigiServiceAdapter(mobile: true)
       adapter.params["requestType"] = "Performers Letters"
 

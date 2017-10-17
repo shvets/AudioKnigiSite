@@ -11,14 +11,14 @@ class PerformersLetterGroupsTableViewController: UITableViewController {
 
   var letter: String?
 
-  private var items: Items!
+  private var items = Items()
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     self.clearsSelectionOnViewWillAppear = false
 
-    items = Items() {
+    items.pageLoader.load = {
       let adapter = AudioKnigiServiceAdapter(mobile: true)
       adapter.params["requestType"] = "Performers Letter Groups"
       adapter.params["parentId"] = self.parentId

@@ -48,6 +48,7 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
     return [
       "pageSize": 12,
       "rowSize": 1,
+      "mobile": true,
       "bookmarksManager": bookmarksManager as Any,
       "historyManager": historyManager as Any    ]
   }
