@@ -102,8 +102,8 @@ open class AudioKnigiTableViewController: UITableViewController {
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-            adapter.params["requestType"] = mediaItem.name
-            adapter.params["parentName"] = localizer.localize(mediaItem.name!)
+            destination.params["requestType"] = mediaItem.name
+            destination.params["parentName"] = localizer.localize(mediaItem.name!)
 
             destination.adapter = adapter
             destination.configuration = adapter.getConfiguration()
@@ -114,8 +114,8 @@ open class AudioKnigiTableViewController: UITableViewController {
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-            adapter.params["requestType"] = "Search"
-            adapter.params["parentName"] = localizer.localize("Search Results")
+            destination.params["requestType"] = "Search"
+            destination.params["parentName"] = localizer.localize("Search Results")
 
             destination.adapter = adapter
           }

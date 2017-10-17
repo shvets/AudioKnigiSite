@@ -70,7 +70,7 @@ class BestBooksTableViewController: UITableViewController {
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-            adapter.params["requestType"] = "Best Books"
+            destination.params["requestType"] = "Best Books"
             adapter.params["selectedItem"] = items.getItem(for: indexPath)
 
             destination.adapter = adapter

@@ -82,7 +82,7 @@ class GenresTableViewController: UITableViewController {
 
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
-            adapter.params["requestType"] = "Genre Books"
+            destination.params["requestType"] = "Genre Books"
             adapter.params["selectedItem"] = items.getItem(for: indexPath)
 
             destination.adapter = adapter
