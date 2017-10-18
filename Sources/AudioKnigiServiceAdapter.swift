@@ -34,12 +34,12 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
     return cloned
   }
 
-  override open func load() throws -> [Any] {
-    params["bookmarks"] = bookmarks
-    params["history"] = history
-
-    return try super.load()
-  }
+//  override open func load() throws -> [Any] {
+//    params["bookmarks"] = bookmarks
+//    params["history"] = history
+//
+//    return try super.load()
+//  }
 
   func getConfiguration() -> [String: Any] {
     return [
