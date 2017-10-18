@@ -27,7 +27,6 @@ class AudioKnigiDataSource: DataSource {
 
     case "History":
       if let history = params["history"] as? History {
-        history.load()
         result = history.getHistoryItems(pageSize: 60, page: currentPage)
       }
 

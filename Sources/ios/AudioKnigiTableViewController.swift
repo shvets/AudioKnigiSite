@@ -118,6 +118,7 @@ open class AudioKnigiTableViewController: UITableViewController {
             destination.params["parentName"] = localizer.localize("Search Results")
 
             destination.adapter = adapter
+            destination.configuration = adapter.getConfiguration()
           }
 
         default: break
