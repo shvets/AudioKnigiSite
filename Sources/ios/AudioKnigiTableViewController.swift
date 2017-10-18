@@ -5,8 +5,10 @@ open class AudioKnigiTableViewController: UITableViewController {
   static let SegueIdentifier = "Audio Knigi"
   let CellIdentifier = "AudioKnigiTableCell"
 
-  let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
+  let localizer = Localizer(AudioKnigiService.BundleId, bundleClass: AudioKnigiSite.self)
 
+  let service = AudioKnigiService()
+  
   private var items = Items()
 
   override open func viewDidLoad() {
@@ -17,13 +19,13 @@ open class AudioKnigiTableViewController: UITableViewController {
     title = localizer.localize("AudioKnigi")
 
     items.pageLoader.load = {
-      return self.loadData()
+      return self.getMainMenu()
     }
 
     items.loadInitialData(tableView)
   }
 
-  func loadData() -> [Item] {
+  func getMainMenu() -> [Item] {
     return [
       MediaName(name: "Bookmarks", imageName: "Star"),
       MediaName(name: "History", imageName: "Bookmark"),
@@ -37,7 +39,7 @@ open class AudioKnigiTableViewController: UITableViewController {
     ]
   }
 
- // MARK: UITableViewDataSource
+  // MARK: UITableViewDataSource
 
   override open func numberOfSections(in tableView: UITableView) -> Int {
     return 1
@@ -100,23 +102,19 @@ open class AudioKnigiTableViewController: UITableViewController {
 
             let mediaItem = items.getItem(for: indexPath)
 
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
-
             destination.params["requestType"] = mediaItem.name
             destination.params["parentName"] = localizer.localize(mediaItem.name!)
 
-            destination.configuration = adapter.getConfiguration()
+            destination.configuration = service.getConfiguration()
           }
 
         case SearchTableController.SegueIdentifier:
           if let destination = segue.destination.getActionController() as? SearchTableController {
 
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
-
             destination.params["requestType"] = "Search"
             destination.params["parentName"] = localizer.localize("Search Results")
 
-            destination.configuration = adapter.getConfiguration()
+            destination.configuration = service.getConfiguration()
           }
 
         default: break

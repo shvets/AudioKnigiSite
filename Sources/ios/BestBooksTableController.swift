@@ -5,7 +5,9 @@ class BestBooksTableViewController: UITableViewController {
   static let SegueIdentifier = "Best Books"
   let CellIdentifier = "BestBookTableCell"
 
-  let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
+  let localizer = Localizer(AudioKnigiService.BundleId, bundleClass: AudioKnigiSite.self)
+
+  let service = AudioKnigiService()
 
   private var items = Items()
 
@@ -20,10 +22,10 @@ class BestBooksTableViewController: UITableViewController {
       return self.loadData()
     }
 
-    items.loadInitialData(tableView)
+    items.getBestBooksMenu(tableView)
   }
 
-  func loadData() -> [Item] {
+  func getBestBooksMenu() -> [Item] {
     return [
       Item(name: "By Week"),
       Item(name: "By Month"),
@@ -31,7 +33,7 @@ class BestBooksTableViewController: UITableViewController {
     ]
   }
 
- // MARK: UITableViewDataSource
+  // MARK: UITableViewDataSource
 
   override open func numberOfSections(in tableView: UITableView) -> Int {
     return 1
@@ -68,12 +70,10 @@ class BestBooksTableViewController: UITableViewController {
              let view = sender as? MediaNameTableCell,
              let indexPath = tableView.indexPath(for: view) {
 
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
-
             destination.params["requestType"] = "Best Books"
             destination.params["selectedItem"] = items.getItem(for: indexPath)
 
-            destination.configuration = adapter.getConfiguration()
+            destination.configuration = service.getConfiguration()
           }
 
         default: break

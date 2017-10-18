@@ -5,8 +5,10 @@ class AuthorsLetterGroupsTableViewController: UITableViewController {
   static let SegueIdentifier = "Authors Letter Groups"
   let CellIdentifier = "AuthorsLetterGroupTableCell"
 
-  let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
+  let localizer = Localizer(AudioKnigiService.BundleId, bundleClass: AudioKnigiSite.self)
 
+  let service = AudioKnigiService()
+  
   var parentId: String?
 
   private var items = Items()
@@ -19,17 +21,18 @@ class AuthorsLetterGroupsTableViewController: UITableViewController {
     self.clearsSelectionOnViewWillAppear = false
 
     items.pageLoader.load = {
-      let adapter = AudioKnigiServiceAdapter(mobile: true)
-      adapter.params["requestType"] = "Authors Letter Groups"
-      adapter.params["parentId"] = self.parentId
+      var params = Parameters()
+      params["requestType"] = "Authors Letter Groups"
 
-      return try adapter.load()
+      params["parentId"] = self.parentId
+
+      return try self.service.dataSource.load(params: params)
     }
 
     items.loadInitialData(tableView)
   }
 
- // MARK: UITableViewDataSource
+  // MARK: UITableViewDataSource
 
   override open func numberOfSections(in tableView: UITableView) -> Int {
     return 1

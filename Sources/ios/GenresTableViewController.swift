@@ -5,7 +5,9 @@ class GenresTableViewController: UITableViewController {
   static let SegueIdentifier = "Genres"
  let CellIdentifier = "GenreTableCell"
 
-  let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
+  let localizer = Localizer(AudioKnigiService.BundleId, bundleClass: AudioKnigiSite.self)
+
+  let service = AudioKnigiService()
 
 #if os(iOS)
   public let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
@@ -20,21 +22,17 @@ class GenresTableViewController: UITableViewController {
 
     title = localizer.localize("Genres")
 
-    items.pageLoader.load = {
-      let adapter = AudioKnigiServiceAdapter(mobile: true)
-      adapter.pageLoader.enablePagination()
-      adapter.pageLoader.pageSize = 20
-      adapter.pageLoader.rowSize = 1
-
-      adapter.params["requestType"] = "Genres"
-
-      return try adapter.load()
-    }
-
     #if os(iOS)
       tableView?.backgroundView = activityIndicatorView
       items.pageLoader.spinner = PlainSpinner(activityIndicatorView)
     #endif
+    
+    items.pageLoader.load = {
+      var params = Parameters()
+      params["requestType"] = "Genres"
+      
+      return try self.service.dataSource.load(params: params)
+    }
     
     items.loadInitialData(tableView) { result in
       for item in result {
@@ -43,7 +41,7 @@ class GenresTableViewController: UITableViewController {
     }
   }
 
- // MARK: UITableViewDataSource
+  // MARK: UITableViewDataSource
 
   override open func numberOfSections(in tableView: UITableView) -> Int {
     return 1
@@ -80,12 +78,10 @@ class GenresTableViewController: UITableViewController {
              let view = sender as? MediaNameTableCell,
              let indexPath = tableView.indexPath(for: view) {
 
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
-
             destination.params["requestType"] = "Genre Books"
             destination.params["selectedItem"] = items.getItem(for: indexPath)
 
-            destination.configuration = adapter.getConfiguration()
+            destination.configuration = service.getConfiguration()
           }
 
         default: break

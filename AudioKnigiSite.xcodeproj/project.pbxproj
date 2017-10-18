@@ -26,7 +26,6 @@
 		FA6F8A211E7DD7BC0022E16D /* AudioKnigiDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6F8A181E7DD7BC0022E16D /* AudioKnigiDataSource.swift */; };
 		FA6F8A221E7DD7BC0022E16D /* AudioKnigiMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6F8A191E7DD7BC0022E16D /* AudioKnigiMediaItem.swift */; };
 		FA6F8A231E7DD7BC0022E16D /* AudioKnigiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6F8A1A1E7DD7BC0022E16D /* AudioKnigiService.swift */; };
-		FA6F8A241E7DD7BC0022E16D /* AudioKnigiServiceAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6F8A1B1E7DD7BC0022E16D /* AudioKnigiServiceAdapter.swift */; };
 		FA6F8A2C1E7DDA6E0022E16D /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F8A2B1E7DDA6E0022E16D /* SwiftyJSON.framework */; };
 		FA6F8A331E7DDA800022E16D /* SwiftSoup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F8A301E7DDA800022E16D /* SwiftSoup.framework */; };
 		FA6F8A341E7DDA800022E16D /* WebAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F8A311E7DDA800022E16D /* WebAPI.framework */; };
@@ -57,7 +56,6 @@
 		FA6F8A181E7DD7BC0022E16D /* AudioKnigiDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioKnigiDataSource.swift; sourceTree = "<group>"; };
 		FA6F8A191E7DD7BC0022E16D /* AudioKnigiMediaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioKnigiMediaItem.swift; sourceTree = "<group>"; };
 		FA6F8A1A1E7DD7BC0022E16D /* AudioKnigiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioKnigiService.swift; sourceTree = "<group>"; };
-		FA6F8A1B1E7DD7BC0022E16D /* AudioKnigiServiceAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioKnigiServiceAdapter.swift; sourceTree = "<group>"; };
 		FA6F8A2B1E7DDA6E0022E16D /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/EtvnetApp-gdyhsaliqubivtfjullxnayrebpq/Build/Products/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		FA6F8A2D1E7DDA750022E16D /* Runglish.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runglish.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/EtvnetApp-gdyhsaliqubivtfjullxnayrebpq/Build/Products/Debug-iphoneos/Runglish.framework"; sourceTree = "<group>"; };
 		FA6F8A2F1E7DDA800022E16D /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/EtvnetApp-gdyhsaliqubivtfjullxnayrebpq/Build/Products/Debug-iphoneos/Just.framework"; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 				FA6F8A181E7DD7BC0022E16D /* AudioKnigiDataSource.swift */,
 				FA6F8A191E7DD7BC0022E16D /* AudioKnigiMediaItem.swift */,
 				FA6F8A1A1E7DD7BC0022E16D /* AudioKnigiService.swift */,
-				FA6F8A1B1E7DD7BC0022E16D /* AudioKnigiServiceAdapter.swift */,
 				FA6F8A101E7DD58F0022E16D /* AudioKnigiSite.h */,
 				FA6F8A111E7DD58F0022E16D /* Info.plist */,
 				FA6F8A481E7DE9150022E16D /* Localizable.strings */,
@@ -249,7 +246,6 @@
 				FA0118AA1E849AAC003A8D13 /* AuthorsLettersTableViewController.swift in Sources */,
 				FA0118AD1E849AAC003A8D13 /* GenresTableViewController.swift in Sources */,
 				FA6F8A231E7DD7BC0022E16D /* AudioKnigiService.swift in Sources */,
-				FA6F8A241E7DD7BC0022E16D /* AudioKnigiServiceAdapter.swift in Sources */,
 				FA0118A91E849AAC003A8D13 /* AuthorsLetterGroupsTableViewController.swift in Sources */,
 				FA0118A81E849AAC003A8D13 /* AudioKnigiTableViewController.swift in Sources */,
 				2DBA1261295B276D583BD54C /* AuthorsTableViewController.swift in Sources */,

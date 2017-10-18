@@ -12,8 +12,7 @@ class AudioKnigiDataSource: DataSource {
     let selectedItem = params["selectedItem"] as? Item
 
     var request = params["requestType"] as! String
-    //var pageSize = params["pageSize"] as? Int
-    let currentPage = params["currentPage"] as? Int ?? 0
+    let currentPage = params["currentPage"] as? Int ?? 1
 
     if let selectedItem = selectedItem as? MediaItem, selectedItem.type == "book" {
       request = "Tracks"

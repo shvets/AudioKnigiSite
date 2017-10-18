@@ -5,12 +5,14 @@ class PerformersTableViewController: UITableViewController {
   static let SegueIdentifier = "Performers"
   let CellIdentifier = "PerformerTableCell"
 
-  let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
+  let localizer = Localizer(AudioKnigiService.BundleId, bundleClass: AudioKnigiSite.self)
+
+  let service = AudioKnigiService()
 
 #if os(iOS)
   public let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 #endif
-  
+
   var requestType: String?
   var selectedItem: Item?
 
@@ -22,20 +24,20 @@ class PerformersTableViewController: UITableViewController {
     self.clearsSelectionOnViewWillAppear = false
 
     items.pageLoader.load = {
-      let adapter = AudioKnigiServiceAdapter(mobile: true)
+      var params = Parameters()
+      params["requestType"] = self.requestType
 
       if self.requestType == "All Performers" {
-        adapter.pageLoader.enablePagination()
-        adapter.pageLoader.pageSize = 30
-        adapter.pageLoader.rowSize = 1
+        self.items.pageLoader.enablePagination()
+        self.items.pageLoader.pageSize = self.service.getConfiguration()["authorsPageSize"] as! Int
+
+        params["currentPage"] = self.items.pageLoader.currentPage
       }
       else {
-        adapter.params["selectedItem"] = self.selectedItem
+        params["selectedItem"] = self.selectedItem
       }
-
-      adapter.params["requestType"] = self.requestType
       
-      return try adapter.load()
+      return try self.service.dataSource.load(params: params)
     }
 
     #if os(iOS)
@@ -46,7 +48,7 @@ class PerformersTableViewController: UITableViewController {
     items.loadInitialData(tableView)
   }
 
-// MARK: UITableViewDataSource
+  // MARK: UITableViewDataSource
 
   override open func numberOfSections(in tableView: UITableView) -> Int {
     return 1
@@ -58,6 +60,10 @@ class PerformersTableViewController: UITableViewController {
 
   override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as? MediaNameTableCell {
+      if items.pageLoader.nextPageAvailable(dataCount: items.count, index: indexPath.row) {
+        items.loadMoreData(tableView)
+      }
+
       let item = items[indexPath.row]
 
       cell.configureCell(item: item, localizedName: localizer.getLocalizedName(item.name))
@@ -83,12 +89,10 @@ class PerformersTableViewController: UITableViewController {
              let view = sender as? MediaNameTableCell,
              let indexPath = tableView.indexPath(for: view) {
 
-            let adapter = AudioKnigiServiceAdapter(mobile: true)
-
             destination.params["requestType"] = "Performer"
             destination.params["selectedItem"] = items.getItem(for: indexPath)
 
-            destination.configuration = adapter.getConfiguration()
+            destination.configuration = service.getConfiguration()
           }
 
         default: break

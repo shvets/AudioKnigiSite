@@ -5,7 +5,9 @@ class PerformersLettersTableViewController: UITableViewController {
   static let SegueIdentifier = "Performers Letters"
   let CellIdentifier = "PerformersLetterTableCell"
 
-  let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
+  let localizer = Localizer(AudioKnigiService.BundleId, bundleClass: AudioKnigiSite.self)
+
+  let service = AudioKnigiService()
 
   private var items = Items()
 
@@ -15,16 +17,16 @@ class PerformersLettersTableViewController: UITableViewController {
     self.clearsSelectionOnViewWillAppear = false
 
     items.pageLoader.load = {
-      let adapter = AudioKnigiServiceAdapter(mobile: true)
-      adapter.params["requestType"] = "Performers Letters"
-
-      return try adapter.load()
+      var params = Parameters()
+      params["requestType"] = "Performers Letters"
+      
+      return try self.service.dataSource.load(params: params)
     }
 
     items.loadInitialData(tableView)
   }
 
-// MARK: UITableViewDataSource
+ // MARK: UITableViewDataSource
 
   override open func numberOfSections(in tableView: UITableView) -> Int {
     return 1

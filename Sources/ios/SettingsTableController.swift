@@ -5,8 +5,10 @@ class SettingsTableController: UITableViewController {
   static let SegueIdentifier = "Settings"
   let CellIdentifier = "SettingTableCell"
 
-  let localizer = Localizer(AudioKnigiServiceAdapter.BundleId, bundleClass: AudioKnigiSite.self)
+  let localizer = Localizer(AudioKnigiService.BundleId, bundleClass: AudioKnigiSite.self)
 
+  let service = AudioKnigiService()
+  
   private var items = Items()
 
   override func viewDidLoad() {
@@ -15,20 +17,20 @@ class SettingsTableController: UITableViewController {
     self.clearsSelectionOnViewWillAppear = false
 
     items.pageLoader.load = {
-      return self.loadSettingsMenu()
+      return self.getSettingsMenu()
     }
 
     items.loadInitialData(tableView)
   }
 
-  func loadSettingsMenu() -> [Item] {
+  func getSettingsMenu() -> [Item] {
     return [
        Item(name: "Reset History"),
        Item(name: "Reset Bookmarks")
     ]
   }
 
- // MARK: UITableViewDataSource
+  // MARK: UITableViewDataSource
 
   override open func numberOfSections(in tableView: UITableView) -> Int {
     return 1
@@ -72,10 +74,8 @@ class SettingsTableController: UITableViewController {
 
     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
-    let adapter = AudioKnigiServiceAdapter(mobile: true)
-
     let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-      let history = adapter.history
+      let history = self.service.history
 
       history.clear()
       history.save()
@@ -95,10 +95,8 @@ class SettingsTableController: UITableViewController {
 
     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
-    let adapter = AudioKnigiServiceAdapter(mobile: true)
-
-    let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-      let bookmarks = adapter.bookmarks
+     let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+      let bookmarks = self.service.bookmarks
 
       bookmarks.clear()
       bookmarks.save()
