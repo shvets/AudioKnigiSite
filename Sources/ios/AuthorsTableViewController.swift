@@ -86,7 +86,7 @@ class AuthorsTableViewController: UITableViewController {
             let adapter = AudioKnigiServiceAdapter(mobile: true)
 
             destination.params["requestType"] = "Author"
-            adapter.params["selectedItem"] = items.getItem(for: indexPath)
+            destination.params["selectedItem"] = items.getItem(for: indexPath)
 
             destination.adapter = adapter
             destination.configuration = adapter.getConfiguration()
