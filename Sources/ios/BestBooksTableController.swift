@@ -73,7 +73,6 @@ class BestBooksTableViewController: UITableViewController {
             destination.params["requestType"] = "Best Books"
             destination.params["selectedItem"] = items.getItem(for: indexPath)
 
-            destination.adapter = adapter
             destination.configuration = adapter.getConfiguration()
           }
 
