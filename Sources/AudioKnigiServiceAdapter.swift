@@ -7,7 +7,7 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
   static let historyFileName = NSHomeDirectory() + "/Library/Caches/audioknigi-history.json"
 
   override open class var StoryboardId: String { return "AudioKnigi" }
-  //override open class var BundleId: String { return "com.rubikon.AudioKnigiSite" }
+  override open class var BundleId: String { return "com.rubikon.AudioKnigiSite" }
 
   lazy var bookmarks = Bookmarks(AudioKnigiServiceAdapter.bookmarksFileName)
   lazy var history = History(AudioKnigiServiceAdapter.historyFileName)
@@ -49,7 +49,8 @@ class AudioKnigiServiceAdapter: ServiceAdapter {
       "bookmarksManager": bookmarksManager,
       "historyManager": historyManager,
       "dataSource": dataSource,
-      "storyboardId": AudioKnigiServiceAdapter.StoryboardId
+      "storyboardId": AudioKnigiServiceAdapter.StoryboardId,
+      "bundleId": AudioKnigiServiceAdapter.BundleId
     ]
   }
 }
