@@ -10,8 +10,8 @@ public class AudioKnigiService {
   static let bookmarksFileName = NSHomeDirectory() + "/Library/Caches/audioknigi-bookmarks.json"
   static let historyFileName = NSHomeDirectory() + "/Library/Caches/audioknigi-history.json"
 
-  class var StoryboardId: String { return "AudioKnigi" }
-  class var BundleId: String { return "com.rubikon.AudioKnigiSite" }
+  static let StoryboardId = "AudioKnigi"
+  static let BundleId = "com.rubikon.AudioKnigiSite"
 
   lazy var bookmarks = Bookmarks(AudioKnigiService.bookmarksFileName)
   lazy var history = History(AudioKnigiService.historyFileName)

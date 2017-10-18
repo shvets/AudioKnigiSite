@@ -19,10 +19,10 @@ class BestBooksTableViewController: UITableViewController {
     title = localizer.localize("Best Books")
 
     items.pageLoader.load = {
-      return self.loadData()
+      return self.getBestBooksMenu()
     }
 
-    items.getBestBooksMenu(tableView)
+    items.loadInitialData(tableView)
   }
 
   func getBestBooksMenu() -> [Item] {
