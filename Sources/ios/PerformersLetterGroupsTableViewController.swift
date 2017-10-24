@@ -22,7 +22,7 @@ class PerformersLetterGroupsTableViewController: UITableViewController {
 
     items.pageLoader.load = {
       var params = Parameters()
-      params["requestType"] = "Authors Letters"
+      params["requestType"] = "Performers Letter Groups"
 
       params["parentId"] = self.parentId
       
