@@ -231,7 +231,7 @@ class AudioKnigiDataSource: DataSource {
     return newItem
   }
 
-    func getLetterGroups(_ list: [NameClassifier.ItemsGroup], letter: String) -> [[String: Any]] {
+  func getLetterGroups(_ list: [NameClassifier.ItemsGroup], letter: String) -> [[String: Any]] {
     var letterGroups = [[String: Any]]()
 
     for element in list {
