@@ -180,7 +180,7 @@ class AudioKnigiDataSource: DataSource {
   }
 
   func createHistoryItem(_ item: HistoryItem) -> Item {
-    let newItem = MediaItem(data: ["name": ""])
+    let newItem = AudioKnigiMediaItem(data: ["name": ""])
 
     newItem.name = item.item.name
     newItem.id = item.item.id
@@ -192,7 +192,7 @@ class AudioKnigiDataSource: DataSource {
   }
 
   func createBookmarkItem(_ item: BookmarkItem) -> Item {
-    let newItem = MediaItem(data: ["name": ""])
+    let newItem = AudioKnigiMediaItem(data: ["name": ""])
 
     newItem.name = item.item.name
     newItem.id = item.item.id
