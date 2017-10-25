@@ -64,10 +64,7 @@ open class AudioKnigiMediaItemsController: MediaItemsController {
 
               newParams["requestType"] = "Tracks"
               newParams["selectedItem"] = mediaItem
-              //newParams["convert"] = false
-
-              var mediaItems: [Any] = []
-
+ 
               if let data = try self.dataSource?.load(params: newParams) {
                 if let mediaItems = data as? [MediaItem] {
                   for mediaItem in mediaItems {
