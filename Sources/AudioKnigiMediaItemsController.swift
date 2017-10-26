@@ -3,13 +3,7 @@ import AudioPlayer
 
 open class AudioKnigiMediaItemsController: MediaItemsController {
   override open func navigate(from view: UICollectionViewCell, playImmediately: Bool = false) {
-    if let indexPath = collectionView?.indexPath(for: view),
-      let mediaItem = items.getItem(for: indexPath) as? MediaItem {
-      
-      if mediaItem.isAudioContainer() {
-        performSegue(withIdentifier: AudioItemsController.SegueIdentifier, sender: view)
-      }
-    }
+    performSegue(withIdentifier: AudioItemsController.SegueIdentifier, sender: view)
   }
   
   // MARK: Navigation
