@@ -13,10 +13,6 @@ class AudioKnigiDataSource: DataSource {
     var request = params["requestType"] as! String
     let currentPage = params["currentPage"] as? Int ?? 1
 
-    if let selectedItem = selectedItem as? MediaItem, selectedItem.type == "book" {
-      request = "Tracks"
-    }
-
     switch request {
     case "Bookmarks":
       if let bookmarksManager = params["bookmarksManager"] as? BookmarksManager,

@@ -29,31 +29,24 @@ open class AudioKnigiMediaItemsController: MediaItemsController {
             destination.thumb = mediaItem.thumb
             destination.id = mediaItem.id
             
-            if let requestType = params["requestType"] as? String {
-              if requestType != "History" {
-                historyManager?.addHistoryItem(mediaItem)
-              }
+            if let requestType = params["requestType"] as? String,
+               requestType != "History" {
+              historyManager?.addHistoryItem(mediaItem)
             }
             
             destination.pageLoader.load = {
               var items: [AudioItem] = []
               
-              var newParams = Parameters()
+              var params = Parameters()
               
-              for (key, value) in self.params {
-                newParams[key] = value
-              }
+              params["requestType"] = "Tracks"
+              params["selectedItem"] = mediaItem
               
-              newParams["requestType"] = "Tracks"
-              newParams["selectedItem"] = mediaItem
-              
-              if let data = try self.dataSource?.load(params: newParams) {
-                if let mediaItems = data as? [MediaItem] {
-                  for mediaItem in mediaItems {
-                    let item = mediaItem
+              if let mediaItems = try self.dataSource?.load(params: params) as? [MediaItem] {
+                for mediaItem in mediaItems {
+                  let item = mediaItem
                     
-                    items.append(AudioItem(name: item.name!, id: item.id!))
-                  }
+                  items.append(AudioItem(name: item.name!, id: item.id!))
                 }
               }
               
