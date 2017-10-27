@@ -9,8 +9,7 @@ class AudioKnigiDataSource: DataSource {
     var items = [Item]()
 
     let selectedItem = params["selectedItem"] as? Item
-
-    var request = params["requestType"] as! String
+    let request = params["requestType"] as! String
     let currentPage = params["currentPage"] as? Int ?? 1
 
     switch request {
