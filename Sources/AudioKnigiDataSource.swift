@@ -37,9 +37,25 @@ class AudioKnigiDataSource: DataSource {
       }
 
     case "New Books":
-      if let data = try service.getNewBooks(page: currentPage)["movies"] as? [Any] {
-        items = adjustItems(data)
-      }
+      let semaphore = DispatchSemaphore.init(value: 0)
+
+      _ = service.getNewBooks2(page: currentPage).subscribe(
+        onNext: { result in
+          print(result as Any)
+
+          let data = result["movies"] as? [Any]
+
+          items = self.adjustItems(data!)
+
+          semaphore.signal()
+        }
+      )
+
+      _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+
+//      if let data = try service.getNewBooks(page: currentPage)["movies"] as? [Any] {
+//        items = adjustItems(data)
+//      }
 
     case "Best Books":
       var period = "all"
