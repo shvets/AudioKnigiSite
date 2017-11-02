@@ -1,5 +1,6 @@
 import UIKit
 import TVSetKit
+import PageLoader
 
 open class AudioKnigiTableViewController: UITableViewController {
   static let SegueIdentifier = "Audio Knigi"
@@ -106,6 +107,46 @@ open class AudioKnigiTableViewController: UITableViewController {
             destination.params["parentName"] = localizer.localize(mediaItem.name!)
 
             destination.configuration = service.getConfiguration()
+
+//            if mediaItem.name == "New Books" {
+//              let pageLoader = PageLoader()
+//
+//              pageLoader.load = {
+//                let semaphore = DispatchSemaphore.init(value: 0)
+//
+//                var items = [Any]()
+//
+//                let currentPage = destination.items.pageLoader.currentPage
+//
+//                _ = AudioKnigiService.shared.getNewBooks2(page: currentPage).subscribe(
+//                  onNext: { result in
+//                    //print(result as Any)
+//
+//                    let data = result["movies"] as? [Any]
+//
+//                    let dataSource = AudioKnigiDataSource()
+//
+//                    items = dataSource.adjustItems(data!)
+//
+//                    semaphore.signal()
+//                  }
+//                )
+//
+//                _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+//
+//                return items
+//              }
+//
+//              pageLoader.loadData { result in
+//                if let items = result as? [Item] {
+//                  destination.items.items = items
+//                }
+//
+//                destination.collectionView?.reloadData()
+//              }
+//
+//              destination.items.pageLoader = pageLoader
+//            }
           }
 
         case SearchTableController.SegueIdentifier:
