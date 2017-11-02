@@ -23,7 +23,13 @@ class PerformersLettersTableViewController: UITableViewController {
       return try self.service.dataSource.load(params: params)
     }
 
-    items.loadInitialData(tableView)
+    items.pageLoader.loadData { result in
+      if let items = result as? [Item] {
+        self.items.items = items
+
+        self.tableView?.reloadData()
+      }
+    }
   }
 
  // MARK: UITableViewDataSource

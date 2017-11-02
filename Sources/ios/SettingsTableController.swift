@@ -20,7 +20,13 @@ class SettingsTableController: UITableViewController {
       return self.getSettingsMenu()
     }
 
-    items.loadInitialData(tableView)
+    items.pageLoader.loadData { result in
+      if let items = result as? [Item] {
+        self.items.items = items
+
+        self.tableView?.reloadData()
+      }
+    }
   }
 
   func getSettingsMenu() -> [Item] {

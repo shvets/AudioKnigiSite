@@ -23,7 +23,13 @@ open class AudioKnigiTableViewController: UITableViewController {
       return self.getMainMenu()
     }
 
-    items.loadInitialData(tableView)
+    items.pageLoader.loadData { result in
+      if let items = result as? [Item] {
+        self.items.items = items
+
+        self.tableView?.reloadData()
+      }
+    }
   }
 
   func getMainMenu() -> [Item] {
