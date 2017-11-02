@@ -1,5 +1,6 @@
 import UIKit
 import TVSetKit
+import PageLoader
 
 class PerformersTableViewController: UITableViewController {
   static let SegueIdentifier = "Performers"
@@ -7,31 +8,33 @@ class PerformersTableViewController: UITableViewController {
 
   let localizer = Localizer(AudioKnigiService.BundleId, bundleClass: AudioKnigiSite.self)
 
+  #if os(iOS)
+  public let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+  #endif
+  
   let service = AudioKnigiService()
 
-#if os(iOS)
-  public let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-#endif
-
+  let pageLoader = PageLoader()
+  
+  private var items = Items()
+  
   var requestType: String?
   var selectedItem: Item?
-
-  private var items = Items()
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     self.clearsSelectionOnViewWillAppear = false
 
-    items.pageLoader.load = {
+    pageLoader.load = {
       var params = Parameters()
       params["requestType"] = self.requestType
 
       if self.requestType == "All Performers" {
-        self.items.pageLoader.enablePagination()
-        self.items.pageLoader.pageSize = self.service.getConfiguration()["authorsPageSize"] as! Int
+        self.pageLoader.enablePagination()
+        self.pageLoader.pageSize = self.service.getConfiguration()["authorsPageSize"] as! Int
 
-        params["currentPage"] = self.items.pageLoader.currentPage
+        params["currentPage"] = self.pageLoader.currentPage
       }
       else {
         params["selectedItem"] = self.selectedItem
@@ -42,10 +45,10 @@ class PerformersTableViewController: UITableViewController {
 
     #if os(iOS)
       tableView?.backgroundView = activityIndicatorView
-      items.pageLoader.spinner = PlainSpinner(activityIndicatorView)
+      //pageLoader.spinner = PlainSpinner(activityIndicatorView)
     #endif
     
-    items.pageLoader.loadData { result in
+    pageLoader.loadData { result in
       if let items = result as? [Item] {
         self.items.items = items
 
@@ -66,8 +69,14 @@ class PerformersTableViewController: UITableViewController {
 
   override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as? MediaNameTableCell {
-      if items.pageLoader.nextPageAvailable(dataCount: items.count, index: indexPath.row) {
-        items.loadMoreData(tableView)
+      if pageLoader.nextPageAvailable(dataCount: items.count, index: indexPath.row) {
+        pageLoader.loadData { result in
+          if let items = result as? [Item] {
+            self.items.items += items
+
+            self.tableView?.reloadData()
+          }
+        }
       }
 
       let item = items[indexPath.row]

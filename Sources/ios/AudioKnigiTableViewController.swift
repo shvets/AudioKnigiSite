@@ -10,6 +10,8 @@ open class AudioKnigiTableViewController: UITableViewController {
 
   let service = AudioKnigiService()
   
+  let pageLoader = PageLoader()
+  
   private var items = Items()
 
   override open func viewDidLoad() {
@@ -19,11 +21,11 @@ open class AudioKnigiTableViewController: UITableViewController {
 
     title = localizer.localize("AudioKnigi")
 
-    items.pageLoader.load = {
+    pageLoader.load = {
       return self.getMainMenu()
     }
 
-    items.pageLoader.loadData { result in
+    pageLoader.loadData { result in
       if let items = result as? [Item] {
         self.items.items = items
 

@@ -1,5 +1,6 @@
 import UIKit
 import TVSetKit
+import PageLoader
 
 class PerformersLetterGroupsTableViewController: UITableViewController {
   static let SegueIdentifier = "Performers Letter Groups"
@@ -9,18 +10,19 @@ class PerformersLetterGroupsTableViewController: UITableViewController {
 
   let service = AudioKnigiService()
 
-  var parentId: String?
-
-  var letter: String?
-
+  let pageLoader = PageLoader()
+  
   private var items = Items()
+  
+  var parentId: String?
+  var letter: String?
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     self.clearsSelectionOnViewWillAppear = false
 
-    items.pageLoader.load = {
+    pageLoader.load = {
       var params = Parameters()
       params["requestType"] = "Performers Letter Groups"
 
@@ -29,7 +31,7 @@ class PerformersLetterGroupsTableViewController: UITableViewController {
       return try self.service.dataSource.load(params: params)
     }
 
-    items.pageLoader.loadData { result in
+    pageLoader.loadData { result in
       if let items = result as? [Item] {
         self.items.items = items
 

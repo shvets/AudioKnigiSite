@@ -1,5 +1,6 @@
 import UIKit
 import TVSetKit
+import PageLoader
 
 class AuthorsLettersTableViewController: UITableViewController {
   static let SegueIdentifier = "Authors Letters"
@@ -9,6 +10,8 @@ class AuthorsLettersTableViewController: UITableViewController {
 
   let service = AudioKnigiService()
 
+  let pageLoader = PageLoader()
+  
   private var items = Items()
 
   override open func viewDidLoad() {
@@ -16,14 +19,14 @@ class AuthorsLettersTableViewController: UITableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-    items.pageLoader.load = {
+    pageLoader.load = {
       var params = Parameters()      
       params["requestType"] = "Authors Letters"
       
       return try self.service.dataSource.load(params: params)
     }
 
-    items.pageLoader.loadData { result in
+    pageLoader.loadData { result in
       if let items = result as? [Item] {
         self.items.items = items
 

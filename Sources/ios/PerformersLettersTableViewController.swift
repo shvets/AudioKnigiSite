@@ -1,12 +1,15 @@
 import UIKit
 import TVSetKit
+import PageLoader
 
 class PerformersLettersTableViewController: UITableViewController {
   static let SegueIdentifier = "Performers Letters"
   let CellIdentifier = "PerformersLetterTableCell"
 
   let localizer = Localizer(AudioKnigiService.BundleId, bundleClass: AudioKnigiSite.self)
-
+  
+  let pageLoader = PageLoader()
+  
   let service = AudioKnigiService()
 
   private var items = Items()
@@ -16,14 +19,14 @@ class PerformersLettersTableViewController: UITableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-    items.pageLoader.load = {
+    pageLoader.load = {
       var params = Parameters()
       params["requestType"] = "Performers Letters"
       
       return try self.service.dataSource.load(params: params)
     }
 
-    items.pageLoader.loadData { result in
+    pageLoader.loadData { result in
       if let items = result as? [Item] {
         self.items.items = items
 

@@ -1,12 +1,15 @@
 import UIKit
 import TVSetKit
+import PageLoader
 
 class SettingsTableController: UITableViewController {
   static let SegueIdentifier = "Settings"
   let CellIdentifier = "SettingTableCell"
 
   let localizer = Localizer(AudioKnigiService.BundleId, bundleClass: AudioKnigiSite.self)
-
+  
+  let pageLoader = PageLoader()
+  
   let service = AudioKnigiService()
   
   private var items = Items()
@@ -16,11 +19,11 @@ class SettingsTableController: UITableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-    items.pageLoader.load = {
+    pageLoader.load = {
       return self.getSettingsMenu()
     }
 
-    items.pageLoader.loadData { result in
+    pageLoader.loadData { result in
       if let items = result as? [Item] {
         self.items.items = items
 

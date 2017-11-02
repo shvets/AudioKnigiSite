@@ -1,5 +1,6 @@
 import UIKit
 import TVSetKit
+import PageLoader
 
 class BestBooksTableViewController: UITableViewController {
   static let SegueIdentifier = "Best Books"
@@ -8,6 +9,8 @@ class BestBooksTableViewController: UITableViewController {
   let localizer = Localizer(AudioKnigiService.BundleId, bundleClass: AudioKnigiSite.self)
 
   let service = AudioKnigiService()
+
+  let pageLoader = PageLoader()
 
   private var items = Items()
 
@@ -18,11 +21,11 @@ class BestBooksTableViewController: UITableViewController {
 
     title = localizer.localize("Best Books")
 
-    items.pageLoader.load = {
+    pageLoader.load = {
       return self.getBestBooksMenu()
     }
 
-    items.pageLoader.loadData { result in
+    pageLoader.loadData { result in
       if let items = result as? [Item] {
         self.items.items = items
 
