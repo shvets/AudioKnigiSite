@@ -141,13 +141,7 @@ open class AudioKnigiTableViewController: UITableViewController {
                 return items
               }
 
-              pageLoader.loadData(onLoad: load) { result in
-                if let items = result as? [Item] {
-                  destination.items.items = items
-                }
-
-                destination.collectionView?.reloadData()
-              }
+              pageLoader.load = load
 
               destination.pageLoader = pageLoader
             }
