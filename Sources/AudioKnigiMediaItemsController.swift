@@ -32,18 +32,22 @@ open class AudioKnigiMediaItemsController: MediaItemsController {
               var items: [AudioItem] = []
               
               var params = Parameters()
-              
+
               params["requestType"] = "Tracks"
               params["selectedItem"] = mediaItem
               
-              if let mediaItems = try self.dataSource?.load(params: params) as? [MediaItem] {
-                for mediaItem in mediaItems {
-                  let item = mediaItem
-                    
+              let semaphore = DispatchSemaphore.init(value: 0)
+
+              _ = try self.dataSource?.loadAsync(params: params).map { result in
+                for item in result as! [MediaItem] {
                   items.append(AudioItem(name: item.name!, id: item.id!))
                 }
-              }
-              
+              }.subscribe(onNext: { result in
+                semaphore.signal()
+              })
+
+              _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+
               return items
             }
           }

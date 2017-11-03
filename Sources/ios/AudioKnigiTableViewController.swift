@@ -117,6 +117,7 @@ open class AudioKnigiTableViewController: UITableViewController {
         case SearchTableController.SegueIdentifier:
           if let destination = segue.destination.getActionController() as? SearchTableController {
 
+            destination.params["async"] = true
             destination.params["requestType"] = "Search"
             destination.params["parentName"] = localizer.localize("Search Results")
 

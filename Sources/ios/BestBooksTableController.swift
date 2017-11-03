@@ -75,6 +75,7 @@ class BestBooksTableViewController: UITableViewController {
              let view = sender as? MediaNameTableCell,
              let indexPath = tableView.indexPath(for: view) {
 
+            destination.params["async"] = true
             destination.params["requestType"] = "Best Books"
             destination.params["selectedItem"] = items.getItem(for: indexPath)
 

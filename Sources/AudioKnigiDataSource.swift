@@ -7,32 +7,7 @@ class AudioKnigiDataSource: DataSource {
   let service = AudioKnigiService.shared
 
   override open func loadAsync(params: Parameters) throws -> Observable<[Any]> {
-    var items: Observable<[Any]>?
-
-    let selectedItem = params["selectedItem"] as? Item
-    let request = params["requestType"] as! String
-    let currentPage = params["currentPage"] as? Int ?? 1
-
-    switch request {
-
-    case "New Books":
-      items = service.getNewBooks2(page: currentPage).map { result in
-        let data = result["movies"] as? [Any]
-        
-        let items = self.adjustItems(data!)
-        
-        return items
-      }
-
-    default:
-      items = Observable.just([])
-    }
-
-    return items!
-  }
-
-  override open func load(params: Parameters) throws -> [Any] {
-    var items = [Item]()
+    var items: Observable<[Any]> = Observable.just([])
 
     let selectedItem = params["selectedItem"] as? Item
     let request = params["requestType"] as! String
@@ -44,7 +19,7 @@ class AudioKnigiDataSource: DataSource {
          let bookmarks = bookmarksManager.bookmarks {
         let data = bookmarks.getBookmarks(pageSize: 60, page: currentPage)
 
-        items = adjustItems(data)
+        items = Observable.just(self.adjustItems(data))
       }
 
     case "History":
@@ -52,36 +27,29 @@ class AudioKnigiDataSource: DataSource {
          let history = historyManager.history {
         let data = history.getHistoryItems(pageSize: 60, page: currentPage)
 
-        items = adjustItems(data)
+        items = Observable.just(adjustItems(data))
       }
 
     case "Genre Books":
       if let selectedItem = selectedItem,
-         let path = selectedItem.id,
-         let data = try service.getBooks(path: path, page: currentPage)["movies"] as? [Any] {
-        items = adjustItems(data)
+        let path = selectedItem.id {
+        items = service.getBooks(path: path, page: currentPage).map { result in
+          let data = result["movies"] as? [Any]
+          
+          let newItems = self.adjustItems(data!)
+          
+          return newItems
+        }
       }
 
     case "New Books":
-      let semaphore = DispatchSemaphore.init(value: 0)
+      items = service.getNewBooks(page: currentPage).map { result in
+        let data = result["movies"] as? [Any]
 
-      _ = service.getNewBooks2(page: currentPage).subscribe(
-        onNext: { result in
-          print(result as Any)
+        let newItems = self.adjustItems(data!)
 
-          let data = result["movies"] as? [Any]
-
-          items = self.adjustItems(data!)
-
-          semaphore.signal()
-        }
-      )
-
-      _ = semaphore.wait(timeout: DispatchTime.distantFuture)
-
-//      if let data = try service.getNewBooks(page: currentPage)["movies"] as? [Any] {
-//        items = adjustItems(data)
-//      }
+        return newItems
+      }
 
     case "Best Books":
       var period = "all"
@@ -94,84 +62,109 @@ class AudioKnigiDataSource: DataSource {
           period = "7"
         }
 
-        if let data = try service.getBestBooks(period: period, page: currentPage)["movies"] as? [Any] {
-          items = adjustItems(data)
+        items = service.getBestBooks(period: period, page: currentPage).map { result in
+          let data = result["movies"] as? [Any]
+          
+          let newItems = self.adjustItems(data!)
+          
+          return newItems
         }
       }
 
     case "All Authors":
       if let data = try service.getAuthors(page: currentPage)["movies"] as? [Any] {
-        items = adjustItems(data)
+        items = Observable.just(adjustItems(data))
       }
 
     case "Authors Letters":
-      items = adjustItems(getLettersItems(AudioKnigiService.Authors))
+      items = Observable.just(adjustItems(getLettersItems(AudioKnigiService.Authors)))
 
     case "Authors Letter Groups":
       if let letter = params["parentId"] as? String {
-        items = adjustItems(getLetterGroups(AudioKnigiService.Authors, letter: letter))
+        items = Observable.just(adjustItems(getLetterGroups(AudioKnigiService.Authors, letter: letter)))
       }
 
     case "Authors":
       if let selectedItem = selectedItem as? AudioKnigiMediaItem {
-        items = adjustItems(selectedItem.items)
+        items = Observable.just(adjustItems(selectedItem.items))
       }
 
     case "Author":
       if let selectedItem = selectedItem,
-         let path = selectedItem.id,
-         let data = try service.getBooks(path: path, page: currentPage)["movies"] as? [Any] {
-        items = adjustItems(data)
+        let path = selectedItem.id {
+        items = service.getBooks(path: path, page: currentPage).map { result in
+          let data = result["movies"] as? [Any]
+          
+          let newItems = self.adjustItems(data!)
+          
+          return newItems
+        }
       }
 
     case "Performers Letters":
-      items = adjustItems(getLettersItems(AudioKnigiService.Performers))
+      items = Observable.just(adjustItems(getLettersItems(AudioKnigiService.Performers)))
 
     case "Performers Letter Groups":
       if let letter = params["parentId"] as? String {
-        items = adjustItems(getLetterGroups(AudioKnigiService.Performers, letter: letter))
+        items = Observable.just(adjustItems(getLetterGroups(AudioKnigiService.Performers, letter: letter)))
       }
 
     case "Performers":
       if let selectedItem = selectedItem as? AudioKnigiMediaItem {
-        items = adjustItems(selectedItem.items)
+        items = Observable.just(adjustItems(selectedItem.items))
       }
 
     case "Performer":
       if let selectedItem = selectedItem,
-         let path = selectedItem.id,
-         let data = try service.getBooks(path: path, page: currentPage)["movies"] as? [Any] {
-
-        items = adjustItems(data)
+        let path = selectedItem.id {
+        items = service.getBooks(path: path, page: currentPage).map { result in
+          let data = result["movies"] as? [Any]
+          
+          let newItems = self.adjustItems(data!)
+          
+          return newItems
+        }
       }
 
     case "All Performers":
       if let data = try service.getPerformers(page: currentPage)["movies"] as? [Any] {
-        items = adjustItems(data)
+        items = Observable.just(adjustItems(data))
       }
 
     case "Genres":
-      if let data = try service.getGenres(page: currentPage)["movies"] as? [Any] {
-        items = adjustItems(data)
+      items = service.getGenres(page: currentPage).map { result in
+        let data = result["movies"] as? [Any]
+        
+        let newItems = self.adjustItems(data!)
+        
+        return newItems
       }
 
     case "Tracks":
       if let selectedItem = selectedItem,
          let url = selectedItem.id {
-         let tracks = try service.getAudioTracks(url)
-        items = adjustItems(tracks)
+        items = service.getAudioTracks(url).map { result in
+          let newItems = self.adjustItems(result)
+
+          return newItems
+        }
       }
 
     case "Search":
       if let query = params["query"] as? String {
-        if !query.isEmpty,
-           let data = try service.search(query, page: currentPage)["movies"] as? [Any] {
-          items = adjustItems(data)
+        if !query.isEmpty {
+          items = service.search(query, page: currentPage).map { result in
+            let data = result["movies"] as? [Any]
+
+            let newItems = self.adjustItems(data!)
+
+            return newItems
+          }
         }
       }
-
+      
     default:
-      items = []
+      items = Observable.just([])
     }
 
     return items
