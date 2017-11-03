@@ -34,21 +34,13 @@ class AudioKnigiDataSource: DataSource {
       if let selectedItem = selectedItem,
         let path = selectedItem.id {
         items = service.getBooks(path: path, page: currentPage).map { result in
-          let data = result["movies"] as? [Any]
-          
-          let newItems = self.adjustItems(data!)
-          
-          return newItems
+          return self.adjustItems(result["movies"] as! [Any])
         }
       }
 
     case "New Books":
       items = service.getNewBooks(page: currentPage).map { result in
-        let data = result["movies"] as? [Any]
-
-        let newItems = self.adjustItems(data!)
-
-        return newItems
+        return self.adjustItems(result["movies"] as! [Any])
       }
 
     case "Best Books":
@@ -63,17 +55,15 @@ class AudioKnigiDataSource: DataSource {
         }
 
         items = service.getBestBooks(period: period, page: currentPage).map { result in
-          let data = result["movies"] as? [Any]
-          
-          let newItems = self.adjustItems(data!)
-          
-          return newItems
+          return self.adjustItems(result["movies"] as! [Any])
         }
       }
 
     case "All Authors":
-      if let data = try service.getAuthors(page: currentPage)["movies"] as? [Any] {
-        items = Observable.just(adjustItems(data))
+      items = service.getAuthors(page: currentPage).map { result in
+        let data = result["movies"] as? [Any]
+        
+        return self.adjustItems(data!)
       }
 
     case "Authors Letters":
@@ -93,11 +83,7 @@ class AudioKnigiDataSource: DataSource {
       if let selectedItem = selectedItem,
         let path = selectedItem.id {
         items = service.getBooks(path: path, page: currentPage).map { result in
-          let data = result["movies"] as? [Any]
-          
-          let newItems = self.adjustItems(data!)
-          
-          return newItems
+          return self.adjustItems(result["movies"] as! [Any])
         }
       }
 
@@ -127,8 +113,10 @@ class AudioKnigiDataSource: DataSource {
       }
 
     case "All Performers":
-      if let data = try service.getPerformers(page: currentPage)["movies"] as? [Any] {
-        items = Observable.just(adjustItems(data))
+      items = service.getPerformers(page: currentPage).map { result in
+        let data = result["movies"] as? [Any]
+        
+        return self.adjustItems(data!)
       }
 
     case "Genres":
