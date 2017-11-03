@@ -19,11 +19,7 @@ class SettingsTableController: UITableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-    pageLoader.load = {
-      return self.getSettingsMenu()
-    }
-
-    pageLoader.loadData { result in
+    pageLoader.loadData(onLoad: getSettingsMenu) { result in
       if let items = result as? [Item] {
         self.items.items = items
 
@@ -32,7 +28,7 @@ class SettingsTableController: UITableViewController {
     }
   }
 
-  func getSettingsMenu() -> [Item] {
+  func getSettingsMenu() throws -> [Any] {
     return [
        Item(name: "Reset History"),
        Item(name: "Reset Bookmarks")

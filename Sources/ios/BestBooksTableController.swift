@@ -21,11 +21,7 @@ class BestBooksTableViewController: UITableViewController {
 
     title = localizer.localize("Best Books")
 
-    pageLoader.load = {
-      return self.getBestBooksMenu()
-    }
-
-    pageLoader.loadData { result in
+    pageLoader.loadData(onLoad: getBestBooksMenu) { result in
       if let items = result as? [Item] {
         self.items.items = items
 
@@ -34,7 +30,7 @@ class BestBooksTableViewController: UITableViewController {
     }
   }
 
-  func getBestBooksMenu() -> [Item] {
+  func getBestBooksMenu() throws -> [Any] {
     return [
       Item(name: "By Week"),
       Item(name: "By Month"),

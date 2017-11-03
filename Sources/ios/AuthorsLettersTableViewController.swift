@@ -10,7 +10,7 @@ class AuthorsLettersTableViewController: UITableViewController {
 
   let service = AudioKnigiService()
 
-  let pageLoader = PageLoader()
+  var pageLoader = PageLoader()
   
   private var items = Items()
 
@@ -19,14 +19,14 @@ class AuthorsLettersTableViewController: UITableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-    pageLoader.load = {
+    func load() throws -> [Any] {
       var params = Parameters()      
       params["requestType"] = "Authors Letters"
       
       return try self.service.dataSource.load(params: params)
     }
 
-    pageLoader.loadData { result in
+    pageLoader.loadData(onLoad: load) { result in
       if let items = result as? [Item] {
         self.items.items = items
 

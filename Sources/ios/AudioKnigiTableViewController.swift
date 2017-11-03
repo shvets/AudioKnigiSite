@@ -21,11 +21,7 @@ open class AudioKnigiTableViewController: UITableViewController {
 
     title = localizer.localize("AudioKnigi")
 
-    pageLoader.load = {
-      return self.getMainMenu()
-    }
-
-    pageLoader.loadData { result in
+    pageLoader.loadData(onLoad: getMainMenu) { result in
       if let items = result as? [Item] {
         self.items.items = items
 
@@ -34,7 +30,7 @@ open class AudioKnigiTableViewController: UITableViewController {
     }
   }
 
-  func getMainMenu() -> [Item] {
+  func getMainMenu() throws -> [Any] {
     return [
       MediaName(name: "Bookmarks", imageName: "Star"),
       MediaName(name: "History", imageName: "Bookmark"),
@@ -116,45 +112,45 @@ open class AudioKnigiTableViewController: UITableViewController {
 
             destination.configuration = service.getConfiguration()
 
-//            if mediaItem.name == "New Books" {
-//              let pageLoader = PageLoader()
-//
-//              pageLoader.load = {
-//                let semaphore = DispatchSemaphore.init(value: 0)
-//
-//                var items = [Any]()
-//
-//                let currentPage = destination.items.pageLoader.currentPage
-//
-//                _ = AudioKnigiService.shared.getNewBooks2(page: currentPage).subscribe(
-//                  onNext: { result in
-//                    //print(result as Any)
-//
-//                    let data = result["movies"] as? [Any]
-//
-//                    let dataSource = AudioKnigiDataSource()
-//
-//                    items = dataSource.adjustItems(data!)
-//
-//                    semaphore.signal()
-//                  }
-//                )
-//
-//                _ = semaphore.wait(timeout: DispatchTime.distantFuture)
-//
-//                return items
-//              }
-//
-//              pageLoader.loadData { result in
-//                if let items = result as? [Item] {
-//                  destination.items.items = items
-//                }
-//
-//                destination.collectionView?.reloadData()
-//              }
-//
-//              destination.items.pageLoader = pageLoader
-//            }
+            if mediaItem.name == "New Books" {
+              let pageLoader = PageLoader()
+
+              func load() throws -> [Any] {
+                let semaphore = DispatchSemaphore.init(value: 0)
+
+                var items = [Any]()
+
+                let currentPage = destination.pageLoader.currentPage
+
+                _ = AudioKnigiService.shared.getNewBooks2(page: currentPage).subscribe(
+                  onNext: { result in
+                    //print(result as Any)
+
+                    let data = result["movies"] as? [Any]
+
+                    let dataSource = AudioKnigiDataSource()
+
+                    items = dataSource.adjustItems(data!)
+
+                    semaphore.signal()
+                  }
+                )
+
+                _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+
+                return items
+              }
+
+              pageLoader.loadData(onLoad: load) { result in
+                if let items = result as? [Item] {
+                  destination.items.items = items
+                }
+
+                destination.collectionView?.reloadData()
+              }
+
+              destination.pageLoader = pageLoader
+            }
           }
 
         case SearchTableController.SegueIdentifier:

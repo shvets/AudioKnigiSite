@@ -31,7 +31,7 @@ class AuthorsTableViewController: UITableViewController {
       pageLoader.spinner = BaseSpinner(activityIndicatorView)
     #endif
     
-    pageLoader.load = {
+    func load() throws -> [Any] {
       var params = Parameters()
       params["requestType"] = self.requestType
       
@@ -48,7 +48,7 @@ class AuthorsTableViewController: UITableViewController {
       return try self.service.dataSource.load(params: params)
     }
     
-    pageLoader.loadData { result in
+    pageLoader.loadData(onLoad: load) { result in
       if let items = result as? [Item] {
         self.items.items = items
 

@@ -26,7 +26,12 @@ class PerformersTableViewController: UITableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
-    pageLoader.load = {
+    #if os(iOS)
+      tableView?.backgroundView = activityIndicatorView
+      pageLoader.spinner = BaseSpinner(activityIndicatorView)
+    #endif
+
+    func load() throws -> [Any] {
       var params = Parameters()
       params["requestType"] = self.requestType
 
@@ -43,12 +48,7 @@ class PerformersTableViewController: UITableViewController {
       return try self.service.dataSource.load(params: params)
     }
 
-    #if os(iOS)
-      tableView?.backgroundView = activityIndicatorView
-      pageLoader.spinner = BaseSpinner(activityIndicatorView)
-    #endif
-    
-    pageLoader.loadData { result in
+    pageLoader.loadData(onLoad: load) { result in
       if let items = result as? [Item] {
         self.items.items = items
 
