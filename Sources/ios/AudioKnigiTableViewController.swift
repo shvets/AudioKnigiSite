@@ -107,44 +107,11 @@ open class AudioKnigiTableViewController: UITableViewController {
 
             let mediaItem = items.getItem(for: indexPath)
 
+            destination.params["async"] = true
             destination.params["requestType"] = mediaItem.name
             destination.params["parentName"] = localizer.localize(mediaItem.name!)
 
             destination.configuration = service.getConfiguration()
-
-            if mediaItem.name == "New Books" {
-              let pageLoader = PageLoader()
-
-              func load() throws -> [Any] {
-                let semaphore = DispatchSemaphore.init(value: 0)
-
-                var items = [Any]()
-
-                let currentPage = destination.pageLoader.currentPage
-
-                _ = AudioKnigiService.shared.getNewBooks2(page: currentPage).subscribe(
-                  onNext: { result in
-                    //print(result as Any)
-
-                    let data = result["movies"] as? [Any]
-
-                    let dataSource = AudioKnigiDataSource()
-
-                    items = dataSource.adjustItems(data!)
-
-                    semaphore.signal()
-                  }
-                )
-
-                _ = semaphore.wait(timeout: DispatchTime.distantFuture)
-
-                return items
-              }
-
-              pageLoader.load = load
-
-              destination.pageLoader = pageLoader
-            }
           }
 
         case SearchTableController.SegueIdentifier:

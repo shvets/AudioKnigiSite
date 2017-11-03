@@ -1,9 +1,35 @@
 import WebAPI
 import TVSetKit
 import AudioPlayer
+import RxSwift
 
 class AudioKnigiDataSource: DataSource {
   let service = AudioKnigiService.shared
+
+  override open func loadAsync(params: Parameters) throws -> Observable<[Any]> {
+    var items: Observable<[Any]>?
+
+    let selectedItem = params["selectedItem"] as? Item
+    let request = params["requestType"] as! String
+    let currentPage = params["currentPage"] as? Int ?? 1
+
+    switch request {
+
+    case "New Books":
+      items = service.getNewBooks2(page: currentPage).map { result in
+        let data = result["movies"] as? [Any]
+        
+        let items = self.adjustItems(data!)
+        
+        return items
+      }
+
+    default:
+      items = Observable.just([])
+    }
+
+    return items!
+  }
 
   override open func load(params: Parameters) throws -> [Any] {
     var items = [Item]()
