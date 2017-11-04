@@ -28,7 +28,7 @@ class PerformersTableViewController: UITableViewController {
 
     #if os(iOS)
       tableView?.backgroundView = activityIndicatorView
-      pageLoader.spinner = BaseSpinner(activityIndicatorView)
+      pageLoader.spinner = PlainSpinner(activityIndicatorView)
     #endif
 
     func load() throws -> [Any] {
