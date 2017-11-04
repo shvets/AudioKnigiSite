@@ -69,16 +69,6 @@ class PerformersTableViewController: UITableViewController {
 
   override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as? MediaNameTableCell {
-      if pageLoader.nextPageAvailable(dataCount: items.count, index: indexPath.row) {
-        pageLoader.loadData { result in
-          if let items = result as? [Item] {
-            self.items.items += items
-
-            self.tableView?.reloadData()
-          }
-        }
-      }
-
       let item = items[indexPath.row]
 
       cell.configureCell(item: item, localizedName: localizer.getLocalizedName(item.name))
