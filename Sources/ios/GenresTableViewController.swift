@@ -86,7 +86,7 @@ class GenresTableViewController: UITableViewController {
           if let destination = segue.destination.getActionController() as? MediaItemsController,
              let view = sender as? MediaNameTableCell,
              let indexPath = tableView.indexPath(for: view) {
-            destination.params["async"] = true
+
             destination.params["requestType"] = "Genre Books"
             destination.params["selectedItem"] = items.getItem(for: indexPath)
 

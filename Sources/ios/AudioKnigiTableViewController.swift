@@ -107,7 +107,6 @@ open class AudioKnigiTableViewController: UITableViewController {
 
             let mediaItem = items.getItem(for: indexPath)
 
-            destination.params["async"] = true
             destination.params["requestType"] = mediaItem.name
             destination.params["parentName"] = localizer.localize(mediaItem.name!)
 
@@ -117,7 +116,6 @@ open class AudioKnigiTableViewController: UITableViewController {
         case SearchTableController.SegueIdentifier:
           if let destination = segue.destination.getActionController() as? SearchTableController {
 
-            destination.params["async"] = true
             destination.params["requestType"] = "Search"
             destination.params["parentName"] = localizer.localize("Search Results")
 
