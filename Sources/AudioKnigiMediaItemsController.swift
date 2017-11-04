@@ -38,7 +38,7 @@ open class AudioKnigiMediaItemsController: MediaItemsController {
               
               let semaphore = DispatchSemaphore.init(value: 0)
 
-              _ = try self.dataSource?.loadAsync(params: params).map { result in
+              _ = try self.dataSource?.load(params: params).map { result in
                 for item in result as! [MediaItem] {
                   items.append(AudioItem(name: item.name!, id: item.id!))
                 }

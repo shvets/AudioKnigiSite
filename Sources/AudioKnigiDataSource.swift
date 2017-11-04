@@ -6,7 +6,7 @@ import RxSwift
 class AudioKnigiDataSource: DataSource {
   let service = AudioKnigiService.shared
 
-  override open func loadAsync(params: Parameters) throws -> Observable<[Any]> {
+  override open func load(params: Parameters) throws -> Observable<[Any]> {
     var items: Observable<[Any]> = Observable.just([])
 
     let selectedItem = params["selectedItem"] as? Item
