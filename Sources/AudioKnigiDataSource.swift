@@ -12,12 +12,13 @@ class AudioKnigiDataSource: DataSource {
     let selectedItem = params["selectedItem"] as? Item
     let request = params["requestType"] as! String
     let currentPage = params["currentPage"] as? Int ?? 1
+    let pageSize = params["pageSize"] as? Int ?? 12
 
     switch request {
     case "Bookmarks":
       if let bookmarksManager = params["bookmarksManager"] as? BookmarksManager,
          let bookmarks = bookmarksManager.bookmarks {
-        let data = bookmarks.getBookmarks(pageSize: 60, page: currentPage)
+        let data = bookmarks.getBookmarks(pageSize: pageSize, page: currentPage)
 
         items = Observable.just(self.adjustItems(data))
       }
@@ -25,7 +26,7 @@ class AudioKnigiDataSource: DataSource {
     case "History":
       if let historyManager = params["historyManager"] as? HistoryManager,
          let history = historyManager.history {
-        let data = history.getHistoryItems(pageSize: 60, page: currentPage)
+        let data = history.getHistoryItems(pageSize: pageSize, page: currentPage)
 
         items = Observable.just(adjustItems(data))
       }
