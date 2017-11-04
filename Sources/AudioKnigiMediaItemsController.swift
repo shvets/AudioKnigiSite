@@ -28,7 +28,7 @@ open class AudioKnigiMediaItemsController: MediaItemsController {
               historyManager?.addHistoryItem(mediaItem)
             }
             
-            destination.pageLoader.load = {
+            destination.loadAudioItems = {
               var items: [AudioItem] = []
               
               var params = Parameters()
