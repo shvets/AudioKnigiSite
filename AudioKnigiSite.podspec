@@ -25,5 +25,5 @@ Pod::Spec.new do |s|
   s.dependency 'Runglish', '~> 1.0.0'
   s.dependency 'AudioPlayer', '~> 1.0.7'
   s.dependency 'TVSetKit', '~> 1.0.14'
-  s.dependency 'Files', '~> 1.9.0'
+  s.dependency 'Files', '~> 2.0.1'
 end

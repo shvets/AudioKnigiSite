@@ -30,12 +30,12 @@ open class AudioKnigiMediaItemsController: MediaItemsController {
             
             destination.loadAudioItems = {
               var items: [AudioItem] = []
-              
+
               var params = Parameters()
 
               params["requestType"] = "Tracks"
               params["selectedItem"] = mediaItem
-              
+
               let semaphore = DispatchSemaphore.init(value: 0)
 
               _ = try self.dataSource?.load(params: params).map { result in
