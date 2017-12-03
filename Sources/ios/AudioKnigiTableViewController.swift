@@ -1,6 +1,7 @@
 import UIKit
 import TVSetKit
 import PageLoader
+import AudioPlayer
 
 open class AudioKnigiTableViewController: UITableViewController {
   static let SegueIdentifier = "Audio Knigi"
@@ -32,6 +33,7 @@ open class AudioKnigiTableViewController: UITableViewController {
 
   func getMainMenu() throws -> [Any] {
     return [
+      MediaName(name: "Now Listening", imageName: "Now Listening"),
       MediaName(name: "Bookmarks", imageName: "Star"),
       MediaName(name: "History", imageName: "Bookmark"),
       MediaName(name: "New Books", imageName: "Book"),
@@ -73,26 +75,29 @@ open class AudioKnigiTableViewController: UITableViewController {
       let mediaItem = items.getItem(for: indexPath)
 
       switch mediaItem.name! {
-      case "Best Books":
-        performSegue(withIdentifier: "Best Books", sender: view)
+        case "Now Listening":
+          performSegue(withIdentifier: "Now Listening", sender: view)
 
-      case "Authors":
-        performSegue(withIdentifier: "Authors Letters", sender: view)
+        case "Best Books":
+          performSegue(withIdentifier: "Best Books", sender: view)
 
-      case "Performers":
-        performSegue(withIdentifier: "Performers Letters", sender: view)
+        case "Authors":
+          performSegue(withIdentifier: "Authors Letters", sender: view)
 
-      case "Genres":
-        performSegue(withIdentifier: "Genres", sender: view)
+        case "Performers":
+          performSegue(withIdentifier: "Performers Letters", sender: view)
 
-      case "Settings":
-        performSegue(withIdentifier: "Settings", sender: view)
+        case "Genres":
+          performSegue(withIdentifier: "Genres", sender: view)
 
-      case "Search":
-        performSegue(withIdentifier: SearchTableController.SegueIdentifier, sender: view)
+        case "Settings":
+          performSegue(withIdentifier: "Settings", sender: view)
 
-      default:
-        performSegue(withIdentifier: MediaItemsController.SegueIdentifier, sender: view)
+        case "Search":
+          performSegue(withIdentifier: SearchTableController.SegueIdentifier, sender: view)
+
+        default:
+          performSegue(withIdentifier: MediaItemsController.SegueIdentifier, sender: view)
       }
     }
   }
@@ -113,9 +118,24 @@ open class AudioKnigiTableViewController: UITableViewController {
             destination.configuration = service.getConfiguration()
           }
 
+        case "Now Listening":
+          if let destination = segue.destination.getActionController() as? AudioItemsController {
+            let configuration = service.getConfiguration()
+
+            if let dataSource = configuration["dataSource"] as? DataSource,
+               let historyManager = configuration["historyManager"] as? HistoryManager {
+              let mediaItem = historyManager.history.items[historyManager.history.items.count-1].item
+              
+              destination.name = mediaItem.name
+              destination.thumb = mediaItem.thumb
+              destination.id = mediaItem.id
+              
+              destination.loadAudioItems = AudioKnigiMediaItemsController.loadAudioItems(mediaItem, dataSource: dataSource)
+            }
+          }
+
         case SearchTableController.SegueIdentifier:
           if let destination = segue.destination.getActionController() as? SearchTableController {
-
             destination.params["requestType"] = "Search"
             destination.params["parentName"] = localizer.localize("Search Results")
 

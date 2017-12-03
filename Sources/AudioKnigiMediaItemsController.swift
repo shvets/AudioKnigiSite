@@ -27,35 +27,39 @@ open class AudioKnigiMediaItemsController: MediaItemsController {
                requestType != "History" {
               historyManager?.addHistoryItem(mediaItem)
             }
-            
-            destination.loadAudioItems = {
-              var items: [AudioItem] = []
 
-              var params = Parameters()
-
-              params["requestType"] = "Tracks"
-              params["selectedItem"] = mediaItem
-
-              let semaphore = DispatchSemaphore.init(value: 0)
-
-              _ = try self.dataSource?.load(params: params).map { result in
-                for item in result as! [MediaItem] {
-                  items.append(AudioItem(name: item.name!, id: item.id!))
-                }
-              }.subscribe(onNext: { result in
-                semaphore.signal()
-              })
-
-              _ = semaphore.wait(timeout: DispatchTime.distantFuture)
-
-              return items
-            }
+            destination.loadAudioItems = AudioKnigiMediaItemsController.loadAudioItems(mediaItem, dataSource: dataSource)
           }
           
         default:
           super.prepare(for: segue, sender: sender)
         }
       }
+    }
+  }
+  
+  static func loadAudioItems(_ mediaItem: MediaItem, dataSource: DataSource?) -> (() throws -> [Any])? {
+    return {
+      var items: [AudioItem] = []
+      
+      var params = Parameters()
+      
+      params["requestType"] = "Tracks"
+      params["selectedItem"] = mediaItem
+      
+      let semaphore = DispatchSemaphore.init(value: 0)
+      
+      _ = try dataSource?.load(params: params).map { result in
+        for item in result as! [MediaItem] {
+          items.append(AudioItem(name: item.name!, id: item.id!))
+        }
+      }.subscribe(onNext: { result in
+        semaphore.signal()
+      })
+      
+      _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+      
+      return items
     }
   }
   
