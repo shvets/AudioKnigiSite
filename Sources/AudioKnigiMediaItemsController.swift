@@ -28,7 +28,9 @@ open class AudioKnigiMediaItemsController: MediaItemsController {
               historyManager?.addHistoryItem(mediaItem)
             }
 
-            destination.loadAudioItems = AudioKnigiMediaItemsController.loadAudioItems(mediaItem, dataSource: dataSource)
+            if let url = mediaItem.id {
+              destination.loadAudioItems = AudioKnigiMediaItemsController.loadAudioItems(url, dataSource: dataSource)
+            }
           }
           
         default:
@@ -38,14 +40,14 @@ open class AudioKnigiMediaItemsController: MediaItemsController {
     }
   }
   
-  static func loadAudioItems(_ mediaItem: MediaItem, dataSource: DataSource?) -> (() throws -> [Any])? {
+  static func loadAudioItems(_ url: String, dataSource: DataSource?) -> (() throws -> [Any])? {
     return {
       var items: [AudioItem] = []
       
       var params = Parameters()
       
       params["requestType"] = "Tracks"
-      params["selectedItem"] = mediaItem
+      params["url"] = url
       
       let semaphore = DispatchSemaphore.init(value: 0)
       

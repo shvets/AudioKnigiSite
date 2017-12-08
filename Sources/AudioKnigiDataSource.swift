@@ -130,8 +130,7 @@ class AudioKnigiDataSource: DataSource {
       }
 
     case "Tracks":
-      if let selectedItem = selectedItem,
-         let url = selectedItem.id {
+      if let url = params["url"] as? String {
         items = service.getAudioTracks(url).map { result in
           let newItems = self.adjustItems(result)
 
