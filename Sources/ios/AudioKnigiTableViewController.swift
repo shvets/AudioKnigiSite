@@ -12,7 +12,9 @@ open class AudioKnigiTableViewController: UITableViewController {
   let service = AudioKnigiService()
   
   let pageLoader = PageLoader()
-  
+
+  let audioPlayer = AudioPlayer("audio-knigi-player-settings.json")
+
   private var items = Items()
 
   override open func viewDidLoad() {
@@ -121,26 +123,23 @@ open class AudioKnigiTableViewController: UITableViewController {
         case "Now Listening":
           if let destination = segue.destination.getActionController() as? AudioItemsController {
             let configuration = service.getConfiguration()
+            
+            audioPlayer.loadPlayer()
+            
+            let playerSettings = audioPlayer.audioPlayerSettings
 
-            let playerSettings = AudioPlayer.shared.audioPlayerSettings
+            if let dataSource = configuration["dataSource"] as? DataSource,
+              let currentBookId = playerSettings?.items["currentBookId"],
+               let currentBookName = playerSettings?.items["currentBookName"],
+               let currentBookThumb = playerSettings?.items["currentBookThumb"],
+               !currentBookId.isEmpty {
 
-            do {
-              try playerSettings.load()
+              destination.name = currentBookName
+              destination.thumb = currentBookThumb
+              destination.id = currentBookId
+              destination.audioPlayerProperties = "audio-knigi-player-settings.json"
 
-              if let dataSource = configuration["dataSource"] as? DataSource,
-                 let currentBookId = playerSettings.items["currentBookId"],
-                 let currentBookName = playerSettings.items["currentBookName"],
-                 let currentBookThumb = playerSettings.items["currentBookThumb"] {
-
-                destination.name = currentBookName
-                destination.thumb = currentBookThumb
-                destination.id = currentBookId
-
-                destination.loadAudioItems = AudioKnigiMediaItemsController.loadAudioItems(currentBookId, dataSource: dataSource)
-              }
-            }
-            catch let error {
-              print("Error loading config file: \(error)")
+              destination.loadAudioItems = AudioKnigiMediaItemsController.loadAudioItems(currentBookId, dataSource: dataSource)
             }
           }
 

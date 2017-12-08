@@ -22,9 +22,9 @@ open class AudioKnigiMediaItemsController: MediaItemsController {
             destination.name = mediaItem.name
             destination.thumb = mediaItem.thumb
             destination.id = mediaItem.id
-            
-            if let requestType = params["requestType"] as? String,
-               requestType != "History" {
+            destination.audioPlayerProperties = "audio-knigi-player-settings.json"
+
+            if let requestType = params["requestType"] as? String, requestType != "History" {
               historyManager?.addHistoryItem(mediaItem)
             }
 
