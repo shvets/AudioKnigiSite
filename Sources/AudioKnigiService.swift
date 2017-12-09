@@ -1,6 +1,7 @@
 import Foundation
 import WebAPI
 import TVSetKit
+import AudioPlayer
 
 public class AudioKnigiService {
   static let shared: AudioKnigiAPI = {
@@ -10,8 +11,13 @@ public class AudioKnigiService {
   static let bookmarksFileName = NSHomeDirectory() + "/Library/Caches/audioknigi-bookmarks.json"
   static let historyFileName = NSHomeDirectory() + "/Library/Caches/audioknigi-history.json"
 
+  static let audioPlayerPropertiesFileName = "audio-knigi-player-settings.json"
+
   static let StoryboardId = "AudioKnigi"
   static let BundleId = "com.rubikon.AudioKnigiSite"
+
+  static var Authors = shared.getItemsInGroups(bundle!.path(forResource: "authors-in-groups", ofType: "json")!)
+  static var Performers = shared.getItemsInGroups(bundle!.path(forResource: "performers-in-groups", ofType: "json")!)
 
   lazy var bookmarks = Bookmarks(AudioKnigiService.bookmarksFileName)
   lazy var history = History(AudioKnigiService.historyFileName)
@@ -19,8 +25,9 @@ public class AudioKnigiService {
   lazy var bookmarksManager = BookmarksManager(bookmarks)
   lazy var historyManager = HistoryManager(history)
 
-  static var Authors = shared.getItemsInGroups(bundle!.path(forResource: "authors-in-groups", ofType: "json")!)
-  static var Performers = shared.getItemsInGroups(bundle!.path(forResource: "performers-in-groups", ofType: "json")!)
+  var audioPlayer: AudioPlayer {
+    return AudioPlayer.getAudioPlayer(AudioKnigiService.audioPlayerPropertiesFileName)
+  }
 
   var dataSource = AudioKnigiDataSource()
 

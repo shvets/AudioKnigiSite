@@ -13,8 +13,6 @@ open class AudioKnigiTableViewController: UITableViewController {
   
   let pageLoader = PageLoader()
 
-  let audioPlayer = AudioPlayer("audio-knigi-player-settings.json")
-
   private var items = Items()
 
   override open func viewDidLoad() {
@@ -124,9 +122,7 @@ open class AudioKnigiTableViewController: UITableViewController {
           if let destination = segue.destination.getActionController() as? AudioItemsController {
             let configuration = service.getConfiguration()
             
-            audioPlayer.loadPlayer()
-            
-            let playerSettings = audioPlayer.audioPlayerSettings
+            let playerSettings = service.audioPlayer.audioPlayerSettings
 
             if let dataSource = configuration["dataSource"] as? DataSource,
               let currentBookId = playerSettings?.items["currentBookId"],
@@ -137,7 +133,7 @@ open class AudioKnigiTableViewController: UITableViewController {
               destination.name = currentBookName
               destination.thumb = currentBookThumb
               destination.id = currentBookId
-              destination.audioPlayerProperties = "audio-knigi-player-settings.json"
+              destination.audioPlayer = service.audioPlayer
 
               destination.loadAudioItems = AudioKnigiMediaItemsController.loadAudioItems(currentBookId, dataSource: dataSource)
             }
