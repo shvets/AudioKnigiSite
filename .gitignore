@@ -5,6 +5,7 @@
 ## Build generated
 build/
 DerivedData/
+Pods/
 
 ## Various settings
 *.pbxuser
@@ -68,5 +69,6 @@ Carthage/Build
 .idea
 .DS_Store
 deploy
+*.lock
 
 

@@ -24,6 +24,6 @@ Pod::Spec.new do |s|
   s.dependency 'WebAPI', '~> 1.0.3'
   s.dependency 'Runglish', '~> 1.0.0'
   s.dependency 'AudioPlayer', '~> 1.0.7'
-  s.dependency 'TVSetKit', '~> 1.0.14'
+  s.dependency 'TVSetKit', '~> 1.0.27'
   s.dependency 'Files', '~> 2.0.1'
 end

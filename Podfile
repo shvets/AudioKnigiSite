@@ -3,25 +3,33 @@ source 'https://github.com/shvets/Specs.git'
 
 use_frameworks!
 
-target 'AudioKnigiSite_iOS' do
+#def project_dependencies
+#  pod 'TVSetKit', path: '../TVSetKit'
+#end
+
+target 'AudioKnigiSite' do
   platform :ios, '10.0'
 
-  podspec :path => 'AudioKnigiSite.podspec'
-
-  target 'AudioKnigiSite_iOSTests' do
-    inherit! :search_paths
-  end
-end
-
-target 'AudioKnigiSite_tvOS' do
-  platform :tvos, '10.10'
+  #project_dependencies
 
   podspec :path => 'AudioKnigiSite.podspec'
 
-  target 'AudioKnigiSite_tvOSTests' do
-    inherit! :search_paths
-  end
+  #target 'AudioKnigiSite_iOSTests' do
+  #  inherit! :search_paths
+  #end
 end
+
+#target 'AudioKnigiSite_tvOS' do
+#  platform :tvos, '10.10'
+
+#  project_dependencies
+
+#  podspec :path => 'AudioKnigiSite.podspec'
+
+#  target 'AudioKnigiSite_tvOSTests' do
+#    inherit! :search_paths
+#  end
+#end
 
 # target 'AudioKnigiSite_macOS' do
 #   platform :osx, '10.10'

@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2DBA12217540FB2182BF7748 /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DBA118665ECB4C6D022870C /* test.json */; };
 		2DBA1261295B276D583BD54C /* AuthorsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA11FE57EDBC792B883E6B /* AuthorsTableViewController.swift */; };
 		2DBA161F4F037268037A4405 /* AudioKnigiSite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA13F658C5092CD37F9E15 /* AudioKnigiSite.swift */; };
 		2DBA167CE22C572B499BB062 /* PerformersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA13B16D18BF2FA232A51A /* PerformersTableViewController.swift */; };
 		2DBA18D4DC746FFD3F28BEA8 /* AudioKnigiMediaItemsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA1C30490078615F3BDBD1 /* AudioKnigiMediaItemsController.swift */; };
+		D03B7BBB18F0D84DA4E646FB /* Pods_AudioKnigiSite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1279D67D321F5EAB65512337 /* Pods_AudioKnigiSite.framework */; };
 		FA0118A81E849AAC003A8D13 /* AudioKnigiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01189C1E849AAC003A8D13 /* AudioKnigiTableViewController.swift */; };
 		FA0118A91E849AAC003A8D13 /* AuthorsLetterGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01189D1E849AAC003A8D13 /* AuthorsLetterGroupsTableViewController.swift */; };
 		FA0118AA1E849AAC003A8D13 /* AuthorsLettersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01189E1E849AAC003A8D13 /* AuthorsLettersTableViewController.swift */; };
@@ -33,14 +33,18 @@
 		FA6F8A361E7DDA8F0022E16D /* TVSetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F8A351E7DDA8F0022E16D /* TVSetKit.framework */; };
 		FA6F8A381E7DDB340022E16D /* Runglish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F8A371E7DDB340022E16D /* Runglish.framework */; };
 		FA6F8A461E7DE9150022E16D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA6F8A481E7DE9150022E16D /* Localizable.strings */; };
+		FAB4FEC2218FD48400BDDF99 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4FEC1218FD48300BDDF99 /* MenuItem.swift */; };
+		FAB4FEC4218FD52900BDDF99 /* CellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4FEC3218FD52800BDDF99 /* CellConfigurator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2DBA118665ECB4C6D022870C /* test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
+		0873A51DD77A99236780BB02 /* Pods-AudioKnigiSite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioKnigiSite.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AudioKnigiSite/Pods-AudioKnigiSite.debug.xcconfig"; sourceTree = "<group>"; };
+		1279D67D321F5EAB65512337 /* Pods_AudioKnigiSite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudioKnigiSite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DBA11FE57EDBC792B883E6B /* AuthorsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsTableViewController.swift; sourceTree = "<group>"; };
 		2DBA13B16D18BF2FA232A51A /* PerformersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformersTableViewController.swift; sourceTree = "<group>"; };
 		2DBA13F658C5092CD37F9E15 /* AudioKnigiSite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioKnigiSite.swift; sourceTree = "<group>"; };
 		2DBA1C30490078615F3BDBD1 /* AudioKnigiMediaItemsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioKnigiMediaItemsController.swift; sourceTree = "<group>"; };
+		5E5635E859AA435030ED5626 /* Pods-AudioKnigiSite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioKnigiSite.release.xcconfig"; path = "Pods/Target Support Files/Pods-AudioKnigiSite/Pods-AudioKnigiSite.release.xcconfig"; sourceTree = "<group>"; };
 		FA01189C1E849AAC003A8D13 /* AudioKnigiTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioKnigiTableViewController.swift; sourceTree = "<group>"; };
 		FA01189D1E849AAC003A8D13 /* AuthorsLetterGroupsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsLetterGroupsTableViewController.swift; sourceTree = "<group>"; };
 		FA01189E1E849AAC003A8D13 /* AuthorsLettersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsLettersTableViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +71,8 @@
 		FA6F8A371E7DDB340022E16D /* Runglish.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runglish.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/EtvnetApp-gdyhsaliqubivtfjullxnayrebpq/Build/Products/Debug-iphonesimulator/Runglish.framework"; sourceTree = "<group>"; };
 		FA6F8A471E7DE9150022E16D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FA6F8A491E7DEB390022E16D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FAB4FEC1218FD48300BDDF99 /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		FAB4FEC3218FD52800BDDF99 /* CellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellConfigurator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,12 +86,22 @@
 				FA6F8A331E7DDA800022E16D /* SwiftSoup.framework in Frameworks */,
 				FA6F8A341E7DDA800022E16D /* WebAPI.framework in Frameworks */,
 				FA6F8A361E7DDA8F0022E16D /* TVSetKit.framework in Frameworks */,
+				D03B7BBB18F0D84DA4E646FB /* Pods_AudioKnigiSite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6FBA62A2E8EA063826B8E0BB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0873A51DD77A99236780BB02 /* Pods-AudioKnigiSite.debug.xcconfig */,
+				5E5635E859AA435030ED5626 /* Pods-AudioKnigiSite.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		FA01189A1E849A84003A8D13 /* ios */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,7 +127,7 @@
 				FA6F8A0F1E7DD58F0022E16D /* Sources */,
 				FA6F8A0E1E7DD58F0022E16D /* Products */,
 				FA6F8A2A1E7DDA6E0022E16D /* Frameworks */,
-				2DBA118665ECB4C6D022870C /* test.json */,
+				6FBA62A2E8EA063826B8E0BB /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,6 +142,8 @@
 		FA6F8A0F1E7DD58F0022E16D /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				FAB4FEC3218FD52800BDDF99 /* CellConfigurator.swift */,
+				FAB4FEC1218FD48300BDDF99 /* MenuItem.swift */,
 				FA01189A1E849A84003A8D13 /* ios */,
 				FA6F8A181E7DD7BC0022E16D /* AudioKnigiDataSource.swift */,
 				FA6F8A191E7DD7BC0022E16D /* AudioKnigiMediaItem.swift */,
@@ -150,6 +168,7 @@
 				FA6F8A311E7DDA800022E16D /* WebAPI.framework */,
 				FA6F8A2D1E7DDA750022E16D /* Runglish.framework */,
 				FA6F8A2B1E7DDA6E0022E16D /* SwiftyJSON.framework */,
+				1279D67D321F5EAB65512337 /* Pods_AudioKnigiSite.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -172,6 +191,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA6F8A151E7DD58F0022E16D /* Build configuration list for PBXNativeTarget "AudioKnigiSite" */;
 			buildPhases = (
+				4ADFDFBD7D29ED51F9B43424 /* [CP] Check Pods Manifest.lock */,
 				FA6F8A081E7DD58F0022E16D /* Sources */,
 				FA6F8A091E7DD58F0022E16D /* Frameworks */,
 				FA6F8A0A1E7DD58F0022E16D /* Headers */,
@@ -229,11 +249,31 @@
 				FA6F8A461E7DE9150022E16D /* Localizable.strings in Resources */,
 				FA18D8151E8B5411000CEAD4 /* authors-in-groups.json in Resources */,
 				FA18D8161E8B5411000CEAD4 /* performers-in-groups.json in Resources */,
-				2DBA12217540FB2182BF7748 /* test.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4ADFDFBD7D29ED51F9B43424 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AudioKnigiSite-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FA6F8A081E7DD58F0022E16D /* Sources */ = {
@@ -253,7 +293,9 @@
 				FA0118A81E849AAC003A8D13 /* AudioKnigiTableViewController.swift in Sources */,
 				2DBA1261295B276D583BD54C /* AuthorsTableViewController.swift in Sources */,
 				2DBA167CE22C572B499BB062 /* PerformersTableViewController.swift in Sources */,
+				FAB4FEC2218FD48400BDDF99 /* MenuItem.swift in Sources */,
 				2DBA161F4F037268037A4405 /* AudioKnigiSite.swift in Sources */,
+				FAB4FEC4218FD52900BDDF99 /* CellConfigurator.swift in Sources */,
 				2DBA18D4DC746FFD3F28BEA8 /* AudioKnigiMediaItemsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,6 +432,7 @@
 		};
 		FA6F8A161E7DD58F0022E16D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0873A51DD77A99236780BB02 /* Pods-AudioKnigiSite.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -411,6 +454,7 @@
 		};
 		FA6F8A171E7DD58F0022E16D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E5635E859AA435030ED5626 /* Pods-AudioKnigiSite.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";

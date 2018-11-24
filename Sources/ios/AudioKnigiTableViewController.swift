@@ -14,6 +14,11 @@ open class AudioKnigiTableViewController: UITableViewController {
   let pageLoader = PageLoader()
 
   private var items = Items()
+  
+  let bookCellConfigurator = CellConfigurator<MenuItem>(
+    titleKeyPath: \.name,
+    imageKeyPath: \.imageName
+  )
 
   override open func viewDidLoad() {
     super.viewDidLoad()
@@ -57,11 +62,13 @@ open class AudioKnigiTableViewController: UITableViewController {
   }
 
   override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as? MediaNameTableCell {
-      let item = items[indexPath.row]
+    if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as? MediaNameTableCell,
+       let item = items[indexPath.row] as? MediaName {
 
-      cell.configureCell(item: item, localizedName: localizer.getLocalizedName(item.name))
-
+      let menuItem = MenuItem(name: item.name!, imageName: item.imageName)
+      
+      bookCellConfigurator.configure(cell, for: menuItem, localizer: localizer)
+      
       return cell
     }
     else {
