@@ -9,7 +9,7 @@ class AuthorsTableViewController: UITableViewController {
   let localizer = Localizer(AudioKnigiService.BundleId, bundleClass: AudioKnigiSite.self)
 
   #if os(iOS)
-  public let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+  public let activityIndicatorView = UIActivityIndicatorView(style: .gray)
   #endif
   
   let service = AudioKnigiService()
