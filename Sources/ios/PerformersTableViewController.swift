@@ -37,7 +37,7 @@ class PerformersTableViewController: UITableViewController {
 
       if self.requestType == "All Performers" {
         self.pageLoader.enablePagination()
-        self.pageLoader.pageSize = self.service.getConfiguration()["authorsPageSize"] as! Int
+        self.pageLoader.pageSize = self.service.getConfiguration()["performersPageSize"] as! Int
 
         params["currentPage"] = self.pageLoader.currentPage
       }
