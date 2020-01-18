@@ -31,23 +31,6 @@ class PerformersTableViewController: UITableViewController {
       pageLoader.spinner = PlainSpinner(activityIndicatorView)
     #endif
 
-    func load() throws -> [Any] {
-      var params = Parameters()
-      params["requestType"] = self.requestType
-
-      if self.requestType == "All Performers" {
-        self.pageLoader.enablePagination()
-        self.pageLoader.pageSize = self.service.getConfiguration()["performersPageSize"] as! Int
-
-        params["currentPage"] = self.pageLoader.currentPage
-      }
-      else {
-        params["selectedItem"] = self.selectedItem
-      }
-      
-      return try self.service.dataSource.loadAndWait(params: params)
-    }
-
     pageLoader.loadData(onLoad: load) { result in
       if let items = result as? [Item] {
         self.items.items = items
@@ -55,6 +38,24 @@ class PerformersTableViewController: UITableViewController {
         self.tableView?.reloadData()
       }
     }
+  }
+
+  func load() throws -> [Any] {
+    var params = Parameters()
+    params["requestType"] = self.requestType
+
+    if self.requestType == "All Performers" {
+      self.pageLoader.enablePagination()
+      self.pageLoader.pageSize = self.service.getConfiguration()["performersPageSize"] as! Int
+      self.pageLoader.rowSize = 1
+
+      params["currentPage"] = self.pageLoader.currentPage
+    }
+    else {
+      params["selectedItem"] = self.selectedItem
+    }
+
+    return try self.service.dataSource.load(params: params)
   }
 
   // MARK: UITableViewDataSource
@@ -69,6 +70,16 @@ class PerformersTableViewController: UITableViewController {
 
   override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as? MediaNameTableCell {
+      if pageLoader.nextPageAvailable(dataCount: items.count, index: indexPath.row) {
+        pageLoader.loadData(onLoad: load) { result in
+          if let items = result as? [Item] {
+            self.items.items += items
+
+            self.tableView?.reloadData()
+          }
+        }
+      }
+
       let item = items[indexPath.row]
 
       cell.configureCell(item: item, localizedName: localizer.getLocalizedName(item.name))
@@ -85,6 +96,24 @@ class PerformersTableViewController: UITableViewController {
       performSegue(withIdentifier: MediaItemsController.SegueIdentifier, sender: view)
     }
   }
+
+//  override open func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//    let currentOffset = scrollView.contentOffset.y
+//    let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+//    let deltaOffset = maximumOffset - currentOffset
+//
+//    if deltaOffset <= 1 { // approximately, close to zero
+//      if pageLoader.nextPageAvailable(dataCount: items.count, index: items.count-1) {
+//        pageLoader.loadData(onLoad: load) { result in
+//          if let items = result as? [Item] {
+//            self.items.items += items
+//
+//            self.tableView?.reloadData()
+//          }
+//        }
+//      }
+//    }
+//  }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let identifier = segue.identifier {

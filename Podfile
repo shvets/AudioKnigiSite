@@ -8,7 +8,7 @@ use_frameworks!
 #end
 
 target 'AudioKnigiSite' do
-  platform :ios, '10.0'
+  platform :ios, '12.2'
 
   #project_dependencies
 

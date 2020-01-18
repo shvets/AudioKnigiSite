@@ -10,11 +10,11 @@ open class AudioKnigiTableViewController: UITableViewController {
   let localizer = Localizer(AudioKnigiService.BundleId, bundleClass: AudioKnigiSite.self)
 
   let service = AudioKnigiService()
-  
+
   let pageLoader = PageLoader()
 
   private var items = Items()
-  
+
   let bookCellConfigurator = CellConfigurator<MenuItem>(
     titleKeyPath: \.name,
     imageKeyPath: \.imageName
@@ -66,9 +66,9 @@ open class AudioKnigiTableViewController: UITableViewController {
        let item = items[indexPath.row] as? MediaName {
 
       let menuItem = MenuItem(name: item.name!, imageName: item.imageName)
-      
+
       bookCellConfigurator.configure(cell, for: menuItem, localizer: localizer)
-      
+
       return cell
     }
     else {
@@ -128,21 +128,23 @@ open class AudioKnigiTableViewController: UITableViewController {
         case "Now Listening":
           if let destination = segue.destination.getActionController() as? AudioItemsController {
             let configuration = service.getConfiguration()
+
+            let playerSettings = AudioPlayer.readSettings(AudioKnigiService.audioPlayerPropertiesFileName)
+            destination.playerSettings = playerSettings
             
-            let playerSettings = service.audioPlayer.audioPlayerSettings
-
             if let dataSource = configuration["dataSource"] as? DataSource,
-              let currentBookId = playerSettings?.items["currentBookId"],
-               let currentBookName = playerSettings?.items["currentBookName"],
-               let currentBookThumb = playerSettings?.items["currentBookThumb"],
-               !currentBookId.isEmpty {
+              let selectedBookId = playerSettings.items["selectedBookId"],
+              let selectedBookName = playerSettings.items["selectedBookName"],
+              let selectedBookThumb = playerSettings.items["selectedBookThumb"],
+               !selectedBookId.isEmpty {
 
-              destination.name = currentBookName
-              destination.thumb = currentBookThumb
-              destination.id = currentBookId
-              destination.audioPlayer = service.audioPlayer
-
-              destination.loadAudioItems = AudioKnigiMediaItemsController.loadAudioItems(currentBookId, dataSource: dataSource)
+              destination.selectedBookId = selectedBookId
+              destination.selectedBookName = selectedBookName
+              destination.selectedBookThumb = selectedBookThumb
+              destination.selectedItemId = Int(playerSettings.items["selectedItemId"]!)
+              destination.currentSongPosition = Float(playerSettings.items["currentSongPosition"]!)!
+              
+              destination.loadAudioItems = AudioKnigiMediaItemsController.loadAudioItems(selectedBookId, dataSource: dataSource)
             }
           }
 
