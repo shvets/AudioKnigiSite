@@ -115,7 +115,7 @@ class AudioKnigiDataSource: DataSource {
     case "Genres":
       let result = try service.getGenres(page: currentPage)
 
-      items = self.adjustItems(result.items)
+      items = self.adjustItems(result)
 
     case "Tracks":
       if let url = params["url"] as? String {
