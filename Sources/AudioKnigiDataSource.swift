@@ -44,17 +44,17 @@ class AudioKnigiDataSource: DataSource {
       items = self.adjustItems(result.items)
 
     case "Best Books":
-      //var period = "all"
+      var period = "all"
 
-      if selectedItem != nil {
-//        if selectedItem.name == "By Month" {
-//          period = "30"
-//        }
-//        else if selectedItem.name == "By Week" {
-//          period = "7"
-//        }
+      if  let selectedItem = selectedItem {
+        if selectedItem.name == "By Month" {
+          period = "30"
+        }
+        else if selectedItem.name == "By Week" {
+          period = "7"
+        }
 
-        let result = try service.getBestBooks(page: currentPage)
+        let result = try service.getBestBooks(page: currentPage, period: period)
         
         items = self.adjustItems(result.items)
       }

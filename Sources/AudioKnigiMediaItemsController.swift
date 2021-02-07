@@ -1,5 +1,6 @@
 import TVSetKit
 import AudioPlayer
+import MediaApis
 
 open class AudioKnigiMediaItemsController: MediaItemsController {
   override open func navigate(from view: UICollectionViewCell, playImmediately: Bool = false) {
@@ -27,6 +28,7 @@ open class AudioKnigiMediaItemsController: MediaItemsController {
             destination.selectedBookName = mediaItem.name!
             destination.selectedBookThumb = mediaItem.thumb!
             destination.selectedItemId = -1
+            destination.requestHeaders = getRequestHeaders()
 
             if let url = mediaItem.id {
               destination.loadAudioItems = AudioKnigiMediaItemsController.loadAudioItems(url, dataSource: dataSource)
@@ -42,6 +44,14 @@ open class AudioKnigiMediaItemsController: MediaItemsController {
         }
       }
     }
+  }
+  
+  func getRequestHeaders() -> [String: String] {
+    var headers: [String : String] = [:]
+    
+    headers["Referer"] = AudioKnigiAPI.SiteUrl
+
+    return headers
   }
 
   static func loadAudioItems(_ url: String, dataSource: DataSource?) -> (() throws -> [Any])? {
